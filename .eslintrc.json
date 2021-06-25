@@ -20,7 +20,7 @@
   },
   "plugins": ["@typescript-eslint", "notice"],
   "rules": {
-    "no-console": "error",
+    "no-console": "off",
     "notice/notice": [
       "error",
       {
