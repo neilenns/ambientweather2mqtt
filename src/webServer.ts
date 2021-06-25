@@ -2,6 +2,7 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+import * as ambientWeatherHandler from "./ambientWeatherHandler";
 import express from "express";
 import * as log from "./log";
 import { Server } from "http";
@@ -16,9 +17,7 @@ let httpTerminator: HttpTerminator;
  * Start up the Express web server.
  */
 export function start(): void {
-  app.get("/", (req: express.Request, res: express.Response) => {
-    res.send("Hello world!");
-  });
+  app.get("/data", ambientWeatherHandler.processAmbientWeatherData);
 
   try {
     server = app.listen(port, () => log.info("Web server", `Listening at http://localhost:${port}`));
