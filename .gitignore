@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# build output
+dist/
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -40,9 +43,6 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
-# TypeScript v1 declaration files
-typings/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -84,7 +84,7 @@ dist
 
 # Gatsby files
 .cache/
-# Comment in the public line in if your project uses Gatsby and *not* Next.js
+# Comment in the public line in if your project uses Gatsby and not Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# sample configuration files
+triggers.json
+settings.json

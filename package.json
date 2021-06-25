@@ -1,0 +1,46 @@
+{
+  "name": "ambientweather2mqtt",
+  "version": "1.0.0",
+  "description": "Converts Ambient Weather data to MQTT events",
+  "main": "dist/main.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "lint": "npm run lint:eslint && npm run lint:markdown",
+    "lint:eslint": "eslint -c .eslintrc.json --ext .ts src/",
+    "lint:markdown": "node ./node_modules/markdownlint-cli/markdownlint.js **/*.md --ignore node_modules",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "start": "node dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danecreekphotography/ambientweather2mqtt.git"
+  },
+  "keywords": [
+    "ambient",
+    "weather",
+    "MQTT"
+  ],
+  "author": "Neil Enns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danecreekphotography/ambientweather2mqtt/issues"
+  },
+  "homepage": "https://github.com/danecreekphotography/ambientweather2mqtt#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "eslint": "^7.29.0",
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-notice": "^0.9.10",
+    "markdownlint": "^0.23.1",
+    "markdownlint-cli": "^0.27.1",
+    "prettier": "^2.3.1"
+  }
+}
