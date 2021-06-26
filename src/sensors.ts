@@ -5,7 +5,6 @@
 
 import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass";
-import * as log from "./log";
 import * as mqttManager from "./mqttManager";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";

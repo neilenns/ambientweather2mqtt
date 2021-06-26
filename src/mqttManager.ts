@@ -54,6 +54,6 @@ export async function publishSensorDiscovery(sensor: Sensor): Promise<MQTT.IPubl
     return;
   }
 
-  log.info("MQTT", `Publishing discovery for ${sensor.payload.name}`);
-  return client.publish(sensor.discoveryTopic, JSON.stringify(sensor.payload));
+  log.info("MQTT", `Publishing discovery for ${sensor.discoveryPayload.name}`);
+  return client.publish(sensor.discoveryTopic, JSON.stringify(sensor.discoveryPayload));
 }
