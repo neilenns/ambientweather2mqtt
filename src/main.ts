@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import "dotenv/config";
 
-import * as webServer from "./webServer";
-import * as mqttManager from "./mqttManager";
-
 import * as log from "./Log";
+import * as mqttManager from "./mqttManager";
+import * as sensors from "./sensors";
+import * as webServer from "./webServer";
 
 /**
  * Starts up the system.
@@ -16,6 +16,7 @@ async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
   mqttManager.initialize();
+  sensors.initialize();
   webServer.start();
 }
 
