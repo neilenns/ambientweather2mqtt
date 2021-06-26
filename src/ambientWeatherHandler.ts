@@ -10,18 +10,20 @@ import { WeatherData } from "./weatherData";
 // baromabsin=24.756&tempf=62.8&battout=1&humidity=31&winddir=188&windspeedmph=1.1&windgustmph=3.4&maxdailygust=5.8&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&
 // weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=622.94&uv=6&batt_co2=1
 
+// The definitions for all the incoming properties are indirectly documented
+// in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
   const weatherData = {
     stationType: req.query.stationtype,
     MACAddress: req.query.PASSKEY,
     dateUTC: new Date(req.query.dateutc.toString()),
-    temperature: +req.query.tempinf,
-    humidity: +req.query.humidityin,
+    temperatureIndoor: +req.query.tempinf,
+    humidityIndoor: +req.query.humidityin,
     barometricPressureRelative: +req.query.baromrelin,
     barometricPressureAbsolute: +req.query.baromabsin,
-    tempf: +req.query.tempf,
-    batteryPercent: +req.query.battout,
-    humidity2: +req.query.humidity,
+    temperatureOutdoor: +req.query.tempf,
+    batteryOk: !!+req.query.battout, // Convert string to number with +, then number to boolean with !!
+    humidityOutdoor: +req.query.humidity,
     windDirection: +req.query.winddir,
     windSpeed: +req.query.windspeed,
     windGust: +req.query.windgustmph,

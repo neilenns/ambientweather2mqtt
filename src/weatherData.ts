@@ -7,13 +7,13 @@ export class WeatherData {
   public stationType: string;
   public MACAddress: string;
   public dateUTC: Date;
-  public temperature: number;
-  public humidity: number;
   public barometricPressureRelative: number;
   public barometricPressureAbsolute: number;
-  public tempf: number;
-  public batteryPercent: number;
-  public humidity2: number;
+  public temperatureIndoor: number;
+  public temperatureOutdoor: number;
+  public batteryOk: boolean;
+  public humidityIndoor: number;
+  public humidityOutdoor: number;
   public windDirection: number;
   public windSpeed: number;
   public windGust: number;
