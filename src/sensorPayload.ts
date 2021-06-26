@@ -10,10 +10,12 @@ export default class SensorPayload {
   device_class: string;
   icon: string;
   state_topic: string;
+  attr_topic: string;
+  json_attributes_topic: string;
   value_template: string;
   device: {
-    identifiers: string;
-    connections: string;
+    identifiers: string[];
+    connections: Array<[string, string]>;
     manufacturer: "Ambient Weather";
     name: "ambientweather2mqtt";
     model: string;

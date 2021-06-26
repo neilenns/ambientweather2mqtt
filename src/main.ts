@@ -15,8 +15,8 @@ import * as webServer from "./webServer";
 async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
-  mqttManager.initialize();
-  sensors.initialize();
+  await mqttManager.initialize();
+  await sensors.initialize();
   webServer.start();
 }
 

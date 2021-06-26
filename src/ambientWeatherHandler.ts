@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
 import * as log from "./log";
+import * as mqttManager from "./mqttManager";
 import { WeatherData } from "./weatherData";
 
 // Sample URL: GET /data/stationtype=AMBWeatherV4.2.9&PASSKEY=<MAC_ADDRESS>&dateutc=2021-03-19+20:20:12&tempinf=70.3&humidityin=29&baromrelin=29.900&
