@@ -10,7 +10,6 @@ export default class SensorPayload {
   device_class: string;
   icon: string;
   state_topic: string;
-  attr_topic: string;
   json_attributes_topic: string;
   value_template: string;
   device: {

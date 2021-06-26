@@ -9,11 +9,15 @@ const domain = "ambientweather2mqtt";
 
 export default class Sensor {
   discoveryTopic: string;
+  attributesTopic: string;
   payload: SensorPayload;
 
   constructor(name: string, unit: string, deviceClass: string, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
+
     this.discoveryTopic = `homeassistant/sensor/${domain}/${name}/config`;
+    this.attributesTopic = `homeassistant/sensor/${domain}/${name}/attributes`;
+
     this.payload = {
       name: `Ambient Weather ${name}`,
       unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,
@@ -21,7 +25,6 @@ export default class Sensor {
       device_class: deviceClass,
       icon: icon ? `mdi:${icon}` : undefined,
       state_topic: `homeassistant/sensor/${domain}/${name}/state`,
-      attr_topic: `homeassistant/sensor/${domain}/${name}/attributes`,
       value_template: `{{ value_json.${name} }}`,
       json_attributes_topic: `homeassistant/sensor/${domain}/${name}/attributes`,
       device: {
