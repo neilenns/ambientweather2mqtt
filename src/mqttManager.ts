@@ -19,7 +19,7 @@ export async function initialize(): Promise<void> {
     username: process.env.MQTT_USERNAME,
     password: process.env.MQTT_PASSWORD,
     clientId: "ambientWeather2mqtt",
-    rejectUnauthorized: false ?? true,
+    rejectUnauthorized: JSON.parse(process.env.MQTT_REJECT_UNAUTHORIZED) ?? true, // hack to convert "true" or "false" to actual boolean
   }).catch((e) => {
     throw new Error(`[MQTT] Unable to connect: ${e.message}`);
   });

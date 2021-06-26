@@ -8,6 +8,7 @@ declare global {
       MQTT_SERVER?: string;
       MQTT_USERNAME?: string;
       MQTT_PASSWORD?: string;
+      MQTT_REJECT_UNAUTHORIZED?: "true" | "false";
     }
   }
 }
