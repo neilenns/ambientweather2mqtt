@@ -3,23 +3,27 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import DeviceClass from "./deviceClass";
 import SensorDiscoveryPayload from "./sensorDiscoveryPayload";
-
-const domain = "ambientweather2mqtt";
+import SensorUnit from "./sensorUnit";
+import * as mqttManager from "./mqttManager";
+import { IPublishPacket } from "mqtt-packet";
+import SensorDataPayload from "./sensorDataPayload";
 
 export default class Sensor {
   public discoveryTopic: string;
   public attributesTopic: string;
   public stateTopic: string;
+  public dataPayload: SensorDataPayload;
 
   public discoveryPayload: SensorDiscoveryPayload;
 
-  constructor(name: string, unit: string, deviceClass: string, icon?: string) {
+  constructor(name: string, unit: SensorUnit, deviceClass: DeviceClass, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
-    this.discoveryTopic = `homeassistant/sensor/${domain}/${name}/config`;
-    this.attributesTopic = `homeassistant/sensor/${domain}/${name}/attributes`;
-    this.stateTopic = `homeassistant/sensor/${domain}/${name}/state`;
+    this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
+    this.attributesTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/attributes`;
+    this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
 
     this.discoveryPayload = {
       name: `Ambient Weather ${name}`,
@@ -28,7 +32,7 @@ export default class Sensor {
       device_class: deviceClass,
       icon: icon ? `mdi:${icon}` : undefined,
       state_topic: this.stateTopic,
-      value_template: `{{ value_json.${name} }}`,
+      value_template: `{{ value_json.value }}`,
       json_attributes_topic: this.attributesTopic,
       device: {
         identifiers: [`AW_${cleanedMacAddress}`],
@@ -38,5 +42,9 @@ export default class Sensor {
         model: "Ambient Weather Station",
       },
     } as SensorDiscoveryPayload;
+  }
+
+  public publishData(): Promise<IPublishPacket> {
+    return mqttManager.publish(this.stateTopic, JSON.stringify(this.dataPayload));
   }
 }

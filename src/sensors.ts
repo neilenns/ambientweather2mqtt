@@ -9,16 +9,28 @@ import * as mqttManager from "./mqttManager";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
 
-let sensors: Sensor[];
+export const sensors = new Map<string, Sensor>();
 
 export function initialize(): Promise<IPublishPacket[]> {
-  sensors = new Array<Sensor>();
+  const promises = new Array<Promise<IPublishPacket>>();
 
-  sensors.push(new Sensor("temperatureOutdoor", SensorUnit.F, DeviceClass.TEMPERATURE));
+  sensors.set("temperatureOutdoor", new Sensor("temperatureOutdoor", SensorUnit.F, DeviceClass.TEMPERATURE));
 
-  return Promise.all(
-    sensors.map((sensor: Sensor) => {
-      return mqttManager.publishSensorDiscovery(sensor);
-    }),
-  );
+  sensors.forEach((value) => {
+    promises.push(mqttManager.publishSensorDiscovery(value));
+  });
+
+  return Promise.all(promises);
+}
+
+export function publishAll(): Promise<IPublishPacket[]> {
+  const promises = new Array<Promise<IPublishPacket>>();
+
+  sensors.set("temperatureOutdoor", new Sensor("temperatureOutdoor", SensorUnit.F, DeviceClass.TEMPERATURE));
+
+  sensors.forEach((value) => {
+    promises.push(value.publishData());
+  });
+
+  return Promise.all(promises);
 }

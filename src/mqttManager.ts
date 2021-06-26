@@ -30,17 +30,17 @@ export async function initialize(): Promise<void> {
 }
 
 /**
- * Sends weather data to the MQTT server
- * @param data The weather data to send
+ * Sends  data to the MQTT server
+ * @param data The  data to send
  * @returns A promise
  */
-export async function publishWeatherData(data: WeatherData): Promise<MQTT.IPublishPacket> {
+export async function publish(topic: string, data: string): Promise<MQTT.IPublishPacket> {
   if (!connected) {
-    log.info("MQTT", "Attempted to send weather data but not connected to MQTT server.");
+    log.info("MQTT", "Attempted to send data but not connected to MQTT server.");
     return;
   }
 
-  return client.publish("test topic", JSON.stringify(data));
+  return client.publish(topic, data);
 }
 
 /**
