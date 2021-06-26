@@ -2,7 +2,11 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+import "dotenv/config";
+
 import * as webServer from "./webServer";
+import * as mqttManager from "./mqttManager";
+
 import * as log from "./Log";
 
 /**
@@ -11,6 +15,7 @@ import * as log from "./Log";
 async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
+  mqttManager.initialize();
   webServer.start();
 }
 
