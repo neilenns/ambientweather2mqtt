@@ -25,7 +25,7 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
     batteryOk: !!+req.query.battout, // Convert string to number with +, then number to boolean with !!
     humidityOutdoor: +req.query.humidity,
     windDirection: +req.query.winddir,
-    windSpeed: +req.query.windspeed,
+    windSpeed: +req.query.windspeedmph,
     windGust: +req.query.windgustmph,
     windMaxDailyGust: +req.query.maxdailygust,
     rainHourly: +req.query.hourlyrainin,
@@ -36,10 +36,9 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
     rainTotal: +req.query.totalrainin,
     solarRadiation: +req.query.solarradiation,
     uv: +req.query.uv,
-    batteryCo2: +req.query.batt_co2,
+    batteryCo2Ok: !!+req.query.batt_co2, // Convert string to number with +, then number to boolean with !!
   } as WeatherData;
 
   log.info("Weather handler", JSON.stringify(weatherData));
-
   res.status(200).send("OK");
 }

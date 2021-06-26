@@ -25,5 +25,5 @@ export class WeatherData {
   public rainTotal: number;
   public solarRadiation: number;
   public uv: number;
-  public batteryCo2: number;
+  public batteryCo2Ok: boolean;
 }
