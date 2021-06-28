@@ -9,7 +9,6 @@ import { Server } from "http";
 import { createHttpTerminator, HttpTerminator } from "http-terminator";
 
 const app = express();
-const port = 8080;
 let server: Server;
 let httpTerminator: HttpTerminator;
 
@@ -20,7 +19,9 @@ export function start(): void {
   app.get("/data", ambientWeatherHandler.processAmbientWeatherData);
 
   try {
-    server = app.listen(port, () => log.info("Web server", `Listening at http://localhost:${port}`));
+    server = app.listen(process.env.PORT, () =>
+      log.info("Web server", `Listening at http://localhost:${process.env.PORT}`),
+    );
     httpTerminator = createHttpTerminator({
       server,
     });

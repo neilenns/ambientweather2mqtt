@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  ambientweather:
+    ports:
+      # This port is used by the local web server when annotated images are enabled.
+      # If you change the port used by the local web server in the settings.json file
+      # this also has to change to match.
+      - "${PORT}:${PORT}"
+
+    image: ambientweather2mqtt:latest
+    restart: always
