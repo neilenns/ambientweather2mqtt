@@ -18,6 +18,14 @@ export function initialize(): Promise<IPublishPacket[]> {
   sensors.set("temperatureIndoor", new Sensor("temperatureIndoor", SensorUnit.F, DeviceClass.TEMPERATURE));
   sensors.set("humidityOutdoor", new Sensor("humidityOutdoor", SensorUnit.percent, DeviceClass.HUMIDITY));
   sensors.set("humidityIndoor", new Sensor("humidityIndoor", SensorUnit.percent, DeviceClass.HUMIDITY));
+  sensors.set(
+    "barometricPressureRelative",
+    new Sensor("barometricPressureRelative", SensorUnit.inHg, DeviceClass.PRESSURE),
+  );
+  sensors.set(
+    "barometricPressureAbsolute",
+    new Sensor("barometricPressureAbsolute", SensorUnit.inHg, DeviceClass.PRESSURE),
+  );
 
   sensors.forEach((value) => {
     promises.push(mqttManager.publishSensorDiscovery(value));

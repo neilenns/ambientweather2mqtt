@@ -29,6 +29,8 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload("temperatureIndoor", +req.query.tempinf);
   setDataPayload("humidityOutdoor", +req.query.humidity);
   setDataPayload("humidityIndoor", +req.query.humidityin);
+  setDataPayload("barometricPressureRelative", +req.query.baromrelin);
+  setDataPayload("barometricPressureAbsolute", +req.query.baromabsin);
 
   const weatherData = {
     stationType: req.query.stationtype,
