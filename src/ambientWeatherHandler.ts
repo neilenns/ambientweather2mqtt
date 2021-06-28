@@ -35,6 +35,12 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);
   setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
   setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
+  setDataPayload(SensorNames.RAINDAILY, +req.query.dailyrainin);
+  setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
+  setDataPayload(SensorNames.RAINEVENT, +req.query.eventrainin);
+  setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
+  setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
+  setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
 
   const weatherData = {
     stationType: req.query.stationtype,

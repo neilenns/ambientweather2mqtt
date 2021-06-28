@@ -13,6 +13,12 @@ enum SensorNames {
   HUMIDITYINDOOR = "humidityIndoor",
   BAROMETRICPRESSURERELATIVE = "barometricPressureRelative",
   BAROMETRICPRESSUREABSOLUTE = "barometricPressureAbsolute",
+  RAINHOURLY = "rainHourly",
+  RAINEVENT = "rainEvent",
+  RAINDAILY = "rainDaily",
+  RAINWEEKLY = "rainWeekly",
+  RAINMONTHLY = "rainMonthly",
+  RAINTOTAL = "rainTotal",
 }
 
 export default SensorNames;

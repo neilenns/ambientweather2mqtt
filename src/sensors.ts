@@ -51,6 +51,40 @@ export function initialize(): Promise<IPublishPacket[]> {
     SensorNames.BAROMETRICPRESSUREABSOLUTE,
     new Sensor(SensorNames.BAROMETRICPRESSUREABSOLUTE, SensorUnit.inHg, DeviceClass.PRESSURE),
   );
+  sensors.set(
+    SensorNames.RAINDAILY,
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
+    SensorNames.RAINHOURLY,
+    new Sensor(SensorNames.RAINHOURLY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
+    SensorNames.RAINDAILY,
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+
+  sensors.set(
+    SensorNames.RAINEVENT,
+    new Sensor(SensorNames.RAINEVENT, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
+    SensorNames.RAINDAILY,
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+
+  sensors.set(
+    SensorNames.RAINWEEKLY,
+    new Sensor(SensorNames.RAINWEEKLY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
+    SensorNames.RAINMONTHLY,
+    new Sensor(SensorNames.RAINMONTHLY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
+    SensorNames.RAINTOTAL,
+    new Sensor(SensorNames.RAINTOTAL, SensorUnit.inches, undefined, "weather-pouring"),
+  );
 
   sensors.forEach((value) => {
     promises.push(mqttManager.publishSensorDiscovery(value));
