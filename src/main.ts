@@ -12,15 +12,13 @@ import * as webServer from "./webServer";
 /**
  * Starts up the system.
  */
-async function startup(): Promise<boolean> {
+async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
   if (!verifyEnvironmentVariables()) {
-    log.error(
-      "Main",
+    throw new Error(
       "Required environment variables are missing, startup halted. Add the missing environment variables then run again.",
     );
-    return false;
   }
 
   await mqttManager.initialize();
@@ -29,8 +27,6 @@ async function startup(): Promise<boolean> {
   await sensors.discoverAll();
 
   webServer.start();
-
-  return true;
 }
 
 /**
@@ -71,7 +67,7 @@ function verifyEnvironmentVariables(): boolean {
 async function handleDeath(): Promise<void> {
   log.info("Main", "Shutting down.");
   await shutdown();
-  process.exit();
+  process.exit(0);
 }
 
 /**
@@ -91,9 +87,10 @@ async function main(): Promise<void> {
   registerForDeath();
 
   // If startup returns false then something failed so just bail.
-  if (!(await startup())) {
-    return;
-  }
+  await startup().catch((e) => {
+    log.error("Main", e);
+    process.exit(1);
+  });
 
   // Spin in circles waiting.
   wait();
