@@ -1,2 +1,0 @@
-# In this folder only allow .env files to get checked in since it's a sample file.
-!.env
