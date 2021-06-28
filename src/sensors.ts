@@ -26,8 +26,6 @@ export function initialize(): Promise<IPublishPacket[]> {
 export function publishAll(): Promise<IPublishPacket[]> {
   const promises = new Array<Promise<IPublishPacket>>();
 
-  sensors.set("temperatureOutdoor", new Sensor("temperatureOutdoor", SensorUnit.F, DeviceClass.TEMPERATURE));
-
   sensors.forEach((value) => {
     promises.push(value.publishData());
   });

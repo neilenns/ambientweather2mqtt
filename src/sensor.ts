@@ -45,6 +45,7 @@ export default class Sensor {
   }
 
   public publishData(): Promise<IPublishPacket> {
+    // Why is this.dataPayload undefined here???
     return mqttManager.publish(this.stateTopic, JSON.stringify(this.dataPayload));
   }
 }
