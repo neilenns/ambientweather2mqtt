@@ -86,7 +86,7 @@ function registerForDeath(): void {
 async function main(): Promise<void> {
   registerForDeath();
 
-  // If startup returns false then something failed so just bail.
+  // If startup throws any exceptions just bail.
   await startup().catch((e) => {
     log.error("Main", e);
     process.exit(1);
