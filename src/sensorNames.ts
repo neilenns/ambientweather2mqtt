@@ -19,6 +19,9 @@ enum SensorNames {
   RAINWEEKLY = "rainWeekly",
   RAINMONTHLY = "rainMonthly",
   RAINTOTAL = "rainTotal",
+  SOLARRADIATION = "solarRadiation",
+  UV = "uv",
+  DATE = "dateUtc",
 }
 
 export default SensorNames;

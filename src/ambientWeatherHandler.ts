@@ -6,21 +6,17 @@ import express from "express";
 import * as log from "./log";
 import { WeatherData } from "./weatherData";
 import * as sensors from "./sensors";
-import SensorDataPayload from "./sensorDataPayload";
+import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
 
 // Sample URL: GET /data/stationtype=AMBWeatherV4.2.9&PASSKEY=<MAC_ADDRESS>&dateutc=2021-03-19+20:20:12&tempinf=70.3&humidityin=29&baromrelin=29.900&
 // baromabsin=24.756&tempf=62.8&battout=1&humidity=31&winddir=188&windspeedmph=1.1&windgustmph=3.4&maxdailygust=5.8&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&
 // weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=622.94&uv=6&batt_co2=1
 
-function setDataPayload(key: string, value: string | number | boolean) {
+function setDataPayload(key: string, value: string | number | boolean | Date) {
   sensors.sensors.get(key).dataPayload = {
     value: value,
-  } as SensorDataPayload;
-
-  // const sensor = sensors.sensors.get(key);
-  // sensor.dataPayload = { value: value };
-  // sensors.sensors.set(key, sensor);
+  } as ISensorDataPayload;
 }
 
 // The definitions for all the incoming properties are indirectly documented
@@ -41,6 +37,9 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
   setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
+  setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
+  setDataPayload(SensorNames.UV, +req.query.uv);
+  setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
 
   const weatherData = {
     stationType: req.query.stationtype,

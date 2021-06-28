@@ -85,6 +85,12 @@ export function initialize(): Promise<IPublishPacket[]> {
     SensorNames.RAINTOTAL,
     new Sensor(SensorNames.RAINTOTAL, SensorUnit.inches, undefined, "weather-pouring"),
   );
+  sensors.set(
+    SensorNames.SOLARRADIATION,
+    new Sensor(SensorNames.SOLARRADIATION, SensorUnit.radiation, undefined, "solar-power"),
+  );
+  sensors.set(SensorNames.UV, new Sensor(SensorNames.UV, undefined, undefined, "weather-sunny"));
+  sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
 
   sensors.forEach((value) => {
     promises.push(mqttManager.publishSensorDiscovery(value));

@@ -11,6 +11,7 @@ enum SensorUnit {
   inches = "in",
   milesPerHour = "mph",
   radiation = "W/m^2",
+  timestamp = "timestamp",
 }
 
 export default SensorUnit;
