@@ -26,6 +26,9 @@ function setDataPayload(key: string, value: string | number | boolean) {
 // in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
   setDataPayload("temperatureOutdoor", +req.query.tempf);
+  setDataPayload("temperatureIndoor", +req.query.tempinf);
+  setDataPayload("humidityOutdoor", +req.query.humidity);
+  setDataPayload("humidityIndoor", +req.query.humidityin);
 
   const weatherData = {
     stationType: req.query.stationtype,

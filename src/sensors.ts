@@ -15,6 +15,9 @@ export function initialize(): Promise<IPublishPacket[]> {
   const promises = new Array<Promise<IPublishPacket>>();
 
   sensors.set("temperatureOutdoor", new Sensor("temperatureOutdoor", SensorUnit.F, DeviceClass.TEMPERATURE));
+  sensors.set("temperatureIndoor", new Sensor("temperatureIndoor", SensorUnit.F, DeviceClass.TEMPERATURE));
+  sensors.set("humidityOutdoor", new Sensor("humidityOutdoor", SensorUnit.percent, DeviceClass.HUMIDITY));
+  sensors.set("humidityIndoor", new Sensor("humidityIndoor", SensorUnit.percent, DeviceClass.HUMIDITY));
 
   sensors.forEach((value) => {
     promises.push(mqttManager.publishSensorDiscovery(value));
