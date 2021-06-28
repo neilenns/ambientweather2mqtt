@@ -26,11 +26,9 @@ services:
       # Leave as-is unless you know what you are doing.
       - MQTT_REJECT_UNAUTHORIZED=false
 
+    # Don't modify anything below this line unless you know what you are doing.
     ports:
-      # This port is used by the local web server when annotated images are enabled.
-      # If you change the port used by the local web server in the settings.json file
-      # this also has to change to match.
       - "${PORT}:${PORT}"
 
-    image: danecreekphotography/ambientweather2mqtt:dev
+    image: danecreekphotography/ambientweather2mqtt:latest
     restart: always
