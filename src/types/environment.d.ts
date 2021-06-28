@@ -10,6 +10,7 @@ declare global {
       MQTT_PASSWORD?: string;
       MQTT_REJECT_UNAUTHORIZED?: "true" | "false";
       STATION_MAC_ADDRESS?: string;
+      PORT?: string;
     }
   }
 }

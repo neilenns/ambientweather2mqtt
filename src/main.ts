@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import "dotenv/config";
 
-import * as log from "./Log";
+import * as log from "./log";
 import * as mqttManager from "./mqttManager";
 import * as sensors from "./sensors";
 import * as webServer from "./webServer";
@@ -14,6 +14,12 @@ import * as webServer from "./webServer";
  */
 async function startup(): Promise<void> {
   log.info("Main", "Starting up");
+
+  if (!verifyEnvironmentVariables()) {
+    throw new Error(
+      "Required environment variables are missing, startup halted. Add the missing environment variables then run again.",
+    );
+  }
 
   await mqttManager.initialize();
 
@@ -30,13 +36,38 @@ async function shutdown(): Promise<void> {
   await webServer.stop();
 }
 
+function verifyEnvironmentVariables(): boolean {
+  if (process.env.MQTT_SERVER === undefined || process.env.MQTT_SERVER === "") {
+    log.error(
+      "Main",
+      "The MQTT_SERVER environment variable isn't set. It must be set to the URL for the MQTT server, e.g. http://192.168.1.1/.",
+    );
+    return false;
+  }
+
+  if (process.env.STATION_MAC_ADDRESS === undefined || process.env.STATION_MAC_ADDRESS === "") {
+    log.error(
+      "Main",
+      "The STATION_MAC_ADDRESS environment variable isn't set. It must be set to MAC address for the Ambient Weather station. The station's MAC address can be found using the awnet app.",
+    );
+    return false;
+  }
+
+  if (process.env.PORT === undefined || process.env.PORT === "") {
+    log.error("Main", "The PORT environment variable isn't set. It must be set to the port this service runs on.");
+    return false;
+  }
+
+  return true;
+}
+
 /**
  * Called when a system shutdown message is received to ensure proper cleanup of open sockets.
  */
 async function handleDeath(): Promise<void> {
   log.info("Main", "Shutting down.");
   await shutdown();
-  process.exit();
+  process.exit(0);
 }
 
 /**
@@ -55,7 +86,11 @@ function registerForDeath(): void {
 async function main(): Promise<void> {
   registerForDeath();
 
-  await startup();
+  // If startup throws any exceptions just bail.
+  await startup().catch((e) => {
+    log.error("Main", e);
+    process.exit(1);
+  });
 
   // Spin in circles waiting.
   wait();
