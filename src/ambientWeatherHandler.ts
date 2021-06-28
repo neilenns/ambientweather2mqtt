@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
 import * as log from "./log";
-import { WeatherData } from "./weatherData";
 import * as sensors from "./sensors";
 import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
@@ -40,32 +39,8 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
   setDataPayload(SensorNames.UV, +req.query.uv);
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
-
-  const weatherData = {
-    stationType: req.query.stationtype,
-    MACAddress: req.query.PASSKEY,
-    dateUTC: new Date(req.query.dateutc.toString()),
-    temperatureIndoor: +req.query.tempinf,
-    humidityIndoor: +req.query.humidityin,
-    barometricPressureRelative: +req.query.baromrelin,
-    barometricPressureAbsolute: +req.query.baromabsin,
-    temperatureOutdoor: +req.query.tempf,
-    batteryOk: !!+req.query.battout, // Convert string to number with +, then number to boolean with !!
-    humidityOutdoor: +req.query.humidity,
-    windDirection: +req.query.winddir,
-    windSpeed: +req.query.windspeedmph,
-    windGust: +req.query.windgustmph,
-    windMaxDailyGust: +req.query.maxdailygust,
-    rainHourly: +req.query.hourlyrainin,
-    rainEvent: +req.query.eventrainin,
-    rainDaily: +req.query.dailyrainin,
-    rainWeekly: +req.query.weeklyrainin,
-    rainMonthly: +req.query.monthlyrainin,
-    rainTotal: +req.query.totalrainin,
-    solarRadiation: +req.query.solarradiation,
-    uv: +req.query.uv,
-    batteryCo2Ok: !!+req.query.batt_co2, // Convert string to number with +, then number to boolean with !!
-  } as WeatherData;
+  setDataPayload(SensorNames.BATTERYOK, !!+req.query.battout); // Convert string to number with +, then number to boolean with !!
+  setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
 
   sensors.publishAll();
 

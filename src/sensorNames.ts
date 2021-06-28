@@ -22,6 +22,8 @@ enum SensorNames {
   SOLARRADIATION = "solarRadiation",
   UV = "uv",
   DATE = "dateUtc",
+  BATTERYOK = "batteryOk",
+  BATTERYCO2OK = "batteryCo2Ok",
 }
 
 export default SensorNames;
