@@ -18,7 +18,7 @@ export default class Sensor {
 
   public discoveryPayload: SensorDiscoveryPayload;
 
-  constructor(name: string, unit: SensorUnit, deviceClass: DeviceClass, icon?: string) {
+  constructor(name: string, unit: SensorUnit, deviceClass: DeviceClass | undefined, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
     this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
@@ -26,7 +26,7 @@ export default class Sensor {
     this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
 
     this.discoveryPayload = {
-      name: `Ambient Weather ${name}`,
+      name: name,
       unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,
       unit_of_measurement: unit,
       device_class: deviceClass,

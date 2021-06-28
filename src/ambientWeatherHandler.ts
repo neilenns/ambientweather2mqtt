@@ -7,6 +7,7 @@ import * as log from "./log";
 import { WeatherData } from "./weatherData";
 import * as sensors from "./sensors";
 import SensorDataPayload from "./sensorDataPayload";
+import SensorNames from "./sensorNames";
 
 // Sample URL: GET /data/stationtype=AMBWeatherV4.2.9&PASSKEY=<MAC_ADDRESS>&dateutc=2021-03-19+20:20:12&tempinf=70.3&humidityin=29&baromrelin=29.900&
 // baromabsin=24.756&tempf=62.8&battout=1&humidity=31&winddir=188&windspeedmph=1.1&windgustmph=3.4&maxdailygust=5.8&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&
@@ -25,12 +26,15 @@ function setDataPayload(key: string, value: string | number | boolean) {
 // The definitions for all the incoming properties are indirectly documented
 // in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
-  setDataPayload("temperatureOutdoor", +req.query.tempf);
-  setDataPayload("temperatureIndoor", +req.query.tempinf);
-  setDataPayload("humidityOutdoor", +req.query.humidity);
-  setDataPayload("humidityIndoor", +req.query.humidityin);
-  setDataPayload("barometricPressureRelative", +req.query.baromrelin);
-  setDataPayload("barometricPressureAbsolute", +req.query.baromabsin);
+  setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
+  setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
+  setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
+  setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
+  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
+  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +req.query.baromabsin);
+  setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);
+  setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
+  setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
 
   const weatherData = {
     stationType: req.query.stationtype,

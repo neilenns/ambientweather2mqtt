@@ -1,0 +1,18 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Neil Enns. All rights reserved.
+ *  Licensed under the MIT License. See LICENSE in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+enum SensorNames {
+  TEMPERATUREOUTDOOR = "temperatureOutdoor",
+  TEMPERATUREINDOOR = "temperatureIndoor",
+  WINDGUST = "windGust",
+  WINDSPEED = "windSpeed",
+  WINDMAXDAILYGUST = "windMaxDailyGust",
+  HUMIDITYOUTDOOR = "humidityOutdoor",
+  HUMIDITYINDOOR = "humidityIndoor",
+  BAROMETRICPRESSURERELATIVE = "barometricPressureRelative",
+  BAROMETRICPRESSUREABSOLUTE = "barometricPressureAbsolute",
+}
+
+export default SensorNames;
