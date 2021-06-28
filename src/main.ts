@@ -16,7 +16,10 @@ async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
   await mqttManager.initialize();
-  await sensors.initialize();
+
+  sensors.initialize();
+  await sensors.discoverAll();
+
   webServer.start();
 }
 

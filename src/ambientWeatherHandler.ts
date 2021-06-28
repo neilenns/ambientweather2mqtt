@@ -44,6 +44,5 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
 
   sensors.publishAll();
 
-  log.info("Weather handler", JSON.stringify(weatherData));
-  res.status(200).send("OK");
+  res.status(200).send("Ok");
 }

@@ -5,8 +5,6 @@
 
 import * as log from "./log";
 import MQTT from "async-mqtt";
-import { WeatherData } from "./weatherData";
-import Sensor from "./sensor";
 
 let connected = false;
 
@@ -41,19 +39,4 @@ export async function publish(topic: string, data: string): Promise<MQTT.IPublis
   }
 
   return client.publish(topic, data);
-}
-
-/**
- * Publishes a sensor for HomeAssistant auto-discovery.
- * @param sensor The sensor to send
- * @returns A promise
- */
-export async function publishSensorDiscovery(sensor: Sensor): Promise<MQTT.IPublishPacket> {
-  if (!connected) {
-    log.info("MQTT", "Attempted to publish sensor for discovery but not connected to MQTT server.");
-    return;
-  }
-
-  log.info("MQTT", `Publishing discovery for ${sensor.discoveryPayload.name}`);
-  return client.publish(sensor.discoveryTopic, JSON.stringify(sensor.discoveryPayload));
 }

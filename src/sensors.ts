@@ -12,9 +12,7 @@ import SensorUnit from "./sensorUnit";
 
 export const sensors = new Map<string, Sensor>();
 
-export function initialize(): Promise<IPublishPacket[]> {
-  const promises = new Array<Promise<IPublishPacket>>();
-
+export function initialize(): void {
   sensors.set(
     SensorNames.WINDGUST,
     new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
@@ -93,9 +91,13 @@ export function initialize(): Promise<IPublishPacket[]> {
   sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
   sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, undefined, undefined, "battery"));
   sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, undefined, undefined, "battery"));
+}
+
+export function discoverAll(): Promise<IPublishPacket[]> {
+  const promises = new Array<Promise<IPublishPacket>>();
 
   sensors.forEach((value) => {
-    promises.push(mqttManager.publishSensorDiscovery(value));
+    promises.push(value.publishDiscovery());
   });
 
   return Promise.all(promises);
