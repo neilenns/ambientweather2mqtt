@@ -19,11 +19,6 @@ let httpTerminator: HttpTerminator;
 export function start(): void {
   app.get("/data", ambientWeatherHandler.processAmbientWeatherData);
 
-  app.get("*", (req, res) => {
-    log.info("Web server", `Got a hit at ${req.path}`);
-    res.status(200).send("OK");
-  });
-
   try {
     server = app.listen(port, () => log.info("Web server", `Listening at http://localhost:${port}`));
     httpTerminator = createHttpTerminator({

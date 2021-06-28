@@ -14,7 +14,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "prepare": "npm run build",
     "prepublishOnly": "npm run lint",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "build:docker": "docker build ."
   },
   "repository": {
     "type": "git",
