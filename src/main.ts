@@ -2,14 +2,23 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as webServer from "./webServer";
+import "dotenv/config";
+
 import * as log from "./Log";
+import * as mqttManager from "./mqttManager";
+import * as sensors from "./sensors";
+import * as webServer from "./webServer";
 
 /**
  * Starts up the system.
  */
 async function startup(): Promise<void> {
   log.info("Main", "Starting up");
+
+  await mqttManager.initialize();
+
+  sensors.initialize();
+  await sensors.discoverAll();
 
   webServer.start();
 }
