@@ -21,7 +21,7 @@ function setDataPayload(key: string, value: string | number | boolean | Date) {
 // The definitions for all the incoming properties are indirectly documented
 // in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
-  log.verbose("Weather handler", JSON.stringify(req.params, null, 2));
+  log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
