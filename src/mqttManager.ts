@@ -15,6 +15,7 @@ let client: MQTT.AsyncClient;
  */
 export async function initialize(id: string): Promise<void> {
   availabilityTopic = `homeassistant/sensor/${id.replace(/:/g, "")}`;
+
   client = await MQTT.connectAsync(process.env.MQTT_SERVER, {
     username: process.env.MQTT_USERNAME,
     password: process.env.MQTT_PASSWORD,
@@ -62,7 +63,7 @@ export async function publishOnline(): Promise<MQTT.IPublishPacket> {
 }
 
 /**
- * Publishes an "online" status to the registered MQTT availability topic
+ * Publishes an "offline" status to the registered MQTT availability topic
  * @returns A promise
  */
 export async function publishOffline(): Promise<MQTT.IPublishPacket> {
