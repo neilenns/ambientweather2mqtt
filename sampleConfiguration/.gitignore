@@ -1,0 +1,2 @@
+# Allow .env files since it's a sample but only in this folder
+!.env
