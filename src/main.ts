@@ -21,19 +21,13 @@ async function startup(): Promise<void> {
     );
   }
 
-  await mqttManager.initialize();
+  await mqttManager.initialize(process.env.STATION_MAC_ADDRESS);
+  await mqttManager.publishOnline();
 
   sensors.initialize();
   await sensors.discoverAll();
 
   webServer.start();
-}
-
-/**
- * Shuts down everything cleanly.
- */
-async function shutdown(): Promise<void> {
-  await webServer.stop();
 }
 
 function verifyEnvironmentVariables(): boolean {
@@ -66,7 +60,8 @@ function verifyEnvironmentVariables(): boolean {
  */
 async function handleDeath(): Promise<void> {
   log.info("Main", "Shutting down.");
-  await shutdown();
+  await mqttManager.publishOffline();
+  await webServer.stop();
   process.exit(0);
 }
 

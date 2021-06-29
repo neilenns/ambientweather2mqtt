@@ -5,92 +5,101 @@
 
 import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass";
-import * as mqttManager from "./mqttManager";
 import Sensor from "./sensor";
 import SensorNames from "./sensorNames";
 import SensorUnit from "./sensorUnit";
+import StateClass from "./stateClass";
 
 export const sensors = new Map<string, Sensor>();
 
 export function initialize(): void {
   sensors.set(
     SensorNames.WINDGUST,
-    new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
+    new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, undefined, "weather-windy"),
   );
   sensors.set(
     SensorNames.WINDSPEED,
-    new Sensor(SensorNames.WINDSPEED, SensorUnit.milesPerHour, undefined, "weather-windy"),
+    new Sensor(SensorNames.WINDSPEED, SensorUnit.milesPerHour, undefined, StateClass.MEASUREMENT, "weather-windy"),
   );
   sensors.set(
     SensorNames.WINDMAXDAILYGUST,
-    new Sensor(SensorNames.WINDMAXDAILYGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
+    new Sensor(SensorNames.WINDMAXDAILYGUST, SensorUnit.milesPerHour, undefined, undefined, "weather-windy"),
   );
   sensors.set(
     SensorNames.TEMPERATUREOUTDOOR,
-    new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
+    new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.TEMPERATUREINDOOR,
-    new Sensor(SensorNames.TEMPERATUREINDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
+    new Sensor(SensorNames.TEMPERATUREINDOOR, SensorUnit.F, DeviceClass.TEMPERATURE, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.HUMIDITYOUTDOOR,
-    new Sensor(SensorNames.HUMIDITYOUTDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
+    new Sensor(SensorNames.HUMIDITYOUTDOOR, SensorUnit.percent, DeviceClass.HUMIDITY, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.HUMIDITYINDOOR,
-    new Sensor(SensorNames.HUMIDITYINDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
+    new Sensor(SensorNames.HUMIDITYINDOOR, SensorUnit.percent, DeviceClass.HUMIDITY, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.BAROMETRICPRESSURERELATIVE,
-    new Sensor(SensorNames.BAROMETRICPRESSURERELATIVE, SensorUnit.inHg, DeviceClass.PRESSURE),
+    new Sensor(SensorNames.BAROMETRICPRESSURERELATIVE, SensorUnit.inHg, DeviceClass.PRESSURE, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.BAROMETRICPRESSUREABSOLUTE,
-    new Sensor(SensorNames.BAROMETRICPRESSUREABSOLUTE, SensorUnit.inHg, DeviceClass.PRESSURE),
+    new Sensor(SensorNames.BAROMETRICPRESSUREABSOLUTE, SensorUnit.inHg, DeviceClass.PRESSURE, StateClass.MEASUREMENT),
   );
   sensors.set(
     SensorNames.RAINDAILY,
-    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINHOURLY,
-    new Sensor(SensorNames.RAINHOURLY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINHOURLY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINDAILY,
-    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
 
   sensors.set(
     SensorNames.RAINEVENT,
-    new Sensor(SensorNames.RAINEVENT, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINEVENT, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINDAILY,
-    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
 
   sensors.set(
     SensorNames.RAINWEEKLY,
-    new Sensor(SensorNames.RAINWEEKLY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINWEEKLY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINMONTHLY,
-    new Sensor(SensorNames.RAINMONTHLY, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINMONTHLY, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINTOTAL,
-    new Sensor(SensorNames.RAINTOTAL, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(SensorNames.RAINTOTAL, SensorUnit.inches, undefined, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.SOLARRADIATION,
-    new Sensor(SensorNames.SOLARRADIATION, SensorUnit.radiation, undefined, "solar-power"),
+    new Sensor(SensorNames.SOLARRADIATION, SensorUnit.radiation, undefined, StateClass.MEASUREMENT, "solar-power"),
   );
-  sensors.set(SensorNames.UV, new Sensor(SensorNames.UV, undefined, undefined, "weather-sunny"));
-  sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
-  sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, undefined, undefined, "battery"));
-  sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, undefined, undefined, "battery"));
+  sensors.set(
+    SensorNames.UV,
+    new Sensor(SensorNames.UV, undefined, undefined, StateClass.MEASUREMENT, "weather-sunny"),
+  );
+  sensors.set(
+    SensorNames.DATE,
+    new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, undefined, "clock-outline"),
+  );
+  sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, undefined, undefined, undefined, "battery"));
+  sensors.set(
+    SensorNames.BATTERYCO2OK,
+    new Sensor(SensorNames.BATTERYCO2OK, undefined, undefined, undefined, "battery"),
+  );
 }
 
 export function discoverAll(): Promise<IPublishPacket[]> {

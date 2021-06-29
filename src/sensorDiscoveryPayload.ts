@@ -3,13 +3,17 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import StateClass from "./stateClass";
+
 export default class SensorDiscoveryPayload {
   name: string;
   unique_id: string;
   unit_of_measurement: string;
   device_class: string;
   icon: string;
+  availability_topic: string;
   state_topic: string;
+  state_class: StateClass;
   json_attributes_topic: string;
   value_template: string;
   device: {

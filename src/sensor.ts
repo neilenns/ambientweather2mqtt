@@ -9,21 +9,30 @@ import SensorUnit from "./sensorUnit";
 import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
 import ISensorDataPayload from "./ISensorDataPayload";
+import StateClass from "./stateClass";
 
 export default class Sensor {
   public discoveryTopic: string;
   public attributesTopic: string;
   public stateTopic: string;
+  public availabilityTopic: string;
   public dataPayload: ISensorDataPayload;
 
   public discoveryPayload: SensorDiscoveryPayload;
 
-  constructor(name: string, unit: SensorUnit | undefined, deviceClass: DeviceClass | undefined, icon?: string) {
+  constructor(
+    name: string,
+    unit: SensorUnit | undefined,
+    deviceClass: DeviceClass | undefined,
+    stateClass: StateClass | undefined,
+    icon?: string,
+  ) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
     this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
     this.attributesTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/attributes`;
     this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
+    this.availabilityTopic = `homeassistant/sensor/${cleanedMacAddress}`;
 
     this.discoveryPayload = {
       name: name,
@@ -31,6 +40,8 @@ export default class Sensor {
       unit_of_measurement: unit,
       device_class: deviceClass,
       icon: icon ? `mdi:${icon}` : undefined,
+      availability_topic: this.availabilityTopic,
+      state_class: stateClass,
       state_topic: this.stateTopic,
       value_template: `{{ value_json.value }}`,
       json_attributes_topic: this.attributesTopic,

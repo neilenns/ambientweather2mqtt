@@ -7,17 +7,24 @@ import * as log from "./log";
 import MQTT from "async-mqtt";
 
 let connected = false;
-
+let availabilityTopic: string;
 let client: MQTT.AsyncClient;
 
 /**
  * Establishes a connection to the MQTT server
  */
-export async function initialize(): Promise<void> {
+export async function initialize(id: string): Promise<void> {
+  availabilityTopic = `homeassistant/sensor/${id.replace(/:/g, "")}`;
   client = await MQTT.connectAsync(process.env.MQTT_SERVER, {
     username: process.env.MQTT_USERNAME,
     password: process.env.MQTT_PASSWORD,
     clientId: "ambientWeather2mqtt",
+    will: {
+      topic: availabilityTopic,
+      payload: "offline",
+      qos: 2,
+      retain: true,
+    },
     rejectUnauthorized: JSON.parse(process.env.MQTT_REJECT_UNAUTHORIZED) ?? true, // hack to convert "true" or "false" to actual boolean
   }).catch((e) => {
     throw new Error(`[MQTT] Unable to connect: ${e.message}`);
@@ -39,4 +46,30 @@ export async function publish(topic: string, data: string): Promise<MQTT.IPublis
   }
 
   return client.publish(topic, data);
+}
+
+/**
+ * Publishes an "online" status to the registered MQTT availability topic
+ * @returns A promise
+ */
+export async function publishOnline(): Promise<MQTT.IPublishPacket> {
+  if (!connected) {
+    log.info("MQTT", "Attempted to send online status but not connected to MQTT server.");
+    return;
+  }
+
+  return client.publish(availabilityTopic, "online");
+}
+
+/**
+ * Publishes an "online" status to the registered MQTT availability topic
+ * @returns A promise
+ */
+export async function publishOffline(): Promise<MQTT.IPublishPacket> {
+  if (!connected) {
+    log.info("MQTT", "Attempted to send offline status but not connected to MQTT server.");
+    return;
+  }
+
+  return client.publish(availabilityTopic, "offline");
 }
