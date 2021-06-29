@@ -45,3 +45,16 @@ export function warn(source: string, message: string): void {
 export function error(source: string, message: string): void {
   console.log(chalk.red(formatMessage(source, message)));
 }
+
+/**
+ * Logs a message if verbose is set to true in the environment variables
+ * @param source The source of the message
+ * @param message The message
+ */
+export function verbose(source: string, message: string): void {
+  if (process.env.VERBOSE !== "true") {
+    return;
+  }
+
+  info(source, message);
+}

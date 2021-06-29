@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import * as log from "./log";
 import * as sensors from "./sensors";
+import * as log from "./log";
 import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
 
@@ -21,6 +21,8 @@ function setDataPayload(key: string, value: string | number | boolean | Date) {
 // The definitions for all the incoming properties are indirectly documented
 // in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
+  log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
+
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
   setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
