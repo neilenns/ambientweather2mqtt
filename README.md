@@ -80,26 +80,26 @@ Check the following:
 
 The following sensors are supported:
 
-| Name                       | Description                               | Unit    |
-| -------------------------- | ----------------------------------------- | ------- |
-| barometricPressureAbsolute | Absolute barometric pressure              | inHg    |
-| barometricPressureRelative | Relative barometric pressure              | inHg    |
-| batteryCo2Ok               | State of the CO2 device battery           | boolean |
-| batteryOk                  | State of the device battery               | boolean |
-| dateUtc                    | Date of the latest measurements           | date    |
-| humidityIndoor             | Indoor humidity                           | percent |
-| humidityOutdoor            | Outdoor humidity                          | percent |
-| rainDaily                  | Daily rain                                | inches  |
-| rainEvent                  | Event rain                                | inches  |
-| rainHourly                 | Hourly rain                               | inches  |
-| rainMonthly                | Monthly rain                              | inches  |
-| rainTotal                  | Total rain since last factory reset       | inches  |
-| rainWeekly                 | Weekly rain                               | inches  |
-| solarRadiation             | Solar radiation                           | W/m^2   |
-| temperatureIndoor          | Indoor temperature                        | °F      |
-| temperatureOutdoor         | Outdoor temperature                       | °F      |
-| uv                         | UV radiation index                        | integer |
-| windDirection              | Instantaneous wind direction              | degree  |
-| windGust                   | Maximum wind speed in the last 10 minutes | mph     |
-| windMaxDailyGust           | Maximum wind speed in last day            | mph     |
-| windSpeed                  | Instantaneous wind speed                  | mph     |
+| Name                       | Description                                                   | Unit    |
+| -------------------------- | ------------------------------------------------------------- | ------- |
+| barometricPressureAbsolute | Absolute barometric pressure                                  | inHg    |
+| barometricPressureRelative | Relative barometric pressure                                  | inHg    |
+| batteryCo2Ok               | State of the CO2 device battery, `0` for not ok, `100` for ok | percent |
+| batteryOk                  | State of the device battery, `0` for not ok, `100` for ok     | percent |
+| dateUtc                    | Date of the latest measurements                               | date    |
+| humidityIndoor             | Indoor humidity                                               | percent |
+| humidityOutdoor            | Outdoor humidity                                              | percent |
+| rainDaily                  | Daily rain                                                    | inches  |
+| rainEvent                  | Event rain                                                    | inches  |
+| rainHourly                 | Hourly rain                                                   | inches  |
+| rainMonthly                | Monthly rain                                                  | inches  |
+| rainTotal                  | Total rain since last factory reset                           | inches  |
+| rainWeekly                 | Weekly rain                                                   | inches  |
+| solarRadiation             | Solar radiation                                               | W/m^2   |
+| temperatureIndoor          | Indoor temperature                                            | °F      |
+| temperatureOutdoor         | Outdoor temperature                                           | °F      |
+| uv                         | UV radiation index                                            | integer |
+| windDirection              | Instantaneous wind direction                                  | degree  |
+| windGust                   | Maximum wind speed in the last 10 minutes                     | mph     |
+| windMaxDailyGust           | Maximum wind speed in last day                                | mph     |
+| windSpeed                  | Instantaneous wind speed                                      | mph     |

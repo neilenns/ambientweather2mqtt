@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IPublishPacket } from "mqtt-packet";
-import BatterySensor from "./batterySensor";
 import DeviceClass from "./deviceClass";
 import Sensor from "./sensor";
 import SensorNames from "./sensorNames";
@@ -21,8 +20,8 @@ export function initialize(): void {
     SensorNames.BAROMETRICPRESSURERELATIVE,
     new Sensor(SensorNames.BAROMETRICPRESSURERELATIVE, SensorUnit.inHg, DeviceClass.PRESSURE),
   );
-  sensors.set(SensorNames.BATTERYCO2OK, new BatterySensor(SensorNames.BATTERYCO2OK, undefined, undefined, "battery"));
-  sensors.set(SensorNames.BATTERYOK, new BatterySensor(SensorNames.BATTERYOK, undefined, undefined, "battery"));
+  sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, SensorUnit.percent, DeviceClass.BATTERY));
+  sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
   sensors.set(
     SensorNames.HUMIDITYINDOOR,
