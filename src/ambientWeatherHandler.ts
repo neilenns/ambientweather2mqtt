@@ -3,10 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
+import * as mqttManager from "./mqttManager";
 import * as sensors from "./sensors";
 import * as log from "./log";
 import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
+import { IPublishPacket } from "mqtt";
 
 // Sample URL: GET /data/stationtype=AMBWeatherV4.2.9&PASSKEY=<MAC_ADDRESS>&dateutc=2021-03-19+20:20:12&tempinf=70.3&humidityin=29&baromrelin=29.900&
 // baromabsin=24.756&tempf=62.8&battout=1&humidity=31&winddir=188&windspeedmph=1.1&windgustmph=3.4&maxdailygust=5.8&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&
@@ -45,6 +47,7 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
 
   sensors.publishAll();
+  mqttManager.publishOnline();
 
   res.status(200).send("Ok");
 }
