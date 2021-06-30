@@ -1,26 +1,27 @@
 {
-    "files.exclude": {
-        "node_modules/**": true
-    },
-    "cSpell.words": [
-        "WINDGUST",
-        "WINDSPEED",
-        "WINDMAXDAILYGUST",
-        "TEMPERATUREOUTDOOR",
-        "TEMPERATUREINDOOR",
-        "HUMIDITYOUTDOOR",
-        "HUMIDITYINDOOR",
-        "BAROMETRICPRESSURERELATIVE",
-        "RAINDAILY",
-        "RAINHOURLY",
-        "RAINEVENT",
-        "RAINWEEKLY",
-        "RAINMONTHLY",
-        "RAINTOTAL",
-        "SOLARRADIATION",
-        "BATTERYOK",
-        "BATTERYCO2OK",
-        "BATTERYCO",
-        "temperatureoutdoor"
-    ]
+  "files.exclude": {
+    "node_modules/**": true
+  },
+  "cSpell.words": [
+    "ambientweather",
+    "WINDGUST",
+    "WINDSPEED",
+    "WINDMAXDAILYGUST",
+    "TEMPERATUREOUTDOOR",
+    "TEMPERATUREINDOOR",
+    "HUMIDITYOUTDOOR",
+    "HUMIDITYINDOOR",
+    "BAROMETRICPRESSURERELATIVE",
+    "RAINDAILY",
+    "RAINHOURLY",
+    "RAINEVENT",
+    "RAINWEEKLY",
+    "RAINMONTHLY",
+    "RAINTOTAL",
+    "SOLARRADIATION",
+    "BATTERYOK",
+    "BATTERYCO2OK",
+    "BATTERYCO",
+    "temperatureoutdoor"
+  ]
 }
