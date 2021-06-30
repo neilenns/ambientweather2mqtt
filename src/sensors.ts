@@ -67,6 +67,7 @@ export function initialize(): void {
     SensorNames.TEMPERATUREOUTDOOR,
     new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
   );
+  sensors.set(SensorNames.WINDDIRECTION, new Sensor(SensorNames.WINDDIRECTION, undefined, undefined, "weather-windy"));
   sensors.set(
     SensorNames.WINDGUST,
     new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),

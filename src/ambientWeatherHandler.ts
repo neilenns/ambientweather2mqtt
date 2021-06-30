@@ -51,6 +51,7 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.UV, +req.query.uv);
+  setDataPayload(SensorNames.WINDDIRECTION, +req.query.winddir);
   setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
   setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
   setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);

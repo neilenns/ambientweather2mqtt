@@ -99,6 +99,7 @@ The following sensors are supported:
 | temperatureIndoor          | Indoor temperature                        | °F      |
 | temperatureOutdoor         | Outdoor temperature                       | °F      |
 | uv                         | UV radiation index                        | integer |
+| windDirection              | Instantaneous wind direction              | degree  |
 | windGust                   | Maximum wind speed in the last 10 minutes | mph     |
 | windMaxDailyGust           | Maximum wind speed in last day            | mph     |
 | windSpeed                  | Instantaneous wind speed                  | mph     |

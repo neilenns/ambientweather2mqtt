@@ -21,6 +21,7 @@ enum SensorNames {
   TEMPERATUREINDOOR = "temperatureIndoor",
   TEMPERATUREOUTDOOR = "temperatureOutdoor",
   UV = "uv",
+  WINDDIRECTION = "windDirection",
   WINDGUST = "windGust",
   WINDMAXDAILYGUST = "windMaxDailyGust",
   WINDSPEED = "windSpeed",
