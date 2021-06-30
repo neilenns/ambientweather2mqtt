@@ -60,7 +60,7 @@ To verify everything works connect to your Home Assistant server and go to
 _Configuration_ > _Devices_ and search for _ambientweather2mqtt_. You should
 see a list of all the sensors with current values reported.
 
-![Screenshot of Home Assistant showing the ambientweather2mqtt device](docs/home_assistant_device.jpg)
+![Screenshot of Home Assistant showing the ambientweather2mqtt device](docs/home_assistant_device.png)
 
 ## Troubleshooting
 
