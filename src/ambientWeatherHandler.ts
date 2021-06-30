@@ -14,7 +14,7 @@ import SensorNames from "./sensorNames";
 // weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=622.94&uv=6&batt_co2=1
 
 function setDataPayload(key: string, value: string | number | boolean | Date) {
-  if (!value) {
+  if (value === undefined) {
     log.warn("Weather handler", `No data received for ${key}, skipping sensor.`);
     return;
   }
