@@ -9,7 +9,6 @@ import SensorUnit from "./sensorUnit";
 import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
 import ISensorDataPayload from "./ISensorDataPayload";
-import SensorNames from "./sensorNames";
 
 export default class Sensor {
   public discoveryTopic: string;
