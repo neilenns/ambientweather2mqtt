@@ -65,10 +65,6 @@ export function initialize(): void {
     SensorNames.RAINEVENT,
     new Sensor(SensorNames.RAINEVENT, SensorUnit.inches, undefined, "weather-pouring"),
   );
-  sensors.set(
-    SensorNames.RAINDAILY,
-    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
-  );
 
   sensors.set(
     SensorNames.RAINWEEKLY,
