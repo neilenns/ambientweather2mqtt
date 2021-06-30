@@ -12,7 +12,6 @@ import ISensorDataPayload from "./ISensorDataPayload";
 
 export default class Sensor {
   public discoveryTopic: string;
-  public attributesTopic: string;
   public stateTopic: string;
   public availabilityTopic: string;
   public dataPayload: ISensorDataPayload;
@@ -22,7 +21,6 @@ export default class Sensor {
   constructor(name: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
-    this.attributesTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/attributes`;
     this.availabilityTopic = `homeassistant/sensor/${cleanedMacAddress}`;
     this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
     this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
@@ -38,7 +36,6 @@ export default class Sensor {
       },
       device_class: deviceClass,
       icon: icon ? `mdi:${icon}` : undefined,
-      json_attributes_topic: this.attributesTopic,
       name: name,
       state_topic: this.stateTopic,
       unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,

@@ -15,7 +15,6 @@ export default class SensorDiscoveryPayload {
   };
   device_class: string;
   icon: string;
-  json_attributes_topic: string;
   name: string;
   state_topic: string;
   unique_id: string;
