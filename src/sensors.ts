@@ -13,62 +13,35 @@ export const sensors = new Map<string, Sensor>();
 
 export function initialize(): void {
   sensors.set(
-    SensorNames.WINDGUST,
-    new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
+    SensorNames.BAROMETRICPRESSUREABSOLUTE,
+    new Sensor(SensorNames.BAROMETRICPRESSUREABSOLUTE, SensorUnit.inHg, DeviceClass.PRESSURE),
   );
   sensors.set(
-    SensorNames.WINDSPEED,
-    new Sensor(SensorNames.WINDSPEED, SensorUnit.milesPerHour, undefined, "weather-windy"),
+    SensorNames.BAROMETRICPRESSURERELATIVE,
+    new Sensor(SensorNames.BAROMETRICPRESSURERELATIVE, SensorUnit.inHg, DeviceClass.PRESSURE),
   );
+  sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, undefined, undefined, "battery"));
+  sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, undefined, undefined, "battery"));
+  sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
   sensors.set(
-    SensorNames.WINDMAXDAILYGUST,
-    new Sensor(SensorNames.WINDMAXDAILYGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
-  );
-  sensors.set(
-    SensorNames.TEMPERATUREOUTDOOR,
-    new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
-  );
-  sensors.set(
-    SensorNames.TEMPERATUREINDOOR,
-    new Sensor(SensorNames.TEMPERATUREINDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
+    SensorNames.HUMIDITYINDOOR,
+    new Sensor(SensorNames.HUMIDITYINDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
   );
   sensors.set(
     SensorNames.HUMIDITYOUTDOOR,
     new Sensor(SensorNames.HUMIDITYOUTDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
   );
   sensors.set(
-    SensorNames.HUMIDITYINDOOR,
-    new Sensor(SensorNames.HUMIDITYINDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
-  );
-  sensors.set(
-    SensorNames.BAROMETRICPRESSURERELATIVE,
-    new Sensor(SensorNames.BAROMETRICPRESSURERELATIVE, SensorUnit.inHg, DeviceClass.PRESSURE),
-  );
-  sensors.set(
-    SensorNames.BAROMETRICPRESSUREABSOLUTE,
-    new Sensor(SensorNames.BAROMETRICPRESSUREABSOLUTE, SensorUnit.inHg, DeviceClass.PRESSURE),
-  );
-  sensors.set(
     SensorNames.RAINDAILY,
     new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
   );
-  sensors.set(
-    SensorNames.RAINHOURLY,
-    new Sensor(SensorNames.RAINHOURLY, SensorUnit.inches, undefined, "weather-pouring"),
-  );
-  sensors.set(
-    SensorNames.RAINDAILY,
-    new Sensor(SensorNames.RAINDAILY, SensorUnit.inches, undefined, "weather-pouring"),
-  );
-
   sensors.set(
     SensorNames.RAINEVENT,
     new Sensor(SensorNames.RAINEVENT, SensorUnit.inches, undefined, "weather-pouring"),
   );
-
   sensors.set(
-    SensorNames.RAINWEEKLY,
-    new Sensor(SensorNames.RAINWEEKLY, SensorUnit.inches, undefined, "weather-pouring"),
+    SensorNames.RAINHOURLY,
+    new Sensor(SensorNames.RAINHOURLY, SensorUnit.inches, undefined, "weather-pouring"),
   );
   sensors.set(
     SensorNames.RAINMONTHLY,
@@ -79,13 +52,35 @@ export function initialize(): void {
     new Sensor(SensorNames.RAINTOTAL, SensorUnit.inches, undefined, "weather-pouring"),
   );
   sensors.set(
+    SensorNames.RAINWEEKLY,
+    new Sensor(SensorNames.RAINWEEKLY, SensorUnit.inches, undefined, "weather-pouring"),
+  );
+  sensors.set(
     SensorNames.SOLARRADIATION,
     new Sensor(SensorNames.SOLARRADIATION, SensorUnit.radiation, undefined, "solar-power"),
   );
+  sensors.set(
+    SensorNames.TEMPERATUREINDOOR,
+    new Sensor(SensorNames.TEMPERATUREINDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  sensors.set(
+    SensorNames.TEMPERATUREOUTDOOR,
+    new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  sensors.set(
+    SensorNames.WINDGUST,
+    new Sensor(SensorNames.WINDGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
+  );
+  sensors.set(
+    SensorNames.WINDMAXDAILYGUST,
+    new Sensor(SensorNames.WINDMAXDAILYGUST, SensorUnit.milesPerHour, undefined, "weather-windy"),
+  );
+  sensors.set(
+    SensorNames.WINDSPEED,
+    new Sensor(SensorNames.WINDSPEED, SensorUnit.milesPerHour, undefined, "weather-windy"),
+  );
+
   sensors.set(SensorNames.UV, new Sensor(SensorNames.UV, undefined, undefined, "weather-sunny"));
-  sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
-  sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, undefined, undefined, "battery"));
-  sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, undefined, undefined, "battery"));
 }
 
 export function discoverAll(): Promise<IPublishPacket[]> {

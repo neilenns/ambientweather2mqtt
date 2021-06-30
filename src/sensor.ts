@@ -22,21 +22,13 @@ export default class Sensor {
   constructor(name: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
-    this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
     this.attributesTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/attributes`;
-    this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
     this.availabilityTopic = `homeassistant/sensor/${cleanedMacAddress}`;
+    this.discoveryTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/config`;
+    this.stateTopic = `homeassistant/sensor/${cleanedMacAddress}/${name}/state`;
 
     this.discoveryPayload = {
-      name: name,
-      unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,
-      unit_of_measurement: unit,
-      device_class: deviceClass,
-      icon: icon ? `mdi:${icon}` : undefined,
       availability_topic: this.availabilityTopic,
-      state_topic: this.stateTopic,
-      value_template: `{{ value_json.value }}`,
-      json_attributes_topic: this.attributesTopic,
       device: {
         identifiers: [`AW_${cleanedMacAddress}`],
         connections: [["mac", process.env.STATION_MAC_ADDRESS]],
@@ -44,6 +36,14 @@ export default class Sensor {
         name: "ambientweather2mqtt",
         model: "Ambient Weather Station",
       },
+      device_class: deviceClass,
+      icon: icon ? `mdi:${icon}` : undefined,
+      json_attributes_topic: this.attributesTopic,
+      name: name,
+      state_topic: this.stateTopic,
+      unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,
+      unit_of_measurement: unit,
+      value_template: `{{ value_json.value }}`,
     } as SensorDiscoveryPayload;
   }
 

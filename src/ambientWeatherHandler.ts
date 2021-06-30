@@ -34,26 +34,26 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
 
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
-  setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
-  setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
-  setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
-  setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
-  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
   setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +req.query.baromabsin);
-  setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);
-  setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
-  setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
+  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
+  setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
+  setDataPayload(SensorNames.BATTERYOK, !!+req.query.battout); // Convert string to number with +, then number to boolean with !!
+  setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
+  setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
+  setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
   setDataPayload(SensorNames.RAINDAILY, +req.query.dailyrainin);
-  setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
   setDataPayload(SensorNames.RAINEVENT, +req.query.eventrainin);
-  setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
+  setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
   setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
+  setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
   setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
+  setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
+  setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.UV, +req.query.uv);
-  setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
-  setDataPayload(SensorNames.BATTERYOK, !!+req.query.battout); // Convert string to number with +, then number to boolean with !!
-  setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
+  setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
+  setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
+  setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);
 
   sensors.publishAll();
   mqttManager.publishOnline();

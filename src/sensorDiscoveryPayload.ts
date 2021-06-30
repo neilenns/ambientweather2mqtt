@@ -4,15 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 export default class SensorDiscoveryPayload {
-  name: string;
-  unique_id: string;
-  unit_of_measurement: string;
-  device_class: string;
-  icon: string;
   availability_topic: string;
-  state_topic: string;
-  json_attributes_topic: string;
-  value_template: string;
   device: {
     identifiers: string[];
     connections: Array<[string, string]>;
@@ -21,4 +13,12 @@ export default class SensorDiscoveryPayload {
     model: string;
     sw_version: string;
   };
+  device_class: string;
+  icon: string;
+  json_attributes_topic: string;
+  name: string;
+  state_topic: string;
+  unique_id: string;
+  unit_of_measurement: string;
+  value_template: string;
 }
