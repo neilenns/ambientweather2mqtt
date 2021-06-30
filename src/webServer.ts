@@ -26,7 +26,7 @@ export function start(): void {
       server,
     });
   } catch (e) {
-    log.info("Web server", `Unable to start web server: ${e.error}`);
+    throw new Error(`Unable to start web server: ${e.error}`);
   }
 }
 

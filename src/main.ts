@@ -95,4 +95,16 @@ function wait() {
   setTimeout(wait, 1000);
 }
 
+// Set up a default error handler for any uncaught exceptions. The main one to
+// handle is the obnoxious EADDRINUSE error from ExpressJS.
+process.on("uncaughtException", (err: NodeJS.ErrnoException) => {
+  // EADDRINUSE
+  if (err.errno === -4091) {
+    log.error("Web server", `Another service is already running on port ${process.env.PORT}`);
+  } else {
+    log.error("Main", err.message);
+  }
+  process.exit(1);
+});
+
 main();
