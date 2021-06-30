@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
+import * as mqttManager from "./mqttManager";
 import * as sensors from "./sensors";
 import * as log from "./log";
 import ISensorDataPayload from "./ISensorDataPayload";
@@ -45,6 +46,7 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
   setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
 
   sensors.publishAll();
+  mqttManager.publishOnline();
 
   res.status(200).send("Ok");
 }
