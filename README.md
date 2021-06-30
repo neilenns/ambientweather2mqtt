@@ -2,6 +2,10 @@
 
 This package listens for local data from Ambient Weather stations (such as the WS-2902C) and converts the incoming data to MQTT events. The sensor data is published with auto-discovery so they show up automatically as sensors in Home Assistant.
 
+The following Ambient Weather station models are confirmed to work:
+
+- WS-2902C
+
 ## Installation and configuration
 
 ### Setting up the Docker image
@@ -69,3 +73,30 @@ Check the following:
 4. Your firewall rules aren't blocking communication from your weather station
    to your Docker server. This can happen if you run virtual LANs to segment NoT/IoT
    traffic from your primarily LAN.
+
+## Supported sensors
+
+The following sensors are supported:
+
+| Name                       | Description |
+| -------------------------- | ----------- |
+| barometricPressureAbsolute |             |
+| barometricPressureRelative |             |
+| batteryCo2Ok               |             |
+| batteryOk                  |             |
+| dateUtc                    |             |
+| humidityIndoor             |             |
+| humidityOutdoor            |             |
+| rainDaily                  |             |
+| rainEvent                  |             |
+| rainHourly                 |             |
+| rainMonthly                |             |
+| rainTotal                  |             |
+| rainWeekly                 |             |
+| solarRadiation             |             |
+| temperatureIndoor          |             |
+| temperatureOutdoor         |             |
+| uv                         |             |
+| windGust                   |             |
+| windMaxDailyGust           |             |
+| windSpeed                  |             |
