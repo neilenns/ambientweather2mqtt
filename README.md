@@ -80,25 +80,25 @@ Check the following:
 
 The following sensors are supported:
 
-| Name                       | Description |
-| -------------------------- | ----------- |
-| barometricPressureAbsolute |             |
-| barometricPressureRelative |             |
-| batteryCo2Ok               |             |
-| batteryOk                  |             |
-| dateUtc                    |             |
-| humidityIndoor             |             |
-| humidityOutdoor            |             |
-| rainDaily                  |             |
-| rainEvent                  |             |
-| rainHourly                 |             |
-| rainMonthly                |             |
-| rainTotal                  |             |
-| rainWeekly                 |             |
-| solarRadiation             |             |
-| temperatureIndoor          |             |
-| temperatureOutdoor         |             |
-| uv                         |             |
-| windGust                   |             |
-| windMaxDailyGust           |             |
-| windSpeed                  |             |
+| Name                       | Description                               | Unit    |
+| -------------------------- | ----------------------------------------- | ------- |
+| barometricPressureAbsolute | Absolute barometric pressure              | inHg    |
+| barometricPressureRelative | Relative barometric pressure              | inHg    |
+| batteryCo2Ok               | State of the CO2 device battery           | boolean |
+| batteryOk                  | State of the device battery               | boolean |
+| dateUtc                    | Date of the latest measurements           | date    |
+| humidityIndoor             | Indoor humidity                           | percent |
+| humidityOutdoor            | Outdoor humidity                          | percent |
+| rainDaily                  | Daily rain                                | inches  |
+| rainEvent                  | Event rain                                | inches  |
+| rainHourly                 | Hourly rain                               | inches  |
+| rainMonthly                | Monthly rain                              | inches  |
+| rainTotal                  | Total rain since last factory reset       | inches  |
+| rainWeekly                 | Weekly rain                               | inches  |
+| solarRadiation             | Solar radiation                           | W/m^2   |
+| temperatureIndoor          | Indoor temperature                        | °F      |
+| temperatureOutdoor         | Outdoor temperature                       | °F      |
+| uv                         | UV radiation index                        | integer |
+| windGust                   | Maximum wind speed in the last 10 minutes | mph     |
+| windMaxDailyGust           | Maximum wind speed in last day            | mph     |
+| windSpeed                  | Instantaneous wind speed                  | mph     |
