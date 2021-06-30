@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 enum DeviceClass {
+  BATTERY = "battery",
   HUMIDITY = "humidity",
   ILLUMINANCE = "illuminance",
   PRESSURE = "pressure",

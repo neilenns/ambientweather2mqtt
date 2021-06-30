@@ -36,8 +36,11 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
 
   setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +req.query.baromabsin);
   setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
-  setDataPayload(SensorNames.BATTERYCO2OK, !!+req.query.batt_co2); // Convert string to number with +, then number to boolean with !!
-  setDataPayload(SensorNames.BATTERYOK, !!+req.query.battout); // Convert string to number with +, then number to boolean with !!
+
+  // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100
+  setDataPayload(SensorNames.BATTERYCO2OK, +req.query.batt_co2 ? 100 : 0);
+  setDataPayload(SensorNames.BATTERYOK, +req.query.battout ? 100 : 0);
+
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
   setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
   setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
