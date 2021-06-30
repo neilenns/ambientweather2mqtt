@@ -14,6 +14,11 @@ import SensorNames from "./sensorNames";
 // weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=622.94&uv=6&batt_co2=1
 
 function setDataPayload(key: string, value: string | number | boolean | Date) {
+  if (!value) {
+    log.warn("Weather handler", `No data received for ${key}, skipping sensor.`);
+    return;
+  }
+
   sensors.sensors.get(key).dataPayload = {
     value: value,
   } as ISensorDataPayload;
@@ -22,6 +27,11 @@ function setDataPayload(key: string, value: string | number | boolean | Date) {
 // The definitions for all the incoming properties are indirectly documented
 // in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
+  if (!req.query) {
+    log.warn("Weather handler", "No data received, skipping processing the request.");
+    return;
+  }
+
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
