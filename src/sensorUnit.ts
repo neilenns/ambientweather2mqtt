@@ -5,11 +5,11 @@
 
 enum SensorUnit {
   F = "˚F",
-  inHg = "inHg",
-  percent = "%",
   illuminance = "lx",
   inches = "in",
+  inHg = "inHg",
   milesPerHour = "mph",
+  percent = "%",
   radiation = "W/m^2",
   timestamp = "timestamp",
 }
