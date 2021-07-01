@@ -16,7 +16,11 @@ let httpTerminator: HttpTerminator;
  * Start up the Express web server.
  */
 export function start(): void {
+  // Ambient Weather protocol endpoint
   app.get("/data", ambientWeatherHandler.processAmbientWeatherData);
+
+  // Weather Underground protocol endpoint
+  app.get("/weatherstation/updateweatherstation.php", ambientWeatherHandler.processAmbientWeatherData);
 
   try {
     server = app.listen(process.env.PORT, () =>
