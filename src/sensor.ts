@@ -59,6 +59,10 @@ export default class Sensor {
   public publishDiscovery(): Promise<IPublishPacket> {
     // Skip publishing if the value is undefined.
     if (this.value === undefined) {
+      log.verbose(
+        "Sensor",
+        `Skipping discovery publish for ${this.discoveryPayload.name} since no sensor value has been received yet.`,
+      );
       return;
     }
 
