@@ -10,6 +10,9 @@ import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
 import ISensorDataPayload from "./ISensorDataPayload";
 
+/**
+ * A weather station sensor.
+ */
 export default class Sensor {
   public isDiscovered = false;
   public discoveryTopic: string;
@@ -19,6 +22,13 @@ export default class Sensor {
 
   public discoveryPayload: SensorDiscoveryPayload;
 
+  /**
+   *
+   * @param name The name of the sensor
+   * @param unit The unit of measurement for the sensor. Optional.
+   * @param deviceClass The device class for the sensor. Optional.
+   * @param icon The mdi icon for the sensor. Optional.
+   */
   constructor(name: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
     const cleanedMacAddress = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
@@ -45,22 +55,29 @@ export default class Sensor {
     } as SensorDiscoveryPayload;
   }
 
+  /**
+   * Publishes the sensor discovery event to MQTT.
+   */
   public publishDiscovery(): Promise<IPublishPacket> {
     return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload));
   }
 
+  /**
+   * Publishes the sensor data event to MQTT.
+   * @returns A promise
+   */
   public async publishData(): Promise<IPublishPacket> {
     // Don't publish if there is no data to send.
     if (this.dataPayload?.value === undefined) {
       return;
     }
 
-    // If this is the first time the sensor is publishing data
-    // send the discovery topic first.
+    // If this is the first time the sensor is publishing data send the discovery message first.
     if (!this.isDiscovered) {
       await this.publishDiscovery();
       this.isDiscovered = true;
     }
+
     return mqttManager.publish(this.stateTopic, JSON.stringify(this.dataPayload));
   }
 }
