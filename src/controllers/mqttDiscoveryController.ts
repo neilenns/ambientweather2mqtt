@@ -18,7 +18,7 @@ export async function discover(req: express.Request, res: express.Response): Pro
 
     if (!entity) {
       log.warn("Discovery", `Unable to publish discovery event for ${req.params.entityName}: entity not found.`);
-      res.status(400).send(`Entity ${req.params.entityName} not found.`);
+      res.status(400).send(`Entity not found.`);
       return;
     }
 
