@@ -2,7 +2,7 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as ambientWeatherHandler from "./ambientWeatherHandler";
+import * as ambientWeatherHandler from "./weatherDataHandler";
 import express from "express";
 import * as log from "./log";
 import { Server } from "http";
@@ -16,7 +16,11 @@ let httpTerminator: HttpTerminator;
  * Start up the Express web server.
  */
 export function start(): void {
-  app.get("/data", ambientWeatherHandler.processAmbientWeatherData);
+  // Ambient Weather protocol endpoint
+  app.get("/data", ambientWeatherHandler.processWeatherData);
+
+  // Weather Underground protocol endpoint
+  app.get("/weatherstation/updateweatherstation.php", ambientWeatherHandler.processWeatherData);
 
   try {
     server = app.listen(process.env.PORT, () =>

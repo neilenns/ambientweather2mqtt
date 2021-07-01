@@ -9,10 +9,11 @@ import * as log from "./log";
 import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
 
-// Sample URL: GET /data/stationtype=AMBWeatherV4.2.9&PASSKEY=<MAC_ADDRESS>&dateutc=2021-03-19+20:20:12&tempinf=70.3&humidityin=29&baromrelin=29.900&
-// baromabsin=24.756&tempf=62.8&battout=1&humidity=31&winddir=188&windspeedmph=1.1&windgustmph=3.4&maxdailygust=5.8&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&
-// weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=622.94&uv=6&batt_co2=1
-
+/**
+ * Sets the data payload on a sensor
+ * @param key The sensor to set the data on
+ * @param value The data to set
+ */
 function setDataPayload(key: string, value: string | number | boolean | Date) {
   if (value === undefined) {
     log.warn("Weather handler", `No data received for ${key}, skipping sensor.`);
@@ -24,9 +25,10 @@ function setDataPayload(key: string, value: string | number | boolean | Date) {
   } as ISensorDataPayload;
 }
 
-// The definitions for all the incoming properties are indirectly documented
-// in the server API docs at https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
-export function processAmbientWeatherData(req: express.Request, res: express.Response): void {
+// Documentation for the APIs:
+// Ambient Weather: https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
+// Weather Underground: https://support.weather.com/s/article/PWS-Upload-Protocol?language=en_US
+export function processWeatherData(req: express.Request, res: express.Response): void {
   if (!req.query) {
     log.warn("Weather handler", "No data received, skipping processing the request.");
     return;
@@ -34,26 +36,28 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
 
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
-  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +req.query.baromabsin);
-  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
+  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
+  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
 
   // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100
   setDataPayload(SensorNames.BATTERYCO2OK, +req.query.batt_co2 ? 100 : 0);
   setDataPayload(SensorNames.BATTERYOK, +req.query.battout ? 100 : 0);
 
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
-  setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
+  setDataPayload(SensorNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  setDataPayload(SensorNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
   setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
-  setDataPayload(SensorNames.RAINDAILY, +req.query.dailyrainin);
+  setDataPayload(SensorNames.RAINDAILY, +(req.query.dailyrainin ?? req.query.rainin));
   setDataPayload(SensorNames.RAINEVENT, +req.query.eventrainin);
   setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
   setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
   setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
   setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
-  setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
+  setDataPayload(SensorNames.TEMPERATUREINDOOR, +(req.query.tempinf ?? req.query.indoortempf));
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.UV, +req.query.uv);
+  setDataPayload(SensorNames.WINDCHILL, +req.query.windchillf); // Only available in Weather Underground updates
   setDataPayload(SensorNames.WINDDIRECTION, +req.query.winddir);
   setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
   setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
