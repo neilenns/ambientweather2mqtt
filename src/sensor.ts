@@ -6,6 +6,7 @@
 import DeviceClass from "./deviceClass";
 import SensorDiscoveryPayload from "./sensorDiscoveryPayload";
 import SensorUnit from "./sensorUnit";
+import * as log from "./log";
 import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
 import SensorDataPayload from "./SensorDataPayload";
@@ -53,9 +54,21 @@ export default class Sensor {
   }
 
   /**
-   * Publishes the sensor discovery event to MQTT.
+   * Publishes the sensor discovery event to MQTT if a valid value is stored for the sensor.
    */
   public publishDiscovery(): Promise<IPublishPacket> {
+    // Skip publishing if the value is undefined.
+    if (this.value === undefined) {
+      log.verbose(
+        "Sensor",
+        `Skipping discovery publish for ${this.discoveryPayload.name} since no sensor value has been received yet.`,
+      );
+      return;
+    }
+
+    log.verbose("Sensor", `Publishing discovery for ${this.discoveryPayload.name}.`);
+
+    this.isDiscovered = true;
     return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload));
   }
 
@@ -72,7 +85,6 @@ export default class Sensor {
     // If this is the first time the sensor is publishing data send the discovery message first.
     if (!this.isDiscovered) {
       await this.publishDiscovery();
-      this.isDiscovered = true;
     }
 
     return mqttManager.publish(this.stateTopic, JSON.stringify(this.value));

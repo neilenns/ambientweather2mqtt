@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "d06ebb15-c7bf-4802-932b-49b608794230",
+		"name": "System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Trigger discovery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/discover/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"discover",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,7 +2,9 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as ambientWeatherHandler from "./weatherDataHandler";
+import * as weatherDataController from "./controllers/weatherDataController";
+import * as mqttDiscoveryController from "./controllers/mqttDiscoveryController";
+
 import express from "express";
 import * as log from "./log";
 import { Server } from "http";
@@ -17,10 +19,14 @@ let httpTerminator: HttpTerminator;
  */
 export function start(): void {
   // Ambient Weather protocol endpoint
-  app.get("/data", ambientWeatherHandler.processWeatherData);
+  app.get("/data", weatherDataController.processWeatherData);
 
   // Weather Underground protocol endpoint
-  app.get("/weatherstation/updateweatherstation.php", ambientWeatherHandler.processWeatherData);
+  app.get("/weatherstation/updateweatherstation.php", weatherDataController.processWeatherData);
+
+  // Force auto-discovery MQTT messages
+  app.get("/discover/", mqttDiscoveryController.discover);
+  app.get("/discover/:entityName", mqttDiscoveryController.discover);
 
   try {
     server = app.listen(process.env.PORT, () =>

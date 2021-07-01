@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import * as mqttManager from "./mqttManager";
-import * as sensors from "./sensors";
-import * as log from "./log";
-import SensorNames from "./sensorNames";
-import SensorDataPayload from "./SensorDataPayload";
+import * as mqttManager from "../mqttManager";
+import * as sensors from "../sensors";
+import * as log from "../log";
+import SensorNames from "../sensorNames";
+import SensorDataPayload from "../SensorDataPayload";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
