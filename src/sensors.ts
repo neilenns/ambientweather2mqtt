@@ -33,6 +33,7 @@ export function initialize(): void {
   sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.BATTERYPM25, new Sensor(SensorNames.BATTERYPM25, SensorUnit.percent, DeviceClass.BATTERY));
+  sensors.set(SensorNames.CO2, new Sensor(SensorNames.CO2, SensorUnit.particulate, DeviceClass.CO2));
   sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
   sensors.set(SensorNames.DEWPOINT, new Sensor(SensorNames.DEWPOINT, SensorUnit.F, DeviceClass.TEMPERATURE));
   sensors.set(SensorNames.HUMIDITY1, new Sensor(SensorNames.HUMIDITY1, SensorUnit.percent, DeviceClass.HUMIDITY));
@@ -58,10 +59,13 @@ export function initialize(): void {
     SensorNames.PM25_24HOUR,
     new Sensor(SensorNames.PM25_24HOUR, SensorUnit.particulate, undefined, "air-filter"),
   );
-  sensors.set(SensorNames.PM25INDOOR, new Sensor(SensorNames.PM25, SensorUnit.particulate, undefined, "air-filter"));
+  sensors.set(
+    SensorNames.PM25INDOOR,
+    new Sensor(SensorNames.PM25INDOOR, SensorUnit.particulate, undefined, "air-filter"),
+  );
   sensors.set(
     SensorNames.PM25INDOOR_24HOUR,
-    new Sensor(SensorNames.PM25_24HOUR, SensorUnit.particulate, undefined, "air-filter"),
+    new Sensor(SensorNames.PM25INDOOR_24HOUR, SensorUnit.particulate, undefined, "air-filter"),
   );
   sensors.set(
     SensorNames.RAIN24HOUR,
