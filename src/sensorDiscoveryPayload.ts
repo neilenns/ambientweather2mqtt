@@ -7,7 +7,6 @@ export default class SensorDiscoveryPayload {
   availability_topic: string;
   device: {
     identifiers: string[];
-    connections: Array<[string, string]>;
     manufacturer: "Ambient Weather";
     name: "ambientweather2mqtt";
     model: string;
