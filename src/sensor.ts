@@ -39,7 +39,6 @@ export default class Sensor {
       availability_topic: this.availabilityTopic,
       device: {
         identifiers: [`AW_${cleanedMacAddress}`],
-        connections: [["mac", process.env.STATION_MAC_ADDRESS]],
         manufacturer: "Ambient Weather",
         name: "ambientweather2mqtt",
         model: "Ambient Weather Station",
