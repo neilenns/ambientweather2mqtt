@@ -3,6 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import * as ambientWeatherHandler from "./weatherDataHandler";
+import * as discovery from "./discovery";
+
 import express from "express";
 import * as log from "./log";
 import { Server } from "http";
@@ -21,6 +23,9 @@ export function start(): void {
 
   // Weather Underground protocol endpoint
   app.get("/weatherstation/updateweatherstation.php", ambientWeatherHandler.processWeatherData);
+
+  // Force auto-discovery MQTT messages
+  app.get("/discover", discovery.discover);
 
   try {
     server = app.listen(process.env.PORT, () =>
