@@ -41,14 +41,16 @@ Your Ambient Weather station must be configured to send data to the local servic
 3. Set the fields to the values in the following table.
 4. Tap `Save`.
 
-| Field                 | Value                                                           | Notes                                                                                                                                       |
-| --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Enable/Disable        | Enable                                                          | Make sure to set this to `Enable` otherwise no data will get sent.                                                                          |
-| Protocol Type Same As | Ambient Weather                                                 |                                                                                                                                             |
-| Server IP / Hostname  | The IP or hostname for the machine running the Docker container |                                                                                                                                             |
-| Path                  | `/data/?`                                                       | **It is very important this field is entered exactly as shown. Be very careful to include the `?` at the end otherwise nothing will work.** |
-| Port                  | The port specified in the `.env` file                           | The sample `.env` file provided uses `8132` so unless you changed it to something else you should enter `8132` here.                        |
-| Upload Interval       | The frequency to send the data.                                 | `30` is a reasonable value to start with.                                                                                                   |
+| Field                 | Value                                                           | Notes                                                                                                                                                        |
+| --------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Enable/Disable        | Enable                                                          | Make sure to set this to `Enable` otherwise no data will get sent.                                                                                           |
+| Protocol Type Same As | Ambient Weather or Weather Underground                          | Ambient Weather supports more sensor data and is preferred. Select Weather Underground only if using a weather station that doesn't support Ambient Weather. |
+| Server IP / Hostname  | The IP or hostname for the machine running the Docker container |                                                                                                                                                              |
+| Path                  | `/data/?`                                                       | **It is very important this field is entered exactly as shown. Be very careful to include the `?` at the end otherwise nothing will work.**                  |
+| Station ID            | Any non-blank value                                             | Only required when the protocol is set to Weather Underground. The actual value provided doesn't matter but something must be in the field.                  |
+| Station Key           | Any non-blank value                                             | Only required when the protocol is set to Weather Underground. The actual value provided doesn't matter but something must be in the field.                  |
+| Port                  | The port specified in the `.env` file                           | The sample `.env` file provided uses `8132` so unless you changed it to something else you should enter `8132` here.                                         |
+| Upload Interval       | The frequency to send the data.                                 | `30` is a reasonable value to start with.                                                                                                                    |
 
 Here is what a properly configured weather station looks like:
 
@@ -80,26 +82,30 @@ Check the following:
 
 The following sensors are supported:
 
-| Name                       | Description                                                   | Unit    |
-| -------------------------- | ------------------------------------------------------------- | ------- |
-| barometricPressureAbsolute | Absolute barometric pressure                                  | inHg    |
-| barometricPressureRelative | Relative barometric pressure                                  | inHg    |
-| batteryCo2Ok               | State of the CO2 device battery, `0` for not ok, `100` for ok | percent |
-| batteryOk                  | State of the device battery, `0` for not ok, `100` for ok     | percent |
-| dateUtc                    | Date of the latest measurements                               | date    |
-| humidityIndoor             | Indoor humidity                                               | percent |
-| humidityOutdoor            | Outdoor humidity                                              | percent |
-| rainDaily                  | Daily rain                                                    | inches  |
-| rainEvent                  | Event rain                                                    | inches  |
-| rainHourly                 | Hourly rain                                                   | inches  |
-| rainMonthly                | Monthly rain                                                  | inches  |
-| rainTotal                  | Total rain since last factory reset                           | inches  |
-| rainWeekly                 | Weekly rain                                                   | inches  |
-| solarRadiation             | Solar radiation                                               | W/m^2   |
-| temperatureIndoor          | Indoor temperature                                            | °F      |
-| temperatureOutdoor         | Outdoor temperature                                           | °F      |
-| uv                         | UV radiation index                                            | integer |
-| windDirection              | Instantaneous wind direction                                  | degree  |
-| windGust                   | Maximum wind speed in the last 10 minutes                     | mph     |
-| windMaxDailyGust           | Maximum wind speed in last day                                | mph     |
-| windSpeed                  | Instantaneous wind speed                                      | mph     |
+| Name                       | Description                                                   | Ambient Weather | Weather Underground | Unit    |
+| -------------------------- | ------------------------------------------------------------- | --------------- | ------------------- | ------- |
+| barometricPressureAbsolute | Absolute barometric pressure                                  | Yes             | Yes                 | inHg    |
+| barometricPressureRelative | Relative barometric pressure                                  | Yes             | Yes                 | inHg    |
+| batteryCo2Ok               | State of the CO2 device battery, `0` for not ok, `100` for ok | Yes             | No                  | percent |
+| batteryOk                  | State of the device battery, `0` for not ok, `100` for ok     | Yes             | No                  | percent |
+| dateUtc                    | Date of the latest measurements                               | Yes             | Yes                 | date    |
+| dewpoint                   | Outdoor dewpoint temperature                                  | No              | Yes                 | °F      |
+| humidityIndoor             | Indoor humidity                                               | Yes             | Yes                 | percent |
+| humidityOutdoor            | Outdoor humidity                                              | Yes             | Yes                 | percent |
+| rainDaily                  | Daily rain                                                    | Yes             | Yes                 | inches  |
+| rainEvent                  | Event rain                                                    | Yes             | No                  | inches  |
+| rainHourly                 | Hourly rain                                                   | Yes             | Yes                 | inches  |
+| rainMonthly                | Monthly rain                                                  | Yes             | Yes                 | inches  |
+| rainTotal                  | Total rain since last factory reset                           | Yes             | No                  | inches  |
+| rainWeekly                 | Weekly rain                                                   | Yes             | Yes                 | inches  |
+| solarRadiation             | Solar radiation                                               | Yes             | Yes                 | W/m^2   |
+| temperatureIndoor          | Indoor temperature                                            | Yes             | Yes                 | °F      |
+| temperatureOutdoor         | Outdoor temperature                                           | Yes             | Yes                 | °F      |
+| uv                         | UV radiation index                                            | Yes             | Yes                 | integer |
+| windchill                  | Outdoor windchill temperature                                 | No              | Yes                 | °F      |
+| windDirection              | Instantaneous wind direction                                  | Yes             | Yes                 | degree  |
+| windGust                   | Maximum wind speed in the last 10 minutes                     | Yes             | Yes                 | mph     |
+| windMaxDailyGust           | Maximum wind speed in last day                                | Yes             | No                  | mph     |
+| windSpeed                  | Instantaneous wind speed                                      | Yes             | Yes                 | mph     |
+
+Ambient Weather
