@@ -9,6 +9,8 @@ enum SensorUnit {
   inches = "in",
   inHg = "inHg",
   milesPerHour = "mph",
+  particulate = "µg/m^3",
+  partsPerMillion = "ppm",
   percent = "%",
   radiation = "W/m^2",
   timestamp = "timestamp",

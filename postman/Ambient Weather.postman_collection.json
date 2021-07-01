@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "fbde379b-138f-428c-8069-038eea17ca25",
+		"name": "Ambient Weather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send weather data - actual sample from home station",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?stationtype=AMBWeatherV4.2.9&PASSKEY=40:F5:20:3A:40:FF&dateUtc=2021-07-01+20:34:06&tempinf=73.0&humidityin=56&baromrelin=29.900&baromabsin=29.513&tempf=68.2&battout=1&humidity=66&winddir=358&windspeedmph=0.0&windgustmph=0.0&maxdailygust=3.4&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=93.58&uv=0&batt_co2=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "stationtype",
+							"value": "AMBWeatherV4.2.9"
+						},
+						{
+							"key": "PASSKEY",
+							"value": "40:F5:20:3A:40:FF"
+						},
+						{
+							"key": "dateUtc",
+							"value": "2021-07-01+20:34:06"
+						},
+						{
+							"key": "tempinf",
+							"value": "73.0"
+						},
+						{
+							"key": "humidityin",
+							"value": "56"
+						},
+						{
+							"key": "baromrelin",
+							"value": "29.900"
+						},
+						{
+							"key": "baromabsin",
+							"value": "29.513"
+						},
+						{
+							"key": "tempf",
+							"value": "68.2"
+						},
+						{
+							"key": "battout",
+							"value": "1"
+						},
+						{
+							"key": "humidity",
+							"value": "66"
+						},
+						{
+							"key": "winddir",
+							"value": "358"
+						},
+						{
+							"key": "windspeedmph",
+							"value": "0.0"
+						},
+						{
+							"key": "windgustmph",
+							"value": "0.0"
+						},
+						{
+							"key": "maxdailygust",
+							"value": "3.4"
+						},
+						{
+							"key": "hourlyrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "eventrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "dailyrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "weeklyrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "monthlyrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "totalrainin",
+							"value": "0.000"
+						},
+						{
+							"key": "solarradiation",
+							"value": "93.58"
+						},
+						{
+							"key": "uv",
+							"value": "0"
+						},
+						{
+							"key": "batt_co2",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test batteries - ok",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?batt1=1&batt2=1&batt3=1&batt4=1&batt5=1&batt6=1&batt7=1&batt8=1&batt9=1&batt10=1&batt_25=1&batt_co2=1&battout=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "batt1",
+							"value": "1"
+						},
+						{
+							"key": "batt2",
+							"value": "1"
+						},
+						{
+							"key": "batt3",
+							"value": "1"
+						},
+						{
+							"key": "batt4",
+							"value": "1"
+						},
+						{
+							"key": "batt5",
+							"value": "1"
+						},
+						{
+							"key": "batt6",
+							"value": "1"
+						},
+						{
+							"key": "batt7",
+							"value": "1"
+						},
+						{
+							"key": "batt8",
+							"value": "1"
+						},
+						{
+							"key": "batt9",
+							"value": "1"
+						},
+						{
+							"key": "batt10",
+							"value": "1"
+						},
+						{
+							"key": "batt_25",
+							"value": "1"
+						},
+						{
+							"key": "batt_co2",
+							"value": "1"
+						},
+						{
+							"key": "battout",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test batteries - not ok",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?batt1=0&batt2=0&batt3=0&batt4=0&batt5=0&batt6=0&batt7=0&batt8=0&batt9=0&batt10=0&batt_25=0&batt_co2=0&battout=0",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "batt1",
+							"value": "0"
+						},
+						{
+							"key": "batt2",
+							"value": "0"
+						},
+						{
+							"key": "batt3",
+							"value": "0"
+						},
+						{
+							"key": "batt4",
+							"value": "0"
+						},
+						{
+							"key": "batt5",
+							"value": "0"
+						},
+						{
+							"key": "batt6",
+							"value": "0"
+						},
+						{
+							"key": "batt7",
+							"value": "0"
+						},
+						{
+							"key": "batt8",
+							"value": "0"
+						},
+						{
+							"key": "batt9",
+							"value": "0"
+						},
+						{
+							"key": "batt10",
+							"value": "0"
+						},
+						{
+							"key": "batt_25",
+							"value": "0"
+						},
+						{
+							"key": "batt_co2",
+							"value": "0"
+						},
+						{
+							"key": "battout",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test soil sensors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?soilhum1=21&soilhum2=22&soilhum3=23&soilhum4=24&soilhum5=25&soilhum6=26&soilhum7=27&soilhum8=28&soilhum9=29&soilhum10=20&soiltemp1f=68.1&soiltemp2f=68.2&soiltemp3f=68.3&soiltemp4f=68.4&soiltemp5f=68.5&soiltemp6f=68.6&soiltemp7f=68.7&soiltemp8f=68.8&soiltemp9f=68.9&soiltemp10f=68.0",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "soilhum1",
+							"value": "21"
+						},
+						{
+							"key": "soilhum2",
+							"value": "22"
+						},
+						{
+							"key": "soilhum3",
+							"value": "23"
+						},
+						{
+							"key": "soilhum4",
+							"value": "24"
+						},
+						{
+							"key": "soilhum5",
+							"value": "25"
+						},
+						{
+							"key": "soilhum6",
+							"value": "26"
+						},
+						{
+							"key": "soilhum7",
+							"value": "27"
+						},
+						{
+							"key": "soilhum8",
+							"value": "28"
+						},
+						{
+							"key": "soilhum9",
+							"value": "29"
+						},
+						{
+							"key": "soilhum10",
+							"value": "20"
+						},
+						{
+							"key": "soiltemp1f",
+							"value": "68.1"
+						},
+						{
+							"key": "soiltemp2f",
+							"value": "68.2"
+						},
+						{
+							"key": "soiltemp3f",
+							"value": "68.3"
+						},
+						{
+							"key": "soiltemp4f",
+							"value": "68.4"
+						},
+						{
+							"key": "soiltemp5f",
+							"value": "68.5"
+						},
+						{
+							"key": "soiltemp6f",
+							"value": "68.6"
+						},
+						{
+							"key": "soiltemp7f",
+							"value": "68.7"
+						},
+						{
+							"key": "soiltemp8f",
+							"value": "68.8"
+						},
+						{
+							"key": "soiltemp9f",
+							"value": "68.9"
+						},
+						{
+							"key": "soiltemp10f",
+							"value": "68.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test pm25",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?pm25=26.5&pm25_24h= 20.2&pm25_in=28.5&pm25_in_24h=28.2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "pm25",
+							"value": "26.5"
+						},
+						{
+							"key": "pm25_24h",
+							"value": " 20.2"
+						},
+						{
+							"key": "pm25_in",
+							"value": "28.5"
+						},
+						{
+							"key": "pm25_in_24h",
+							"value": "28.2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test rain sensors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?24hourrainin=3.4&dailyrainin=1.1&eventrainin=2.2&hourlyrainin=3.3&monthlyrainin=4.4&totalrainin=5.5&weeklyrainin=6.6",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "24hourrainin",
+							"value": "3.4"
+						},
+						{
+							"key": "dailyrainin",
+							"value": "1.1"
+						},
+						{
+							"key": "eventrainin",
+							"value": "2.2"
+						},
+						{
+							"key": "hourlyrainin",
+							"value": "3.3"
+						},
+						{
+							"key": "monthlyrainin",
+							"value": "4.4"
+						},
+						{
+							"key": "totalrainin",
+							"value": "5.5"
+						},
+						{
+							"key": "weeklyrainin",
+							"value": "6.6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
