@@ -25,7 +25,7 @@ async function startup(): Promise<void> {
   await mqttManager.publishOnline();
 
   sensors.initialize();
-  await sensors.discoverAll();
+  // await sensors.discoverAll();
 
   webServer.start();
 }

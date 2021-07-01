@@ -11,6 +11,7 @@ import { IPublishPacket } from "mqtt-packet";
 import ISensorDataPayload from "./ISensorDataPayload";
 
 export default class Sensor {
+  public isDiscovered = false;
   public discoveryTopic: string;
   public stateTopic: string;
   public availabilityTopic: string;
@@ -48,7 +49,13 @@ export default class Sensor {
     return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload));
   }
 
-  public publishData(): Promise<IPublishPacket> {
+  public async publishData(): Promise<IPublishPacket> {
+    // If this is the first time the sensor is publishing data
+    // send the discovery topic first.
+    if (!this.isDiscovered) {
+      await this.publishDiscovery();
+      this.isDiscovered = true;
+    }
     return mqttManager.publish(this.stateTopic, JSON.stringify(this.dataPayload));
   }
 }
