@@ -23,6 +23,7 @@ export function initialize(): void {
   sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
+  sensors.set(SensorNames.DEWPOINT, new Sensor(SensorNames.DEWPOINT, SensorUnit.F, DeviceClass.TEMPERATURE));
   sensors.set(
     SensorNames.HUMIDITYINDOOR,
     new Sensor(SensorNames.HUMIDITYINDOOR, SensorUnit.percent, DeviceClass.HUMIDITY),
@@ -67,6 +68,7 @@ export function initialize(): void {
     SensorNames.TEMPERATUREOUTDOOR,
     new Sensor(SensorNames.TEMPERATUREOUTDOOR, SensorUnit.F, DeviceClass.TEMPERATURE),
   );
+  sensors.set(SensorNames.WINDCHILL, new Sensor(SensorNames.WINDCHILL, SensorUnit.F, DeviceClass.TEMPERATURE));
   sensors.set(SensorNames.WINDDIRECTION, new Sensor(SensorNames.WINDDIRECTION, undefined, undefined, "weather-windy"));
   sensors.set(
     SensorNames.WINDGUST,

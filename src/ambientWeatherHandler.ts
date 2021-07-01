@@ -34,26 +34,28 @@ export function processAmbientWeatherData(req: express.Request, res: express.Res
 
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
-  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +req.query.baromabsin);
-  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +req.query.baromrelin);
+  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
+  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
 
   // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100
   setDataPayload(SensorNames.BATTERYCO2OK, +req.query.batt_co2 ? 100 : 0);
   setDataPayload(SensorNames.BATTERYOK, +req.query.battout ? 100 : 0);
 
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
-  setDataPayload(SensorNames.HUMIDITYINDOOR, +req.query.humidityin);
+  setDataPayload(SensorNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  setDataPayload(SensorNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
   setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
-  setDataPayload(SensorNames.RAINDAILY, +req.query.dailyrainin);
+  setDataPayload(SensorNames.RAINDAILY, +(req.query.dailyrainin ?? req.query.rainin));
   setDataPayload(SensorNames.RAINEVENT, +req.query.eventrainin);
   setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
   setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
   setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
   setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
-  setDataPayload(SensorNames.TEMPERATUREINDOOR, +req.query.tempinf);
+  setDataPayload(SensorNames.TEMPERATUREINDOOR, +(req.query.tempinf ?? req.query.indoortempf));
   setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(SensorNames.UV, +req.query.uv);
+  setDataPayload(SensorNames.WINDCHILL, +req.query.windchillf); // Only available in Weather Underground updates
   setDataPayload(SensorNames.WINDDIRECTION, +req.query.winddir);
   setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
   setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
