@@ -32,7 +32,10 @@ export function initialize(): void {
   sensors.set(SensorNames.BATTERY9, new Sensor(SensorNames.BATTERY9, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.BATTERYCO2OK, new Sensor(SensorNames.BATTERYCO2OK, SensorUnit.percent, DeviceClass.BATTERY));
   sensors.set(SensorNames.BATTERYOK, new Sensor(SensorNames.BATTERYOK, SensorUnit.percent, DeviceClass.BATTERY));
-  sensors.set(SensorNames.BATTERYPM25, new Sensor(SensorNames.BATTERYPM25, SensorUnit.percent, DeviceClass.BATTERY));
+  sensors.set(
+    SensorNames.BATTERYPM25OK,
+    new Sensor(SensorNames.BATTERYPM25OK, SensorUnit.percent, DeviceClass.BATTERY),
+  );
   sensors.set(SensorNames.CO2, new Sensor(SensorNames.CO2, SensorUnit.particulate, DeviceClass.CO2));
   sensors.set(SensorNames.DATE, new Sensor(SensorNames.DATE, SensorUnit.timestamp, undefined, "clock-outline"));
   sensors.set(SensorNames.DEWPOINT, new Sensor(SensorNames.DEWPOINT, SensorUnit.F, DeviceClass.TEMPERATURE));

@@ -70,7 +70,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(SensorNames.BATTERY9, convertBatteryValue(req.query.batt9 as string));
   setDataPayload(SensorNames.BATTERYCO2OK, convertBatteryValue(req.query.batt_co2 as string));
   setDataPayload(SensorNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
-  setDataPayload(SensorNames.BATTERYPM25, convertBatteryValue(req.query.batt_25 as string));
+  setDataPayload(SensorNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(SensorNames.CO2, +req.query.co2);
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc?.toString()));
   setDataPayload(SensorNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates

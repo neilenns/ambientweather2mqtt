@@ -18,7 +18,7 @@ enum SensorNames {
   BATTERY9 = "battery9",
   BATTERYCO2OK = "batteryCo2Ok",
   BATTERYOK = "batteryOk",
-  BATTERYPM25 = "batteryPM25",
+  BATTERYPM25OK = "batteryPM25Ok",
   CO2 = "co2",
   DATE = "dateUtc",
   DEWPOINT = "dewpoint",

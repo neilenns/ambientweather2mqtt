@@ -82,40 +82,46 @@ Check the following:
 
 The following sensors are supported. Note that weather stations will only report the subset of these they support.
 
-| Name                       | Description                                                   | Ambient Weather | Weather Underground | Unit    |
-| -------------------------- | ------------------------------------------------------------- | --------------- | ------------------- | ------- |
-| barometricPressureAbsolute | Absolute barometric pressure                                  | Yes             | Yes                 | inHg    |
-| barometricPressureRelative | Relative barometric pressure                                  | Yes             | Yes                 | inHg    |
-| battery1..10               | State of battery, `0` for not ok, `100` for ok                | Yes             | No                  | percent |
-| batteryCo2Ok               | State of the CO2 device battery, `0` for not ok, `100` for ok | Yes             | No                  | percent |
-| batteryOk                  | State of the device battery, `0` for not ok, `100` for ok     | Yes             | No                  | percent |
-| dateUtc                    | Date of the latest measurements                               | Yes             | Yes                 | date    |
-| dewpoint                   | Outdoor dewpoint temperature                                  | No              | Yes                 | °F      |
-| humidity1..10              | Humidity sensors 1 through 10                                 | Yes             | No                  | percent |
-| humidityIndoor             | Indoor humidity                                               | Yes             | Yes                 | percent |
-| humidityOutdoor            | Outdoor humidity                                              | Yes             | Yes                 | percent |
-| pm25                       | PM2.5 air quality                                             | Yes             | No                  | µg/m^3  |
-| pm25_24Hour                | PM2.5 air quality 24 hour average                             | Yes             | No                  | µg/m^3  |
-| pm25Indoor                 | PM2.5 indoor air quality                                      | Yes             | No                  | µg/m^3  |
-| pm25Indoor_24Hour          | PM2.5 indoor air quality 24 hour average                      | Yes             | No                  | µg/m^3  |
-| rain24Hour                 | 24 hour rain                                                  | Yes             | No                  | inches  |
-| rainDaily                  | Daily rain                                                    | Yes             | Yes                 | inches  |
-| rainEvent                  | Event rain                                                    | Yes             | No                  | inches  |
-| rainHourly                 | Hourly rain                                                   | Yes             | Yes                 | inches  |
-| rainMonthly                | Monthly rain                                                  | Yes             | Yes                 | inches  |
-| rainTotal                  | Total rain since last factory reset                           | Yes             | No                  | inches  |
-| rainWeekly                 | Weekly rain                                                   | Yes             | Yes                 | inches  |
-| soilHumidity1..10          | Soil humidity sensors 1 through 10                            | Yes             | No                  | percent |
-| soilTemperature1..10       | Soil temperature sensors 1 through 10                         | Yes             | No                  | °F      |
-| solarRadiation             | Solar radiation                                               | Yes             | Yes                 | W/m^2   |
-| temperature1..10           | Temperature sensors 1 through 10                              | Yes             | No                  | °F      |
-| temperatureIndoor          | Indoor temperature                                            | Yes             | Yes                 | °F      |
-| temperatureOutdoor         | Outdoor temperature                                           | Yes             | Yes                 | °F      |
-| uv                         | UV radiation index                                            | Yes             | Yes                 | integer |
-| windchill                  | Outdoor windchill temperature                                 | No              | Yes                 | °F      |
-| windDirection              | Instantaneous wind direction                                  | Yes             | Yes                 | degree  |
-| windGust                   | Maximum wind speed in the last 10 minutes                     | Yes             | Yes                 | mph     |
-| windMaxDailyGust           | Maximum wind speed in last day                                | Yes             | No                  | mph     |
-| windSpeed                  | Instantaneous wind speed                                      | Yes             | Yes                 | mph     |
+| Name                          | Description                                                    | Ambient Weather | Weather Underground | Unit    |
+| ----------------------------- | -------------------------------------------------------------- | --------------- | ------------------- | ------- |
+| barometricPressureAbsolute    | Absolute barometric pressure                                   | Yes             | Yes                 | inHg    |
+| barometricPressureRelative    | Relative barometric pressure                                   | Yes             | Yes                 | inHg    |
+| battery1..10                  | State of battery, `0` for not ok, `100` for ok                 | Yes             | No                  | percent |
+| batteryCo2Ok                  | State of the CO2 device battery, `0` for not ok, `100` for ok  | Yes             | No                  | percent |
+| batteryOk                     | State of the device battery, `0` for not ok, `100` for ok      | Yes             | No                  | percent |
+| batteryPM25Ok                 | State of the PM25 device battery, `0` for not ok, `100` for ok | Yes             | No                  | percent |
+| co2                           | CO2 meter reading                                              | Yes             | No                  | ppm     |
+| dateUtc                       | Date of the latest measurements                                | Yes             | Yes                 | date    |
+| dewpoint                      | Outdoor dewpoint temperature                                   | No              | Yes                 | °F      |
+| humidity1..10                 | Humidity sensors 1 through 10                                  | Yes             | No                  | percent |
+| humidityIndoor                | Indoor humidity                                                | Yes             | Yes                 | percent |
+| humidityOutdoor               | Outdoor humidity                                               | Yes             | Yes                 | percent |
+| pm25                          | PM2.5 air quality                                              | Yes             | No                  | µg/m^3  |
+| pm25_24Hour                   | PM2.5 air quality 24 hour average                              | Yes             | No                  | µg/m^3  |
+| pm25Indoor                    | PM2.5 indoor air quality                                       | Yes             | No                  | µg/m^3  |
+| pm25Indoor_24Hour             | PM2.5 indoor air quality 24 hour average                       | Yes             | No                  | µg/m^3  |
+| rain24Hour                    | 24 hour rain                                                   | Yes             | No                  | inches  |
+| rainDaily                     | Daily rain                                                     | Yes             | Yes                 | inches  |
+| rainEvent                     | Event rain                                                     | Yes             | No                  | inches  |
+| rainHourly                    | Hourly rain                                                    | Yes             | Yes                 | inches  |
+| rainMonthly                   | Monthly rain                                                   | Yes             | Yes                 | inches  |
+| rainTotal                     | Total rain since last factory reset                            | Yes             | No                  | inches  |
+| rainWeekly                    | Weekly rain                                                    | Yes             | Yes                 | inches  |
+| soilHumidity1..10             | Soil humidity sensors 1 through 10                             | Yes             | No                  | percent |
+| soilTemperature1..10          | Soil temperature sensors 1 through 10                          | Yes             | No                  | °F      |
+| solarRadiation                | Solar radiation                                                | Yes             | Yes                 | W/m^2   |
+| temperature1..10              | Temperature sensors 1 through 10                               | Yes             | No                  | °F      |
+| temperatureIndoor             | Indoor temperature                                             | Yes             | Yes                 | °F      |
+| temperatureOutdoor            | Outdoor temperature                                            | Yes             | Yes                 | °F      |
+| uv                            | UV radiation index                                             | Yes             | Yes                 | integer |
+| windchill                     | Outdoor windchill temperature                                  | No              | Yes                 | °F      |
+| windDirection                 | Instantaneous wind direction                                   | Yes             | Yes                 | degree  |
+| windDirectionTenMinuteAverage | Wind direction ten minute average                              | Yes             | No                  | degree  |
+| windDirectionTwoMinuteAverage | Wind direction two minute average                              | Yes             | No                  | degree  |
+| windGust                      | Maximum wind speed in the last 10 minutes                      | Yes             | Yes                 | mph     |
+| windMaxDailyGust              | Maximum wind speed in last day                                 | Yes             | No                  | mph     |
+| windSpeed                     | Instantaneous wind speed                                       | Yes             | Yes                 | mph     |
+| windSpeedTenMinuteAverage     | Wind speed ten minute average                                  | Yes             | No                  | mph     |
+| windSpeedTwoMinuteAverage     | Wind speed two minute average                                  | Yes             | No                  | mph     |
 
 Ambient Weather
