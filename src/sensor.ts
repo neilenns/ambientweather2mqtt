@@ -50,6 +50,11 @@ export default class Sensor {
   }
 
   public async publishData(): Promise<IPublishPacket> {
+    // Don't publish if there is no data to send.
+    if (this.dataPayload?.value === undefined) {
+      return;
+    }
+
     // If this is the first time the sensor is publishing data
     // send the discovery topic first.
     if (!this.isDiscovered) {

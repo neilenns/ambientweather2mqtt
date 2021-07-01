@@ -15,8 +15,8 @@ import SensorNames from "./sensorNames";
  * @param value The data to set
  */
 function setDataPayload(key: string, value: string | number | boolean | Date) {
-  if (value === undefined) {
-    log.warn("Weather handler", `No data received for ${key}, skipping sensor.`);
+  if (value === undefined || isNaN(+value)) {
+    log.verbose("Weather handler", `No data received for ${key}, skipping sensor.`);
     return;
   }
 
@@ -40,8 +40,11 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
 
   // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100
-  setDataPayload(SensorNames.BATTERYCO2OK, +req.query.batt_co2 ? 100 : 0);
-  setDataPayload(SensorNames.BATTERYOK, +req.query.battout ? 100 : 0);
+  setDataPayload(
+    SensorNames.BATTERYCO2OK,
+    req.query.batt_co2 === undefined ? undefined : +req.query.batt_co2 ? 100 : 0,
+  );
+  setDataPayload(SensorNames.BATTERYOK, req.query.battout === undefined ? undefined : +req.query.battout ? 100 : 0);
 
   setDataPayload(SensorNames.DATE, new Date(req.query.dateutc.toString()));
   setDataPayload(SensorNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
