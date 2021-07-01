@@ -6,23 +6,21 @@ import express from "express";
 import * as mqttManager from "./mqttManager";
 import * as sensors from "./sensors";
 import * as log from "./log";
-import ISensorDataPayload from "./ISensorDataPayload";
 import SensorNames from "./sensorNames";
+import SensorDataPayload from "./SensorDataPayload";
 
 /**
  * Sets the data payload on a sensor
  * @param key The sensor to set the data on
  * @param value The data to set
  */
-function setDataPayload(key: string, value: string | number | boolean | Date) {
+function setDataPayload(key: string, value: SensorDataPayload) {
   if (value === undefined || isNaN(+value)) {
     log.verbose("Weather handler", `No data received for ${key}, skipping sensor.`);
     return;
   }
 
-  sensors.sensors.get(key).dataPayload = {
-    value: value,
-  } as ISensorDataPayload;
+  sensors.sensors.get(key).value = value;
 }
 
 // Documentation for the APIs:
