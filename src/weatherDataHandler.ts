@@ -39,7 +39,9 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
   setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
 
-  // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100
+  // For the two battery sensors the weather station sends 0 or 1, but for Home Assistant to properly display the icon it should be 0 or 100.
+  // This data isn't provided in the Weather Underground API format so there's an initial check for undefined to ensure
+  // no value gets set for these sensors when there is no data provided in the API call.
   setDataPayload(
     SensorNames.BATTERYCO2OK,
     req.query.batt_co2 === undefined ? undefined : +req.query.batt_co2 ? 100 : 0,
