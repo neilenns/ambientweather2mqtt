@@ -8,7 +8,7 @@ import SensorDiscoveryPayload from "./sensorDiscoveryPayload";
 import SensorUnit from "./sensorUnit";
 import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
-import ISensorDataPayload from "./ISensorDataPayload";
+import SensorDataPayload from "./SensorDataPayload";
 
 /**
  * A weather station sensor.
@@ -18,8 +18,7 @@ export default class Sensor {
   public discoveryTopic: string;
   public stateTopic: string;
   public availabilityTopic: string;
-  public dataPayload: ISensorDataPayload;
-
+  public value: SensorDataPayload;
   public discoveryPayload: SensorDiscoveryPayload;
 
   /**
@@ -51,7 +50,6 @@ export default class Sensor {
       state_topic: this.stateTopic,
       unique_id: `${cleanedMacAddress ?? "AW"}_${name}`,
       unit_of_measurement: unit,
-      value_template: `{{ value_json.value }}`,
     } as SensorDiscoveryPayload;
   }
 
@@ -68,7 +66,7 @@ export default class Sensor {
    */
   public async publishData(): Promise<IPublishPacket> {
     // Don't publish if there is no data to send.
-    if (this.dataPayload?.value === undefined) {
+    if (this.value === undefined) {
       return;
     }
 
@@ -78,6 +76,6 @@ export default class Sensor {
       this.isDiscovered = true;
     }
 
-    return mqttManager.publish(this.stateTopic, JSON.stringify(this.dataPayload));
+    return mqttManager.publish(this.stateTopic, JSON.stringify(this.value));
   }
 }
