@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
 import * as mqttManager from "../mqttManager";
-import * as sensors from "../sensors";
+import * as sensors from "../entities";
 import * as log from "../log";
-import SensorNames from "../sensorNames";
-import SensorDataPayload from "../SensorDataPayload";
+import EntityNames from "../entityNames";
+import EntityDataPayload from "../entityDataPayload";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
@@ -30,14 +30,14 @@ function convertBatteryValue(value: string): number {
  * @param key The sensor to set the data on
  * @param value The data to set
  */
-function setDataPayload(key: string, value: SensorDataPayload) {
+function setDataPayload(key: string, value: EntityDataPayload) {
   // Don't set the payload if nothing was provided for the value. This ensures
   // sensors that aren't supported by a device don't ever get published to MQTT.
   if (value === undefined || isNaN(+value)) {
     return;
   }
 
-  sensors.sensors.get(key).value = value;
+  sensors.entities.get(key).value = value;
 }
 
 // Sample Ambient Weather call:
@@ -57,76 +57,76 @@ export function processWeatherData(req: express.Request, res: express.Response):
   log.verbose("Weather handler", req.url);
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
-  setDataPayload(SensorNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
-  setDataPayload(SensorNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
-  setDataPayload(SensorNames.BATTERY1, convertBatteryValue(req.query.batt1 as string));
-  setDataPayload(SensorNames.BATTERY10, convertBatteryValue(req.query.batt10 as string));
-  setDataPayload(SensorNames.BATTERY2, convertBatteryValue(req.query.batt2 as string));
-  setDataPayload(SensorNames.BATTERY3, convertBatteryValue(req.query.batt3 as string));
-  setDataPayload(SensorNames.BATTERY4, convertBatteryValue(req.query.batt4 as string));
-  setDataPayload(SensorNames.BATTERY5, convertBatteryValue(req.query.batt5 as string));
-  setDataPayload(SensorNames.BATTERY6, convertBatteryValue(req.query.batt6 as string));
-  setDataPayload(SensorNames.BATTERY7, convertBatteryValue(req.query.batt7 as string));
-  setDataPayload(SensorNames.BATTERY8, convertBatteryValue(req.query.batt8 as string));
-  setDataPayload(SensorNames.BATTERY9, convertBatteryValue(req.query.batt9 as string));
-  setDataPayload(SensorNames.BATTERYCO2OK, convertBatteryValue(req.query.batt_co2 as string));
-  setDataPayload(SensorNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
-  setDataPayload(SensorNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
-  setDataPayload(SensorNames.CO2, +req.query.co2);
-  setDataPayload(SensorNames.DATE, new Date(req.query.dateutc?.toString()));
-  setDataPayload(SensorNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
-  setDataPayload(SensorNames.HUMIDITY1, +req.query.humidity1);
-  setDataPayload(SensorNames.HUMIDITY10, +req.query.humidity10);
-  setDataPayload(SensorNames.HUMIDITY2, +req.query.humidity2);
-  setDataPayload(SensorNames.HUMIDITY3, +req.query.humidity3);
-  setDataPayload(SensorNames.HUMIDITY4, +req.query.humidity4);
-  setDataPayload(SensorNames.HUMIDITY5, +req.query.humidity5);
-  setDataPayload(SensorNames.HUMIDITY6, +req.query.humidity6);
-  setDataPayload(SensorNames.HUMIDITY7, +req.query.humidity7);
-  setDataPayload(SensorNames.HUMIDITY8, +req.query.humidity8);
-  setDataPayload(SensorNames.HUMIDITY9, +req.query.humidity9);
-  setDataPayload(SensorNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
-  setDataPayload(SensorNames.HUMIDITYOUTDOOR, +req.query.humidity);
-  setDataPayload(SensorNames.PM25, +req.query.pm25);
-  setDataPayload(SensorNames.PM25_24HOUR, +req.query.pm25_24h);
-  setDataPayload(SensorNames.PM25INDOOR, +req.query.pm25_in);
-  setDataPayload(SensorNames.PM25INDOOR_24HOUR, +req.query.pm25_in_24h);
-  setDataPayload(SensorNames.RAIN24HOUR, +req.query["24hourrainin"]);
-  setDataPayload(SensorNames.RAINDAILY, +(req.query.dailyrainin ?? req.query.rainin));
-  setDataPayload(SensorNames.RAINEVENT, +req.query.eventrainin);
-  setDataPayload(SensorNames.RAINHOURLY, +req.query.hourlyrainin);
-  setDataPayload(SensorNames.RAINMONTHLY, +req.query.monthlyrainin);
-  setDataPayload(SensorNames.RAINTOTAL, +req.query.totalrainin);
-  setDataPayload(SensorNames.RAINWEEKLY, +req.query.weeklyrainin);
-  setDataPayload(SensorNames.SOILHUMIDITY1, +req.query.soilhum1);
-  setDataPayload(SensorNames.SOILHUMIDITY10, +req.query.soilhum10);
-  setDataPayload(SensorNames.SOILHUMIDITY2, +req.query.soilhum2);
-  setDataPayload(SensorNames.SOILHUMIDITY3, +req.query.soilhum3);
-  setDataPayload(SensorNames.SOILHUMIDITY4, +req.query.soilhum4);
-  setDataPayload(SensorNames.SOILHUMIDITY5, +req.query.soilhum5);
-  setDataPayload(SensorNames.SOILHUMIDITY6, +req.query.soilhum6);
-  setDataPayload(SensorNames.SOILHUMIDITY7, +req.query.soilhum7);
-  setDataPayload(SensorNames.SOILHUMIDITY8, +req.query.soilhum8);
-  setDataPayload(SensorNames.SOILHUMIDITY9, +req.query.soilhum9);
-  setDataPayload(SensorNames.SOILTEMPERATURE1, +req.query.soiltemp1f);
-  setDataPayload(SensorNames.SOILTEMPERATURE10, +req.query.soiltemp10f);
-  setDataPayload(SensorNames.SOILTEMPERATURE2, +req.query.soiltemp2f);
-  setDataPayload(SensorNames.SOILTEMPERATURE3, +req.query.soiltemp3f);
-  setDataPayload(SensorNames.SOILTEMPERATURE4, +req.query.soiltemp4f);
-  setDataPayload(SensorNames.SOILTEMPERATURE5, +req.query.soiltemp5f);
-  setDataPayload(SensorNames.SOILTEMPERATURE6, +req.query.soiltemp6f);
-  setDataPayload(SensorNames.SOILTEMPERATURE7, +req.query.soiltemp7f);
-  setDataPayload(SensorNames.SOILTEMPERATURE8, +req.query.soiltemp8f);
-  setDataPayload(SensorNames.SOILTEMPERATURE9, +req.query.soiltemp9f);
-  setDataPayload(SensorNames.SOLARRADIATION, +req.query.solarradiation);
-  setDataPayload(SensorNames.TEMPERATUREINDOOR, +(req.query.tempinf ?? req.query.indoortempf));
-  setDataPayload(SensorNames.TEMPERATUREOUTDOOR, +req.query.tempf);
-  setDataPayload(SensorNames.UV, +req.query.uv);
-  setDataPayload(SensorNames.WINDCHILL, +req.query.windchillf); // Only available in Weather Underground updates
-  setDataPayload(SensorNames.WINDDIRECTION, +req.query.winddir);
-  setDataPayload(SensorNames.WINDGUST, +req.query.windgustmph);
-  setDataPayload(SensorNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
-  setDataPayload(SensorNames.WINDSPEED, +req.query.windspeedmph);
+  setDataPayload(EntityNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
+  setDataPayload(EntityNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
+  setDataPayload(EntityNames.BATTERY1, convertBatteryValue(req.query.batt1 as string));
+  setDataPayload(EntityNames.BATTERY10, convertBatteryValue(req.query.batt10 as string));
+  setDataPayload(EntityNames.BATTERY2, convertBatteryValue(req.query.batt2 as string));
+  setDataPayload(EntityNames.BATTERY3, convertBatteryValue(req.query.batt3 as string));
+  setDataPayload(EntityNames.BATTERY4, convertBatteryValue(req.query.batt4 as string));
+  setDataPayload(EntityNames.BATTERY5, convertBatteryValue(req.query.batt5 as string));
+  setDataPayload(EntityNames.BATTERY6, convertBatteryValue(req.query.batt6 as string));
+  setDataPayload(EntityNames.BATTERY7, convertBatteryValue(req.query.batt7 as string));
+  setDataPayload(EntityNames.BATTERY8, convertBatteryValue(req.query.batt8 as string));
+  setDataPayload(EntityNames.BATTERY9, convertBatteryValue(req.query.batt9 as string));
+  setDataPayload(EntityNames.BATTERYCO2OK, convertBatteryValue(req.query.batt_co2 as string));
+  setDataPayload(EntityNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
+  setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
+  setDataPayload(EntityNames.CO2, +req.query.co2);
+  setDataPayload(EntityNames.DATE, new Date(req.query.dateutc?.toString()));
+  setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
+  setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);
+  setDataPayload(EntityNames.HUMIDITY2, +req.query.humidity2);
+  setDataPayload(EntityNames.HUMIDITY3, +req.query.humidity3);
+  setDataPayload(EntityNames.HUMIDITY4, +req.query.humidity4);
+  setDataPayload(EntityNames.HUMIDITY5, +req.query.humidity5);
+  setDataPayload(EntityNames.HUMIDITY6, +req.query.humidity6);
+  setDataPayload(EntityNames.HUMIDITY7, +req.query.humidity7);
+  setDataPayload(EntityNames.HUMIDITY8, +req.query.humidity8);
+  setDataPayload(EntityNames.HUMIDITY9, +req.query.humidity9);
+  setDataPayload(EntityNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
+  setDataPayload(EntityNames.HUMIDITYOUTDOOR, +req.query.humidity);
+  setDataPayload(EntityNames.PM25, +req.query.pm25);
+  setDataPayload(EntityNames.PM25_24HOUR, +req.query.pm25_24h);
+  setDataPayload(EntityNames.PM25INDOOR, +req.query.pm25_in);
+  setDataPayload(EntityNames.PM25INDOOR_24HOUR, +req.query.pm25_in_24h);
+  setDataPayload(EntityNames.RAIN24HOUR, +req.query["24hourrainin"]);
+  setDataPayload(EntityNames.RAINDAILY, +(req.query.dailyrainin ?? req.query.rainin));
+  setDataPayload(EntityNames.RAINEVENT, +req.query.eventrainin);
+  setDataPayload(EntityNames.RAINHOURLY, +req.query.hourlyrainin);
+  setDataPayload(EntityNames.RAINMONTHLY, +req.query.monthlyrainin);
+  setDataPayload(EntityNames.RAINTOTAL, +req.query.totalrainin);
+  setDataPayload(EntityNames.RAINWEEKLY, +req.query.weeklyrainin);
+  setDataPayload(EntityNames.SOILHUMIDITY1, +req.query.soilhum1);
+  setDataPayload(EntityNames.SOILHUMIDITY10, +req.query.soilhum10);
+  setDataPayload(EntityNames.SOILHUMIDITY2, +req.query.soilhum2);
+  setDataPayload(EntityNames.SOILHUMIDITY3, +req.query.soilhum3);
+  setDataPayload(EntityNames.SOILHUMIDITY4, +req.query.soilhum4);
+  setDataPayload(EntityNames.SOILHUMIDITY5, +req.query.soilhum5);
+  setDataPayload(EntityNames.SOILHUMIDITY6, +req.query.soilhum6);
+  setDataPayload(EntityNames.SOILHUMIDITY7, +req.query.soilhum7);
+  setDataPayload(EntityNames.SOILHUMIDITY8, +req.query.soilhum8);
+  setDataPayload(EntityNames.SOILHUMIDITY9, +req.query.soilhum9);
+  setDataPayload(EntityNames.SOILTEMPERATURE1, +req.query.soiltemp1f);
+  setDataPayload(EntityNames.SOILTEMPERATURE10, +req.query.soiltemp10f);
+  setDataPayload(EntityNames.SOILTEMPERATURE2, +req.query.soiltemp2f);
+  setDataPayload(EntityNames.SOILTEMPERATURE3, +req.query.soiltemp3f);
+  setDataPayload(EntityNames.SOILTEMPERATURE4, +req.query.soiltemp4f);
+  setDataPayload(EntityNames.SOILTEMPERATURE5, +req.query.soiltemp5f);
+  setDataPayload(EntityNames.SOILTEMPERATURE6, +req.query.soiltemp6f);
+  setDataPayload(EntityNames.SOILTEMPERATURE7, +req.query.soiltemp7f);
+  setDataPayload(EntityNames.SOILTEMPERATURE8, +req.query.soiltemp8f);
+  setDataPayload(EntityNames.SOILTEMPERATURE9, +req.query.soiltemp9f);
+  setDataPayload(EntityNames.SOLARRADIATION, +req.query.solarradiation);
+  setDataPayload(EntityNames.TEMPERATUREINDOOR, +(req.query.tempinf ?? req.query.indoortempf));
+  setDataPayload(EntityNames.TEMPERATUREOUTDOOR, +req.query.tempf);
+  setDataPayload(EntityNames.UV, +req.query.uv);
+  setDataPayload(EntityNames.WINDCHILL, +req.query.windchillf); // Only available in Weather Underground updates
+  setDataPayload(EntityNames.WINDDIRECTION, +req.query.winddir);
+  setDataPayload(EntityNames.WINDGUST, +req.query.windgustmph);
+  setDataPayload(EntityNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
+  setDataPayload(EntityNames.WINDSPEED, +req.query.windspeedmph);
 
   sensors.publishAll();
   mqttManager.publishOnline();

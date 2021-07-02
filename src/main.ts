@@ -6,7 +6,7 @@ import "dotenv/config";
 
 import * as log from "./log";
 import * as mqttManager from "./mqttManager";
-import * as sensors from "./sensors";
+import * as sensors from "./entities";
 import * as webServer from "./webServer";
 
 /**

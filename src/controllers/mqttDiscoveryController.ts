@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as log from "../log";
-import * as sensors from "../sensors";
+import * as sensors from "../entities";
 import express from "express";
 
 /**
@@ -14,7 +14,7 @@ import express from "express";
  */
 export async function discover(req: express.Request, res: express.Response): Promise<void> {
   if (req.params?.entityName) {
-    const entity = sensors.sensors.get(req.params.entityName);
+    const entity = sensors.entities.get(req.params.entityName);
 
     if (!entity) {
       log.warn("Discovery", `Unable to publish discovery event for ${req.params.entityName}: entity not found.`);

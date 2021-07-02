@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-enum SensorNames {
+enum EntityNames {
   BAROMETRICPRESSUREABSOLUTE = "barometricPressureAbsolute",
   BAROMETRICPRESSURERELATIVE = "barometricPressureRelative",
   BATTERY1 = "battery1",
@@ -90,4 +90,4 @@ enum SensorNames {
   WINDSPEED_AVG2M = "windSpeedTwoMinuteAverage",
 }
 
-export default SensorNames;
+export default EntityNames;

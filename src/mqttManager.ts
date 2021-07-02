@@ -14,7 +14,7 @@ let client: MQTT.AsyncClient;
  * Establishes a connection to the MQTT server
  */
 export async function initialize(id: string): Promise<void> {
-  availabilityTopic = `homeassistant/sensor/${id.replace(/:/g, "")}`;
+  availabilityTopic = `homeassistant/${id.replace(/:/g, "")}`;
 
   client = await MQTT.connectAsync(process.env.MQTT_SERVER, {
     username: process.env.MQTT_USERNAME,
