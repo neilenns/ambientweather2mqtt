@@ -6,7 +6,7 @@ import "dotenv/config";
 
 import * as log from "./log";
 import * as mqttManager from "./mqttManager";
-import * as sensors from "./entities";
+import * as entityManager from "./entityManager";
 import * as webServer from "./webServer";
 
 /**
@@ -24,7 +24,7 @@ async function startup(): Promise<void> {
   await mqttManager.initialize(process.env.STATION_MAC_ADDRESS);
   await mqttManager.publishOnline();
 
-  sensors.initialize();
+  entityManager.initialize();
 
   webServer.start();
 }

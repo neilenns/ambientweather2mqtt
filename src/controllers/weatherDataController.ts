@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
 import * as mqttManager from "../mqttManager";
-import * as sensors from "../entities";
+import * as entityManager from "../entityManager";
 import * as log from "../log";
 import EntityNames from "../entityNames";
 import EntityDataPayload from "../entityDataPayload";
@@ -17,7 +17,7 @@ import EntityDataPayload from "../entityDataPayload";
 function convertBatteryValue(value: string): number {
   // This data isn't provided in the Weather Underground API format and many of the Ambient Weather battery sensors
   // don't report data unless there are external devices attached so there's an initial check for undefined to ensure
-  // no value gets set for these sensors when there is no data provided.
+  // no value gets set for these entities when there is no data provided.
   if (value === undefined) {
     return undefined;
   }
@@ -33,7 +33,7 @@ function convertBatteryValue(value: string): number {
 function convertRelayValue(value: string): string {
   // This data isn't provided in the Weather Underground API format and many of the Ambient Weather battery sensors
   // don't report data unless there are external devices attached so there's an initial check for undefined to ensure
-  // no value gets set for these sensors when there is no data provided.
+  // no value gets set for these entities when there is no data provided.
   if (value === undefined) {
     return undefined;
   }
@@ -48,7 +48,7 @@ function convertRelayValue(value: string): string {
  */
 function setDataPayload(key: string, value: EntityDataPayload) {
   // Don't set the payload if nothing was provided for the value. This ensures
-  // sensors that aren't supported by a device don't ever get published to MQTT.
+  // entities that aren't supported by a device don't ever get published to MQTT.
   if (value === undefined) {
     return;
   }
@@ -58,7 +58,7 @@ function setDataPayload(key: string, value: EntityDataPayload) {
     return;
   }
 
-  sensors.entities.get(key).value = value;
+  entityManager.entities.get(key).value = value;
 }
 
 // Sample Ambient Weather call:
@@ -159,7 +159,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
   setDataPayload(EntityNames.WINDSPEED, +req.query.windspeedmph);
 
-  sensors.publishAll();
+  entityManager.publishAll();
   mqttManager.publishOnline();
 
   res.status(200).send("Ok");
