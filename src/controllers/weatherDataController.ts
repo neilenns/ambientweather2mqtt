@@ -42,6 +42,28 @@ function convertRelayValue(value: string): string {
 }
 
 /**
+ * Takes a string representation of a UTC date and converts it to a Date object with the UTC timezone.
+ * @param value The UTC date as a string
+ * @returns A Date object with the UTC date
+ */
+function convertUtcValue(value: string): Date {
+  // This is absolute nonsense. If you just make a new Date with the incoming string it gets assigned the local machine's timezone.
+  // There is no way to make a new Date object directly and tell it "this time is in UTC". So you have to do all this crazy
+  // date creation stuff, found at https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation.
+  const incomingDate = new Date(value);
+  return new Date(
+    Date.UTC(
+      incomingDate.getFullYear(),
+      incomingDate.getMonth(),
+      incomingDate.getDate(),
+      incomingDate.getHours(),
+      incomingDate.getMinutes(),
+      incomingDate.getSeconds(),
+    ),
+  );
+}
+
+/**
  * Sets the data payload on a sensor
  * @param key The sensor to set the data on
  * @param value The data to set
@@ -94,7 +116,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
-  setDataPayload(EntityNames.DATE, new Date(req.query.dateutc?.toString()));
+  setDataPayload(EntityNames.DATE, convertUtcValue(req.query.dateutc?.toString()));
   setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
   setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);

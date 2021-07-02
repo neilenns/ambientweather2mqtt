@@ -84,6 +84,12 @@ export default class Entity {
       await this.publishDiscovery();
     }
 
+    // Dates are obnoxious. They must explicitly be written out using toUTCString()
+    // otherwise the local system timezone gets added to the base date.
+    if (this.value instanceof Date) {
+      return mqttManager.publish(this.stateTopic, this.value.toUTCString());
+    }
+
     return mqttManager.publish(this.stateTopic, this.value.toString());
   }
 }
