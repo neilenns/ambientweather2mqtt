@@ -40,13 +40,13 @@ export async function initialize(id: string): Promise<void> {
  * @param data The  data to send
  * @returns A promise
  */
-export async function publish(topic: string, data: string): Promise<MQTT.IPublishPacket> {
+export async function publish(topic: string, data: string, retain?: boolean): Promise<MQTT.IPublishPacket> {
   if (!connected) {
     log.info("MQTT", "Attempted to send data but not connected to MQTT server.");
     return;
   }
 
-  return client.publish(topic, data);
+  return client.publish(topic, data, { retain });
 }
 
 /**
@@ -59,7 +59,7 @@ export async function publishOnline(): Promise<MQTT.IPublishPacket> {
     return;
   }
 
-  return client.publish(availabilityTopic, "online");
+  return client.publish(availabilityTopic, "online", { retain: true });
 }
 
 /**
@@ -72,5 +72,5 @@ export async function publishOffline(): Promise<MQTT.IPublishPacket> {
     return;
   }
 
-  return client.publish(availabilityTopic, "offline");
+  return client.publish(availabilityTopic, "offline", { retain: true });
 }
