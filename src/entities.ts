@@ -9,7 +9,7 @@ import Entity from "./entity";
 import EntityNames from "./entityNames";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
-import Switch from "./switch";
+import BinarySensor from "./binarySensor";
 
 export const entities = new Map<string, Entity>();
 
@@ -174,16 +174,16 @@ export function initialize(): void {
     EntityNames.RAINWEEKLY,
     new Sensor(EntityNames.RAINWEEKLY, deviceId, SensorUnit.inches, undefined, "weather-pouring"),
   );
-  entities.set(EntityNames.RELAY1, new Switch(EntityNames.RELAY1, deviceId));
-  entities.set(EntityNames.RELAY10, new Switch(EntityNames.RELAY10, deviceId));
-  entities.set(EntityNames.RELAY2, new Switch(EntityNames.RELAY2, deviceId));
-  entities.set(EntityNames.RELAY3, new Switch(EntityNames.RELAY3, deviceId));
-  entities.set(EntityNames.RELAY4, new Switch(EntityNames.RELAY4, deviceId));
-  entities.set(EntityNames.RELAY5, new Switch(EntityNames.RELAY5, deviceId));
-  entities.set(EntityNames.RELAY6, new Switch(EntityNames.RELAY6, deviceId));
-  entities.set(EntityNames.RELAY7, new Switch(EntityNames.RELAY7, deviceId));
-  entities.set(EntityNames.RELAY8, new Switch(EntityNames.RELAY8, deviceId));
-  entities.set(EntityNames.RELAY9, new Switch(EntityNames.RELAY9, deviceId));
+  entities.set(EntityNames.RELAY1, new BinarySensor(EntityNames.RELAY1, deviceId));
+  entities.set(EntityNames.RELAY10, new BinarySensor(EntityNames.RELAY10, deviceId));
+  entities.set(EntityNames.RELAY2, new BinarySensor(EntityNames.RELAY2, deviceId));
+  entities.set(EntityNames.RELAY3, new BinarySensor(EntityNames.RELAY3, deviceId));
+  entities.set(EntityNames.RELAY4, new BinarySensor(EntityNames.RELAY4, deviceId));
+  entities.set(EntityNames.RELAY5, new BinarySensor(EntityNames.RELAY5, deviceId));
+  entities.set(EntityNames.RELAY6, new BinarySensor(EntityNames.RELAY6, deviceId));
+  entities.set(EntityNames.RELAY7, new BinarySensor(EntityNames.RELAY7, deviceId));
+  entities.set(EntityNames.RELAY8, new BinarySensor(EntityNames.RELAY8, deviceId));
+  entities.set(EntityNames.RELAY9, new BinarySensor(EntityNames.RELAY9, deviceId));
   entities.set(
     EntityNames.SOILHUMIDITY1,
     new Sensor(EntityNames.SOILHUMIDITY1, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),

@@ -84,6 +84,6 @@ export default class Entity {
       await this.publishDiscovery();
     }
 
-    return mqttManager.publish(this.stateTopic, JSON.stringify(this.value));
+    return mqttManager.publish(this.stateTopic, this.value.toString());
   }
 }

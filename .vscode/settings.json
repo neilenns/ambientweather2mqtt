@@ -48,6 +48,7 @@
     "soilhumidity",
     "soiltemp",
     "soiltemperature",
+    "stationtype",
     "temperatureoutdoor",
     "tempf",
     "tempinf",

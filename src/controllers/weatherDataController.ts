@@ -49,7 +49,12 @@ function convertRelayValue(value: string): string {
 function setDataPayload(key: string, value: EntityDataPayload) {
   // Don't set the payload if nothing was provided for the value. This ensures
   // sensors that aren't supported by a device don't ever get published to MQTT.
-  if (value === undefined || isNaN(+value)) {
+  if (value === undefined) {
+    return;
+  }
+
+  // Don't set the payload if it's not really a number
+  if (typeof value === "number" && isNaN(value)) {
     return;
   }
 

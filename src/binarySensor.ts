@@ -6,9 +6,9 @@
 import Entity from "./entity";
 
 /**
- * Represents a Home Assistant sensor entity
+ * Represents a Home Assistant binary sensor entity
  */
-export default class Switch extends Entity {
+export default class BinarySensor extends Entity {
   /**
    * Creates a new Switch entity.
    * @param name The name of the sensor.
@@ -17,7 +17,9 @@ export default class Switch extends Entity {
   constructor(name: string, deviceId: string) {
     super(name, deviceId);
 
-    this.discoveryTopic = `homeassistant/switch/${deviceId}/${this.discoveryPayload.name}/config`;
-    this.stateTopic = `homeassistant/switch/${deviceId}/${this.discoveryPayload.name}/state`;
+    this.discoveryTopic = `homeassistant/binary_sensor/${deviceId}/${this.discoveryPayload.name}/config`;
+    this.stateTopic = `homeassistant/binary_sensor/${deviceId}/${this.discoveryPayload.name}/state`;
+
+    this.discoveryPayload.state_topic = this.stateTopic;
   }
 }

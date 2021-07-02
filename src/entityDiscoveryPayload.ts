@@ -14,6 +14,7 @@ export default class EntityDiscoveryPayload {
   device_class: string;
   icon: string;
   name: string;
+  command_topic: string;
   state_topic: string;
   unique_id: string;
   unit_of_measurement: string;
