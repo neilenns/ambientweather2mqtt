@@ -11,7 +11,7 @@ import EntityDataPayload from "../entityDataPayload";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
- * @param The raw battery value, either 0 or 1
+ * @param The raw battery value, either 0 or 1.
  * @returns The converted battery value, either 0 or 100.
  */
 function convertBatteryValue(value: string): number {
@@ -23,6 +23,22 @@ function convertBatteryValue(value: string): number {
   }
 
   return +value ? 100 : 0;
+}
+
+/**
+ * Converts an Ambient Weather relay state into a Home Assistant switch state.
+ * @param value The raw relay value, either 0 or 1.
+ * @returns The converted relay value, either "OFF" or "ON".
+ */
+function convertRelayValue(value: string): string {
+  // This data isn't provided in the Weather Underground API format and many of the Ambient Weather battery sensors
+  // don't report data unless there are external devices attached so there's an initial check for undefined to ensure
+  // no value gets set for these sensors when there is no data provided.
+  if (value === undefined) {
+    return undefined;
+  }
+
+  return +value ? "ON" : "OFF";
 }
 
 /**
@@ -98,6 +114,16 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(EntityNames.RAINTOTAL, +req.query.totalrainin);
   setDataPayload(EntityNames.RAINWEEKLY, +req.query.weeklyrainin);
+  setDataPayload(EntityNames.RELAY1, convertRelayValue(req.query.relay1 as string));
+  setDataPayload(EntityNames.RELAY10, convertRelayValue(req.query.relay10 as string));
+  setDataPayload(EntityNames.RELAY2, convertRelayValue(req.query.relay2 as string));
+  setDataPayload(EntityNames.RELAY3, convertRelayValue(req.query.relay3 as string));
+  setDataPayload(EntityNames.RELAY4, convertRelayValue(req.query.relay4 as string));
+  setDataPayload(EntityNames.RELAY5, convertRelayValue(req.query.relay5 as string));
+  setDataPayload(EntityNames.RELAY6, convertRelayValue(req.query.relay6 as string));
+  setDataPayload(EntityNames.RELAY7, convertRelayValue(req.query.relay7 as string));
+  setDataPayload(EntityNames.RELAY8, convertRelayValue(req.query.relay8 as string));
+  setDataPayload(EntityNames.RELAY9, convertRelayValue(req.query.relay9 as string));
   setDataPayload(EntityNames.SOILHUMIDITY1, +req.query.soilhum1);
   setDataPayload(EntityNames.SOILHUMIDITY10, +req.query.soilhum10);
   setDataPayload(EntityNames.SOILHUMIDITY2, +req.query.soilhum2);
