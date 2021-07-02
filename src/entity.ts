@@ -66,7 +66,7 @@ export default class Entity {
     log.verbose("Sensor", `Publishing discovery for ${this.discoveryPayload.name}.`);
 
     this.isDiscovered = true;
-    return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload));
+    return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload), true);
   }
 
   /**
