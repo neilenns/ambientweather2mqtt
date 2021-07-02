@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-enum SensorNames {
+enum EntityNames {
   BAROMETRICPRESSUREABSOLUTE = "barometricPressureAbsolute",
   BAROMETRICPRESSURERELATIVE = "barometricPressureRelative",
   BATTERY1 = "battery1",
@@ -45,6 +45,16 @@ enum SensorNames {
   RAINMONTHLY = "rainMonthly",
   RAINTOTAL = "rainTotal",
   RAINWEEKLY = "rainWeekly",
+  RELAY1 = "relay1",
+  RELAY10 = "relay10",
+  RELAY2 = "relay2",
+  RELAY3 = "relay3",
+  RELAY4 = "relay4",
+  RELAY5 = "relay5",
+  RELAY6 = "relay6",
+  RELAY7 = "relay7",
+  RELAY8 = "relay8",
+  RELAY9 = "relay9",
   SOILHUMIDITY1 = "soilHumidity1",
   SOILHUMIDITY10 = "soilHumidity10",
   SOILHUMIDITY2 = "soilHumidity2",
@@ -90,4 +100,4 @@ enum SensorNames {
   WINDSPEED_AVG2M = "windSpeedTwoMinuteAverage",
 }
 
-export default SensorNames;
+export default EntityNames;

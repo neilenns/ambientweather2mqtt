@@ -3,6 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-type SensorDataPayload = string | number | Date | boolean;
+type EntityDataPayload = string | number | Date | boolean;
 
-export default SensorDataPayload;
+export default EntityDataPayload;

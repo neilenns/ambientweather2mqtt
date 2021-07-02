@@ -3,8 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-export default class SensorDiscoveryPayload {
-  availability_topic: string;
+export default class EntityDiscoveryPayload {
   device: {
     identifiers: string[];
     manufacturer: "Ambient Weather";
@@ -15,6 +14,7 @@ export default class SensorDiscoveryPayload {
   device_class: string;
   icon: string;
   name: string;
+  command_topic: string;
   state_topic: string;
   unique_id: string;
   unit_of_measurement: string;
