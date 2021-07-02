@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fbde379b-138f-428c-8069-038eea17ca25",
+		"_postman_id": "299f255b-0200-417d-8b0d-4c5d49cf2817",
 		"name": "Ambient Weather",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/data/?stationtype=AMBWeatherV4.2.9&PASSKEY=40:F5:20:3A:40:FF&dateUtc=2021-07-01+20:34:06&tempinf=73.0&humidityin=56&baromrelin=29.900&baromabsin=29.513&tempf=68.2&battout=1&humidity=66&winddir=358&windspeedmph=0.0&windgustmph=0.0&maxdailygust=3.4&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=93.58&uv=0&batt_co2=1",
+					"raw": "http://{{host}}:{{port}}/data/?stationtype=AMBWeatherV4.2.9&PASSKEY=40:F5:20:3A:40:FF&dateutc=2021-07-01+20:34:06&tempinf=73.0&humidityin=56&baromrelin=29.900&baromabsin=29.513&tempf=68.2&battout=1&humidity=66&winddir=358&windspeedmph=0.0&windgustmph=0.0&maxdailygust=3.4&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=93.58&uv=0&batt_co2=1",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -31,7 +31,7 @@
 							"value": "40:F5:20:3A:40:FF"
 						},
 						{
-							"key": "dateUtc",
+							"key": "dateutc",
 							"value": "2021-07-01+20:34:06"
 						},
 						{
@@ -113,6 +113,32 @@
 						{
 							"key": "batt_co2",
 							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - just date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?dateutc=2021-07-02+01:05:02",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "dateutc",
+							"value": "2021-07-02+01:05:02"
 						}
 					]
 				}
@@ -451,6 +477,68 @@
 						{
 							"key": "weeklyrainin",
 							"value": "6.6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send weather data - test relays - on",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/data/?relay1=1&relay10=1&relay2=1&relay3=1&relay4=1&relay5=1&relay6=1&relay7=1&relay8=1&relay9=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"data",
+						""
+					],
+					"query": [
+						{
+							"key": "relay1",
+							"value": "1"
+						},
+						{
+							"key": "relay10",
+							"value": "1"
+						},
+						{
+							"key": "relay2",
+							"value": "1"
+						},
+						{
+							"key": "relay3",
+							"value": "1"
+						},
+						{
+							"key": "relay4",
+							"value": "1"
+						},
+						{
+							"key": "relay5",
+							"value": "1"
+						},
+						{
+							"key": "relay6",
+							"value": "1"
+						},
+						{
+							"key": "relay7",
+							"value": "1"
+						},
+						{
+							"key": "relay8",
+							"value": "1"
+						},
+						{
+							"key": "relay9",
+							"value": "1"
 						}
 					]
 				}
