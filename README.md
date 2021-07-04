@@ -83,7 +83,7 @@ Check the following:
 The following sensors are supported. Note that weather stations will only report the subset of these they support.
 
 | Name                          | Description                                                    | Ambient Weather | Weather Underground | Unit    |
-| ----------------------------- | -------------------------------------------------------------- | --------------- | ------------------- | ------- |
+| ----------------------------- | -------------------------------------------------------------- | --------------- | ------------------- | ------- | --- | ------------- | ----------------------------- | --- | --- | ------- |
 | barometricPressureAbsolute    | Absolute barometric pressure                                   | Yes             | Yes                 | inHg    |
 | barometricPressureRelative    | Relative barometric pressure                                   | Yes             | Yes                 | inHg    |
 | battery1..10                  | State of battery, `0` for not ok, `100` for ok                 | Yes             | No                  | percent |
@@ -91,9 +91,8 @@ The following sensors are supported. Note that weather stations will only report
 | batteryOk                     | State of the device battery, `0` for not ok, `100` for ok      | Yes             | No                  | percent |
 | batteryPM25Ok                 | State of the PM25 device battery, `0` for not ok, `100` for ok | Yes             | No                  | percent |
 | co2                           | CO2 meter reading                                              | Yes             | No                  | ppm     |
-| dateUtc                       | Date of the latest measurements                                | Yes             | Yes                 | date    |
 | dewpoint                      | Outdoor dewpoint temperature                                   | No              | Yes                 | °F      |
-| humidity1..10                 | Humidity sensors 1 through 10                                  | Yes             | No                  | percent |
+| eventDate                     | Date of the latest measurements                                | Yes             | Yes                 | date    |     | humidity1..10 | Humidity sensors 1 through 10 | Yes | No  | percent |
 | humidityIndoor                | Indoor humidity                                                | Yes             | Yes                 | percent |
 | humidityOutdoor               | Outdoor humidity                                               | Yes             | Yes                 | percent |
 | pm25                          | PM2.5 air quality                                              | Yes             | No                  | µg/m^3  |

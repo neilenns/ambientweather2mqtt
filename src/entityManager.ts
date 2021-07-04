@@ -7,14 +7,18 @@ import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass";
 import Entity from "./entity";
 import EntityNames from "./entityNames";
+import * as log from "./log";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
 import BinarySensor from "./binarySensor";
 
 export const entities = new Map<string, Entity>();
 
+let deviceId: string;
+let initialized = false;
+
 export function initialize(): void {
-  const deviceId = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
+  deviceId = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
 
   entities.set(
     EntityNames.BAROMETRICPRESSUREABSOLUTE,
@@ -77,11 +81,11 @@ export function initialize(): void {
     new Sensor(EntityNames.BATTERYPM25OK, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
   );
   entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.particulate, DeviceClass.CO2));
-  entities.set(
-    EntityNames.DATE,
-    new Sensor(EntityNames.DATE, deviceId, SensorUnit.timestamp, undefined, "clock-outline"),
-  );
   entities.set(EntityNames.DEWPOINT, new Sensor(EntityNames.DEWPOINT, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE));
+  entities.set(
+    EntityNames.EVENTDATE,
+    new Sensor(EntityNames.EVENTDATE, deviceId, SensorUnit.timestamp, undefined, "clock-outline"),
+  );
   entities.set(
     EntityNames.HUMIDITY1,
     new Sensor(EntityNames.HUMIDITY1, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
@@ -352,10 +356,27 @@ export function initialize(): void {
     EntityNames.WINDSPEED_AVG2M,
     new Sensor(EntityNames.WINDSPEED_AVG2M, deviceId, SensorUnit.milesPerHour, undefined, "weather-windy"),
   );
-
   entities.set(EntityNames.UV, new Sensor(EntityNames.UV, deviceId, undefined, undefined, "weather-sunny"));
+
+  initialized = true;
 }
 
+/**
+ * Removes old entities from the MQTT server.
+ */
+export async function upgrade(): Promise<void> {
+  if (!initialized) {
+    log.error("Entity Manager", "Attempted to call upgrade() but initialize() wasn't called first.");
+  }
+
+  // eslint-disable-next-line deprecation/deprecation
+  await new Sensor(EntityNames.DATE, deviceId).publishRemove();
+}
+
+/**
+ * Publishes MQTT discover messages for all registered sensors that have data.
+ * @returns Promises
+ */
 export function discoverAll(): Promise<IPublishPacket[]> {
   const promises = new Array<Promise<IPublishPacket>>();
 
@@ -366,6 +387,10 @@ export function discoverAll(): Promise<IPublishPacket[]> {
   return Promise.all(promises);
 }
 
+/**
+ * Publishes data for all sensors that have received a value.
+ * @returns Promises
+ */
 export function publishAll(): Promise<IPublishPacket[]> {
   const promises = new Array<Promise<IPublishPacket>>();
 

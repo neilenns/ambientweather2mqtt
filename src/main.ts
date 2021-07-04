@@ -25,6 +25,7 @@ async function startup(): Promise<void> {
   await mqttManager.publishOnline();
 
   entityManager.initialize();
+  await entityManager.upgrade();
 
   webServer.start();
 }
