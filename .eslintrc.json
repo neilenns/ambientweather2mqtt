@@ -16,10 +16,12 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "notice"],
+  "plugins": ["@typescript-eslint", "notice", "deprecation"],
   "rules": {
+    "deprecation/deprecation": "warn",
     "no-console": "off",
     "notice/notice": [
       "error",

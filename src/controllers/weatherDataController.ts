@@ -116,8 +116,8 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
-  setDataPayload(EntityNames.DATE, convertUtcValue(req.query.dateutc?.toString()));
   setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()));
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
   setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);
   setDataPayload(EntityNames.HUMIDITY2, +req.query.humidity2);

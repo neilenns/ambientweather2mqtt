@@ -92,4 +92,13 @@ export default class Entity {
 
     return mqttManager.publish(this.stateTopic, this.value.toString());
   }
+
+  /**
+   * Publishes an empty retained message for the entity, resulting in it getting
+   * removed from the MQTT server. This is used as part of the upgrade code
+   * when a breaking change happens.
+   */
+  public publishRemove(): Promise<IPublishPacket> {
+    return mqttManager.publish(this.discoveryTopic, null);
+  }
 }

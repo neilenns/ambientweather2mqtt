@@ -20,8 +20,12 @@ enum EntityNames {
   BATTERYOK = "batteryOk",
   BATTERYPM25OK = "batteryPM25Ok",
   CO2 = "co2",
+  /**
+   * @deprecated Replaced with eventDate
+   */
   DATE = "dateUtc",
   DEWPOINT = "dewpoint",
+  EVENTDATE = "eventDate",
   HUMIDITY1 = "humidity1",
   HUMIDITY10 = "humidity10",
   HUMIDITY2 = "humidity2",
