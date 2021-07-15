@@ -1,5 +1,7 @@
 # ambientweather2mqtt
 
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/danecreekphotography/ambientweather2mqtt/)
+
 This package listens for local data from Ambient Weather stations (such as the WS-2902C) and converts the incoming data to MQTT events. The sensor data is published with auto-discovery so they show up automatically as sensors in Home Assistant.
 
 The following Ambient Weather station models are confirmed to work:
