@@ -6,5 +6,5 @@ services:
     ports:
       - "${PORT}:${PORT}"
 
-    image: danecreekphotography/ambientweather2mqtt:latest
+    image: ghcr.io/neilenns/ambientweather2mqtt:latest
     restart: always
