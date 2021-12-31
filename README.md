@@ -23,7 +23,7 @@ for setup.
    must provide the address of your MQTT server, your Ambient Weather station's MAC
    address, and the timezone your station is located in. The sample `.env` contains
    comments explaining the additional options available including username and password for connecting to the MQTT server.
-3. Start up the service by running `docker compose up` in the same folder as two downloaded configuration files.
+3. Start up the service by running `docker-compose up` in the same folder as two downloaded configuration files.
 
 If the server starts up successfully you will see log messages like this:
 
