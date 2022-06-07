@@ -9,7 +9,13 @@ ports:
   4500/tcp: 8132
 # TODO need to make the options respected as env variables
 options:
-  MAC_ADDRESS: 
+  MAC_ADDRESS: ""
+  MQTT_SERVER: ""
+  MQTT_USERNAME: ""
+  MQTT_PASSWORD: ""
+  TZ: "America/Chicago"
+environment:
+  PORT: 8132
 services:
   - "mqtt:need"
 arch:
