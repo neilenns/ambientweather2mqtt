@@ -12,6 +12,8 @@ ports:
 # TODO need to make the options respected as env variables
 options:
   MAC_ADDRESS: 
+services:
+  - "mqtt:need"
 arch:
   - amd64
   - armv7
