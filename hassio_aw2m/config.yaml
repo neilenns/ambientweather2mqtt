@@ -21,4 +21,6 @@ services:
 arch:
   - amd64
   - armv7
+  - armhf
   - aarch64
+  - i386
