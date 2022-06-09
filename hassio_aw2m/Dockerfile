@@ -1,6 +1,7 @@
 FROM ghcr.io/neilenns/ambientweather2mqtt:latest
 
-RUN apt-get install jq
+USER root
+RUN apk add --update jq
 
 COPY startup.sh /
 RUN chmod a+x /startup.sh
