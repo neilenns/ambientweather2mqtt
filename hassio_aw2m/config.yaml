@@ -13,6 +13,12 @@ options:
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
   TZ: "America/Chicago"
+schema:
+  MAC_ADDRESS: "str"
+  MQTT_SERVER: "str"
+  MQTT_USERNAME: "str"
+  MQTT_PASSWORD: "str"
+  TZ: "str"
 environment:
   PORT: "8132"
 services:
