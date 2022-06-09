@@ -8,13 +8,13 @@ ports:
   8132/tcp: 8132
 # TODO need to make the options respected as env variables
 options:
-  MAC_ADDRESS: ""
+  STATION_MAC_ADDRESS: ""
   MQTT_SERVER: ""
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
   TZ: "America/Chicago"
 schema:
-  MAC_ADDRESS: "str"
+  STATION_MAC_ADDRESS: "str"
   MQTT_SERVER: "str"
   MQTT_USERNAME: "str"
   MQTT_PASSWORD: "str"
