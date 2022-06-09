@@ -12,15 +12,17 @@ options:
   MQTT_SERVER: ""
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
+  MQTT_REJECT_UNAUTHORIZED: true
   TZ: "America/Chicago"
+  PORT: "8123"
 schema:
   STATION_MAC_ADDRESS: "str"
   MQTT_SERVER: "str"
   MQTT_USERNAME: "str"
   MQTT_PASSWORD: "str"
+  MQTT_REJECT_UNAUTHORIZED: "bool"
   TZ: "str"
-environment:
-  PORT: "8132"
+  PORT: "int"
 services:
   - "mqtt:need"
 arch:
