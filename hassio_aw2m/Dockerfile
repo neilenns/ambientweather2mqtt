@@ -3,7 +3,8 @@ FROM ghcr.io/neilenns/ambientweather2mqtt:latest
 USER root
 RUN apk add --update jq
 
-COPY startup.sh /
-RUN chmod a+x /startup.sh
+COPY startup.sh /home/node/app/startup.sh
+RUN chmod a+x /home/node/app/startup.sh
 
-CMD [ "/startup.sh" ]
+#ENTRYPOINT [ "ls" ]
+ENTRYPOINT [ "/bin/sh", "startup.sh" ]
