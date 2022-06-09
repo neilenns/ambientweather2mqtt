@@ -5,7 +5,7 @@ description: This package listens for local data from Ambient Weather stations (
 startup: application
 boot: auto
 ports:
-  4500/tcp: 8132
+  8132/tcp: 8132
 # TODO need to make the options respected as env variables
 options:
   MAC_ADDRESS: ""
