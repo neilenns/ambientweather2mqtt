@@ -33,6 +33,10 @@ If the server starts up successfully you will see log messages like this:
 2021-06-30T05:59:56-07:00 [Web server] Listening at http://localhost:8080
 ```
 
+### Setting up HomeAssistant Addon (only for non-native docker installs)
+
+[HA Add-On Installation](hassio_aw2m/README.md)
+
 ### Configuring the weather station
 
 Your Ambient Weather station must be configured to send data to the local service. This configuration is done through the [`awnet`](https://apps.apple.com/us/app/awnet/id1341994564) app, and currently can only be configured using the app on iOS devices (the setting is not available in the Android app).
