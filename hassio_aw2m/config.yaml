@@ -6,23 +6,24 @@ startup: application
 boot: auto
 ports:
   8132/tcp: 8132
-# TODO need to make the options respected as env variables
 options:
-  STATION_MAC_ADDRESS: ""
   MQTT_SERVER: ""
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
   MQTT_REJECT_UNAUTHORIZED: true
+  STATION_MAC_ADDRESS: ""
   TZ: "America/Chicago"
   PORT: "8123"
+  VERBOSE: false
 schema:
-  STATION_MAC_ADDRESS: "str"
   MQTT_SERVER: "str"
   MQTT_USERNAME: "str"
   MQTT_PASSWORD: "str"
   MQTT_REJECT_UNAUTHORIZED: "bool"
+  STATION_MAC_ADDRESS: "str"
   TZ: "str"
   PORT: "int"
+  VERBOSE: "bool"
 services:
   - "mqtt:need"
 arch:
