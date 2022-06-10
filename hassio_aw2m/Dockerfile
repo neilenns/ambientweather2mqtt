@@ -6,5 +6,4 @@ RUN apk add --update jq
 COPY startup.sh /home/node/app/startup.sh
 RUN chmod a+x /home/node/app/startup.sh
 
-#ENTRYPOINT [ "ls" ]
 ENTRYPOINT [ "/bin/sh", "startup.sh" ]
