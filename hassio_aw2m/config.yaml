@@ -10,7 +10,7 @@ options:
   MQTT_SERVER: ""
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
-  MQTT_REJECT_UNAUTHORIZED: true
+  MQTT_REJECT_UNAUTHORIZED: false
   STATION_MAC_ADDRESS: ""
   TZ: "America/Chicago"
   VERBOSE: false
