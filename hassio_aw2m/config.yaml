@@ -17,7 +17,7 @@ options:
 schema:
   MQTT_SERVER: "str"
   MQTT_USERNAME: "str"
-  MQTT_PASSWORD: "str"
+  MQTT_PASSWORD: "password"
   MQTT_REJECT_UNAUTHORIZED: "bool"
   STATION_MAC_ADDRESS: "str"
   TZ: "str"
