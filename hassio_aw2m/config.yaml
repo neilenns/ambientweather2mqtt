@@ -13,7 +13,6 @@ options:
   MQTT_REJECT_UNAUTHORIZED: true
   STATION_MAC_ADDRESS: ""
   TZ: "America/Chicago"
-  PORT: "8123"
   VERBOSE: false
 schema:
   MQTT_SERVER: "str"
@@ -22,7 +21,6 @@ schema:
   MQTT_REJECT_UNAUTHORIZED: "bool"
   STATION_MAC_ADDRESS: "str"
   TZ: "str"
-  PORT: "int"
   VERBOSE: "bool"
 services:
   - "mqtt:need"
