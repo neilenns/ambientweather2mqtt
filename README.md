@@ -43,7 +43,7 @@ Add `https://github.com/neilenns/ambientweather2mqtt` as an add-on repository.
 
 ### Configuring the weather station
 
-Your Ambient Weather station must be configured to send data to the local service. This configuration is done through the [`awnet`](https://apps.apple.com/us/app/awnet/id1341994564) app, and currently can only be configured using the app on iOS devices (the setting is not available in the Android app).
+Your Ambient Weather station must be configured to send data to the local service. This configuration is done through the [`awnet`](https://apps.apple.com/us/app/awnet/id1341994564) app. It is recommended to use an iOS device, but some have found success using an Android device as well.
 
 1. Run the `awnet` app and connect to your weather station.
 2. Tap `next` through the configuration screens until you get to the `Customized`
