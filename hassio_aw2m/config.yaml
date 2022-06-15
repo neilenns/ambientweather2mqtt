@@ -13,7 +13,7 @@ options:
   MQTT_PASSWORD: "password"
   MQTT_REJECT_UNAUTHORIZED: false
   STATION_MAC_ADDRESS: ""
-  TZ: "America/Chicago"
+  TZ: "America/Los_Angeles"
   VERBOSE: false
 schema:
   MQTT_SERVER: "str"
