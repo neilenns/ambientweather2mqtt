@@ -8,7 +8,7 @@ boot: auto
 ports:
   8132/tcp: 7000
 options:
-  MQTT_SERVER: ""
+  MQTT_SERVER: "http://192.168.1.1:1883"
   MQTT_USERNAME: ""
   MQTT_PASSWORD: ""
   MQTT_REJECT_UNAUTHORIZED: false
