@@ -1,0 +1,33 @@
+name: AmbientWeather2MQTT
+version: "1.0.0"
+slug: hassio_aw2m
+description: This package listens for local data from Ambient Weather stations (such as the WS-2902C) and converts the incoming data to MQTT events.
+url: "https://github.com/neilenns/ambientweather2mqtt"
+startup: application
+boot: auto
+ports:
+  8132/tcp: 7000
+options:
+  MQTT_SERVER: "http://192.168.1.1:1883"
+  MQTT_USERNAME: ""
+  MQTT_PASSWORD: "password"
+  MQTT_REJECT_UNAUTHORIZED: false
+  STATION_MAC_ADDRESS: "00:00:00:00:00:00"
+  TZ: "America/Los_Angeles"
+  VERBOSE: false
+schema:
+  MQTT_SERVER: "url"
+  MQTT_USERNAME: "str"
+  MQTT_PASSWORD: "password"
+  MQTT_REJECT_UNAUTHORIZED: "bool"
+  STATION_MAC_ADDRESS: "str"
+  TZ: "str"
+  VERBOSE: "bool"
+services:
+  - "mqtt:need"
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
