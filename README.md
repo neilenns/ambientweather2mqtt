@@ -59,7 +59,7 @@ Your Ambient Weather station must be configured to send data to the local servic
 | Path                  | `/data/?`                                                       | **It is very important this field is entered exactly as shown. Be very careful to include the `?` at the end otherwise nothing will work.**                  |
 | Station ID            | Any non-blank value                                             | Only required when the protocol is set to Weather Underground. The actual value provided doesn't matter but something must be in the field.                  |
 | Station Key           | Any non-blank value                                             | Only required when the protocol is set to Weather Underground. The actual value provided doesn't matter but something must be in the field.                  |
-| Port                  | The port specified in the `.env` file                           | The sample `.env` file provided uses `8132` so unless you changed it to something else you should enter `8132` here.                                         |
+| Port                  | The port specified in the `.env` file                           | If running in Home Assistant this should be set to `7000`. If running the standalone Docker image the sample `.env` file provided uses `8132` so unless you changed it to something else you should enter `8132` here. |
 | Upload Interval       | The frequency to send the data.                                 | `30` is a reasonable value to start with.                                                                                                                    |
 
 Here is what a properly configured weather station looks like:
@@ -93,7 +93,7 @@ Check the following:
 The following sensors are supported. Note that weather stations will only report the subset of these they support.
 
 | Name                          | Description                                                    | Ambient Weather | Weather Underground | Unit    |
-| ----------------------------- | -------------------------------------------------------------- | --------------- | ------------------- | ------- | --- | ------------- | ----------------------------- | --- | --- | ------- |
+| - | - | - | - | - | 
 | barometricPressureAbsolute    | Absolute barometric pressure                                   | Yes             | Yes                 | inHg    |
 | barometricPressureRelative    | Relative barometric pressure                                   | Yes             | Yes                 | inHg    |
 | battery1..10                  | State of battery, `0` for not ok, `100` for ok                 | Yes             | No                  | percent |
