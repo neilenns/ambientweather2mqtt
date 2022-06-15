@@ -16,7 +16,7 @@ options:
   TZ: "America/Los_Angeles"
   VERBOSE: false
 schema:
-  MQTT_SERVER: "str"
+  MQTT_SERVER: "url"
   MQTT_USERNAME: "str"
   MQTT_PASSWORD: "password"
   MQTT_REJECT_UNAUTHORIZED: "bool"
