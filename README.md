@@ -103,7 +103,7 @@ The following sensors are supported. Note that weather stations will only report
 | co2                           | CO2 meter reading                                              | Yes             | No                  | ppm     |
 | dewpoint                      | Outdoor dewpoint temperature                                   | No              | Yes                 | °F      |
 | eventDate                     | Date of the latest measurements                                | Yes             | Yes                 | date    |     
-| humidity1..10 | Humidity sensors 1 through 10 | Yes | No  | percent |
+| humidity1..10                 | Humidity sensors 1 through 10                                  | Yes             | No                  | percent |
 | humidityIndoor                | Indoor humidity                                                | Yes             | Yes                 | percent |
 | humidityOutdoor               | Outdoor humidity                                               | Yes             | Yes                 | percent |
 | pm25                          | PM2.5 air quality                                              | Yes             | No                  | µg/m^3  |
