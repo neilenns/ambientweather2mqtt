@@ -102,7 +102,8 @@ The following sensors are supported. Note that weather stations will only report
 | batteryPM25Ok                 | State of the PM25 device battery, `0` for not ok, `100` for ok | Yes             | No                  | percent |
 | co2                           | CO2 meter reading                                              | Yes             | No                  | ppm     |
 | dewpoint                      | Outdoor dewpoint temperature                                   | No              | Yes                 | °F      |
-| eventDate                     | Date of the latest measurements                                | Yes             | Yes                 | date    |     | humidity1..10 | Humidity sensors 1 through 10 | Yes | No  | percent |
+| eventDate                     | Date of the latest measurements                                | Yes             | Yes                 | date    |     
+| humidity1..10 | Humidity sensors 1 through 10 | Yes | No  | percent |
 | humidityIndoor                | Indoor humidity                                                | Yes             | Yes                 | percent |
 | humidityOutdoor               | Outdoor humidity                                               | Yes             | Yes                 | percent |
 | pm25                          | PM2.5 air quality                                              | Yes             | No                  | µg/m^3  |
@@ -112,7 +113,7 @@ The following sensors are supported. Note that weather stations will only report
 | rain24Hour                    | 24 hour rain                                                   | Yes             | No                  | inches  |
 | rainDaily                     | Daily rain                                                     | Yes             | Yes                 | inches  |
 | rainEvent                     | Event rain                                                     | Yes             | No                  | inches  |
-| rainHourly                    | Hourly rain                                                    | Yes             | Yes                 | inches  |
+| rainHourly                    | Hourly rain                                                    | Yes             | Yes                 | in/h    |
 | rainMonthly                   | Monthly rain                                                   | Yes             | Yes                 | inches  |
 | rainTotal                     | Total rain since last factory reset                            | Yes             | No                  | inches  |
 | rainWeekly                    | Weekly rain                                                    | Yes             | Yes                 | inches  |
