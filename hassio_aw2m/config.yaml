@@ -1,5 +1,5 @@
 name: AmbientWeather2MQTT
-version: "1.0.0"
+version: "3.0.0"
 slug: hassio_aw2m
 description: This package listens for local data from Ambient Weather stations (such as the WS-2902C) and converts the incoming data to MQTT events.
 url: "https://github.com/neilenns/ambientweather2mqtt"
