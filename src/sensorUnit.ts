@@ -7,6 +7,7 @@ enum SensorUnit {
   F = "˚F",
   illuminance = "lx",
   inches = "in",
+  inchesPerHour = "in/h",
   inHg = "inHg",
   milesPerHour = "mph",
   particulate = "µg/m^3",

@@ -164,7 +164,7 @@ export function initialize(): void {
   );
   entities.set(
     EntityNames.RAINHOURLY,
-    new Sensor(EntityNames.RAINHOURLY, deviceId, SensorUnit.inches, undefined, "weather-pouring"),
+    new Sensor(EntityNames.RAINHOURLY, deviceId, SensorUnit.inchesPerHour, undefined, "weather-pouring"),
   );
   entities.set(
     EntityNames.RAINMONTHLY,
