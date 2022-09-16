@@ -172,6 +172,16 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.SOILTEMPERATURE8, +req.query.soiltemp8f);
   setDataPayload(EntityNames.SOILTEMPERATURE9, +req.query.soiltemp9f);
   setDataPayload(EntityNames.SOLARRADIATION, +req.query.solarradiation);
+  setDataPayload(EntityNames.TEMPERATURE1, +req.query.temp1f);
+  setDataPayload(EntityNames.TEMPERATURE2, +req.query.temp2f);
+  setDataPayload(EntityNames.TEMPERATURE3, +req.query.temp3f);
+  setDataPayload(EntityNames.TEMPERATURE4, +req.query.temp4f);
+  setDataPayload(EntityNames.TEMPERATURE5, +req.query.temp5f);
+  setDataPayload(EntityNames.TEMPERATURE6, +req.query.temp6f);
+  setDataPayload(EntityNames.TEMPERATURE7, +req.query.temp7f);
+  setDataPayload(EntityNames.TEMPERATURE8, +req.query.temp8f);
+  setDataPayload(EntityNames.TEMPERATURE9, +req.query.temp9f);
+  setDataPayload(EntityNames.TEMPERATURE10, +req.query.temp10f);
   setDataPayload(EntityNames.TEMPERATUREINDOOR, +(req.query.tempinf ?? req.query.indoortempf));
   setDataPayload(EntityNames.TEMPERATUREOUTDOOR, +req.query.tempf);
   setDataPayload(EntityNames.UV, +req.query.uv);
