@@ -12,6 +12,7 @@ export default class EntityDiscoveryPayload {
     sw_version: string;
   };
   device_class: string;
+  state_class: string;
   icon: string;
   name: string;
   command_topic: string;

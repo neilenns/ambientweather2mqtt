@@ -6,6 +6,7 @@
 import DeviceClass from "./deviceClass";
 import EntityDiscoveryPayload from "./entityDiscoveryPayload";
 import SensorUnit from "./sensorUnit";
+import StateClass from "./stateClass";
 import * as log from "./log";
 import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
@@ -43,6 +44,7 @@ export default class Entity {
         model: "Ambient Weather Station",
       },
       device_class: deviceClass,
+      state_class: StateClass.MEASUREMENT,
       icon: icon ? `mdi:${icon}` : undefined,
       name: name,
       unique_id: `${this.deviceId ?? "AW"}_${name}`,
