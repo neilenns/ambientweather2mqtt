@@ -1,5 +1,9 @@
 # Version
 
+## 3.0.4
+
+* Update a dependency. No functional changes.
+
 ## 3.0.3
 
 * Add support for tracking long-term statistics
