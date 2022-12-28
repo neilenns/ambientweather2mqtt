@@ -1,5 +1,10 @@
 # Version
 
+## 4.0.0
+
+* Rename the temperature unit from `˚F` to `°F` for compatibility with Home Assistant. Since the name of the
+unit changed this is a breaking change.
+
 ## 3.0.4
 
 * Update a dependency. No functional changes.
