@@ -1,5 +1,9 @@
 # Version
 
+## 4.0.2
+
+* Change the sensor measurement unit for `EventDate` from `timestamp` to `None` in an attempt to fix an issue with Home Assistant version 2023.5.0.
+
 ## 4.0.1
 
 * Change the sensor class for EventDate from `unknown` to `timestamp` in an attempt to fix an issue with Home Assistant version 2023.5.0.
