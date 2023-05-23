@@ -1,5 +1,9 @@
 # Version
 
+## 4.0.1
+
+* Change the sensor class for EventDate from `unknown` to `timestamp` in an attempt to fix an issue with Home Assistant version 2023.5.0.
+
 ## 4.0.0
 
 * Rename the temperature unit from `˚F` to `°F` for compatibility with Home Assistant. Since the name of the
