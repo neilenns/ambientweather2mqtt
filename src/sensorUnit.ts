@@ -15,6 +15,7 @@ enum SensorUnit {
   percent = "%",
   radiation = "W/m^2",
   timestamp = "timestamp",
+  none = "None",
 }
 
 export default SensorUnit;
