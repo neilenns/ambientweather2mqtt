@@ -18,6 +18,6 @@ export default class EntityDiscoveryPayload {
   command_topic: string;
   state_topic: string;
   unique_id: string;
-  unit_of_measurement: string;
+  unit_of_measurement?: string;
   value_template: string;
 }
