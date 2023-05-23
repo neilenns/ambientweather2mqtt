@@ -1,5 +1,12 @@
 # Version
 
+## 4.0.3
+
+Fix issue #99, which was causing exceptions in the Home Assistant logs starting with release 2023.5.0:
+
+* Remove the sensor measurement unit for `EventDate`.
+* Change the date format for `EventDate` data to ISO standard format.
+
 ## 4.0.2
 
 * Change the sensor measurement unit for `EventDate` from `timestamp` to `None` in an attempt to fix an issue with Home Assistant version 2023.5.0.
