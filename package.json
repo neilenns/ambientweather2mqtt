@@ -1,6 +1,6 @@
 {
   "name": "ambientweather2mqtt",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Converts Ambient Weather data to MQTT events",
   "main": "dist/main.js",
   "files": [
