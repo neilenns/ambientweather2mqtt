@@ -50,7 +50,15 @@ function convertUtcValue(value: string): Date {
   // This is absolute nonsense. If you just make a new Date with the incoming string it gets assigned the local machine's timezone.
   // There is no way to make a new Date object directly and tell it "this time is in UTC". So you have to do all this crazy
   // date creation stuff, found at https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation.
-  const incomingDate = new Date(value);
+
+  let incomingDate = new Date(value);
+
+  // Issue #109: Some AmbientWeather stations send "now" as the event date, which is totally wrong.
+  // If the conversion of the value ever fails just use the current timestamp instead.
+  if (isNaN(+incomingDate)) {
+    incomingDate = new Date();
+  }
+
   return new Date(
     Date.UTC(
       incomingDate.getFullYear(),
@@ -117,7 +125,6 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
   setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
-  setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()).toISOString());
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
   setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);
   setDataPayload(EntityNames.HUMIDITY2, +req.query.humidity2);
@@ -190,6 +197,12 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.WINDGUST, +req.query.windgustmph);
   setDataPayload(EntityNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
   setDataPayload(EntityNames.WINDSPEED, +req.query.windspeedmph);
+
+  // Issue 109: Some ambientweather stations appear to send "now" for the time instead of an actual time.
+  // Make this more general case and just use current time if the one provided can't be converted to a time.
+
+  //
+  setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()).toISOString());
 
   entityManager.publishAll();
   mqttManager.publishOnline();
