@@ -1,5 +1,9 @@
 # Version
 
+## 4.0.4
+
+* Handle invalid event dates being provided by buggy AmbientWeather stations. (Fixes issue #106)
+
 ## 4.0.3
 
 Fix issue #99, which was causing exceptions in the Home Assistant logs starting with release 2023.5.0:
