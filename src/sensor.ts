@@ -6,6 +6,7 @@
 import DeviceClass from "./deviceClass";
 import Entity from "./entity";
 import SensorUnit from "./sensorUnit";
+import TopicRoot from "./topicRoot";
 
 /**
  * Represents a Home Assistant sensor entity
@@ -22,8 +23,8 @@ export default class Sensor extends Entity {
   constructor(name: string, deviceId: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
     super(name, deviceId, unit, deviceClass, icon);
 
-    this.discoveryTopic = `homeassistant/sensor/${deviceId}/${this.discoveryPayload.name}/config`;
-    this.stateTopic = `homeassistant/sensor/${deviceId}/${this.discoveryPayload.name}/state`;
+    this.discoveryTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/config`;
+    this.stateTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/state`;
 
     this.discoveryPayload.state_topic = this.stateTopic;
   }

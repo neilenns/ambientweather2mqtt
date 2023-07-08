@@ -64,5 +64,6 @@
     "winddirection",
     "windgustmph",
     "windspeedmph"
-  ]
+  ],
+  "markdown.extension.toc.levels": "2..6"
 }

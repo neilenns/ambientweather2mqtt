@@ -1,10 +1,17 @@
-# ambientweather2mqtt
+# ambientweather2mqtt - Convert Ambient Weather data to MQTT messages
 
 This package listens for local data from Ambient Weather stations (such as the WS-2902C) and converts the incoming data to MQTT events. The sensor data is published with auto-discovery so they show up automatically as sensors in Home Assistant.
 
-The following Ambient Weather station models are confirmed to work:
+The following Ambient Weather station models are confirmed to work: WS-2902C.
 
-- WS-2902C
+- [Installation and configuration](#installation-and-configuration)
+  - [Setting up the Docker image](#setting-up-the-docker-image)
+  - [Setting up HomeAssistant Addon (only for non-native Docker installs)](#setting-up-homeassistant-addon-only-for-non-native-docker-installs)
+  - [Configuring the weather station](#configuring-the-weather-station)
+- [Verifying everything works](#verifying-everything-works)
+- [Troubleshooting](#troubleshooting)
+- [Advanced settings](#advanced-settings)
+- [Supported sensors](#supported-sensors)
 
 ## Installation and configuration
 
@@ -34,8 +41,6 @@ If the server starts up successfully you will see log messages like this:
 ### Setting up HomeAssistant Addon (only for non-native Docker installs)
 
 [![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fneilenns%2Fambientweather2mqtt)
-
-**Installation**
 
 Add `https://github.com/neilenns/ambientweather2mqtt` as an add-on repository.
 
@@ -86,12 +91,18 @@ Check the following:
    to your Docker server. This can happen if you run virtual LANs to segment NoT/IoT
    traffic from your primarily LAN.
 
+## Advanced settings
+
+If you plan to use this as a Docker deployment but are not using HomeAssistant you may want to change the root used for the topic
+in all the MQTT messages. By default the messages are under `homeassistant` to ensure things like auto-discovery work. To change
+that you can set the `TOPIC_ROOT` environment variable.
+
 ## Supported sensors
 
 The following sensors are supported. Note that weather stations will only report the subset of these they support.
 
 | Name                          | Description                                                    | Ambient Weather | Weather Underground | Unit    |
-| - | - | - | - | - | 
+| - | - | - | - | - |
 | barometricPressureAbsolute    | Absolute barometric pressure                                   | Yes             | Yes                 | inHg    |
 | barometricPressureRelative    | Relative barometric pressure                                   | Yes             | Yes                 | inHg    |
 | battery1..10                  | State of battery, `0` for not ok, `100` for ok                 | Yes             | No                  | percent |

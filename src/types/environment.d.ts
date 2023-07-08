@@ -12,6 +12,7 @@ declare global {
       STATION_MAC_ADDRESS?: string;
       PORT?: string;
       VERBOSE?: "true" | "false";
+      TOPIC_ROOT?: string;
     }
   }
 }

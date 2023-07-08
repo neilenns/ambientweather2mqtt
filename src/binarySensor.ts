@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import Entity from "./entity";
+import TopicRoot from "./topicRoot";
 
 /**
  * Represents a Home Assistant binary sensor entity
@@ -17,8 +18,8 @@ export default class BinarySensor extends Entity {
   constructor(name: string, deviceId: string) {
     super(name, deviceId);
 
-    this.discoveryTopic = `homeassistant/binary_sensor/${deviceId}/${this.discoveryPayload.name}/config`;
-    this.stateTopic = `homeassistant/binary_sensor/${deviceId}/${this.discoveryPayload.name}/state`;
+    this.discoveryTopic = `${TopicRoot}/binary_sensor/${deviceId}/${this.discoveryPayload.name}/config`;
+    this.stateTopic = `${TopicRoot}/binary_sensor/${deviceId}/${this.discoveryPayload.name}/state`;
 
     this.discoveryPayload.state_topic = this.stateTopic;
   }
