@@ -1,5 +1,13 @@
 # Version
 
+## 4.1.1
+
+* Update dependencies
+
+## 4.1.0
+
+* Add an environment variable to set the root topic (Fixes issue #110)
+
 ## 4.0.4
 
 * Handle invalid event dates being provided by buggy AmbientWeather stations. (Fixes issue #106)
