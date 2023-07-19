@@ -1,8 +1,12 @@
 # Version
 
-## 4.0.5
+## 4.1.1
 
 * Update dependencies
+
+## 4.1.0
+
+* Add an environment variable to set the root topic (Fixes issue #110)
 
 ## 4.0.4
 
