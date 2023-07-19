@@ -1,5 +1,9 @@
 # Version
 
+## 4.0.5
+
+* Update dependencies
+
 ## 4.0.4
 
 * Handle invalid event dates being provided by buggy AmbientWeather stations. (Fixes issue #106)
