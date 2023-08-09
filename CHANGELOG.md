@@ -1,5 +1,9 @@
 # Version
 
+## 4.2.0
+
+* Add support for Ambient Weather lightning sensor (Fixes issue [#114](https://github.com/neilenns/ambientweather2mqtt/issues/114))
+
 ## 4.1.1
 
 * Update dependencies
