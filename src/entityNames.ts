@@ -19,6 +19,7 @@ enum EntityNames {
   BATTERYCO2OK = "batteryCo2Ok",
   BATTERYOK = "batteryOk",
   BATTERYPM25OK = "batteryPM25Ok",
+  BATTERYLIGHTNING = "batt_lightning",
   CO2 = "co2",
   /**
    * @deprecated Replaced with eventDate
@@ -38,6 +39,9 @@ enum EntityNames {
   HUMIDITY9 = "humidity9",
   HUMIDITYINDOOR = "humidityIndoor",
   HUMIDITYOUTDOOR = "humidityOutdoor",
+  LIGHTNINGTIME = "lightningTime",
+  LIGHTNINGDAY = "lightningCount",
+  LIGHTNINGDISTANCE = "lightningDistance",
   PM25 = "pm25",
   PM25_24HOUR = "pm25_24Hour",
   PM25INDOOR = "pm25Indoor",

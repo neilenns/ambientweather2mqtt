@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+// Source: https://github.com/home-assistant/core/blob/d7ac4bd65379e11461c7ce0893d3533d8d8b8cbf/homeassistant/const.py#L384
 enum SensorUnit {
   F = "°F",
   illuminance = "lx",
@@ -16,6 +17,7 @@ enum SensorUnit {
   radiation = "W/m^2",
   timestamp = "timestamp",
   none = "None",
+  kilometers = "km",
 }
 
 export default SensorUnit;

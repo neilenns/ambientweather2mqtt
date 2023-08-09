@@ -80,6 +80,11 @@ export function initialize(): void {
     EntityNames.BATTERYPM25OK,
     new Sensor(EntityNames.BATTERYPM25OK, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
   );
+  entities.set(
+    EntityNames.BATTERYLIGHTNING,
+    // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
+    new Sensor("batteryLightning", deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+  );
   entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.particulate, DeviceClass.CO2));
   entities.set(EntityNames.DEWPOINT, new Sensor(EntityNames.DEWPOINT, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE));
   entities.set(
@@ -133,6 +138,21 @@ export function initialize(): void {
   entities.set(
     EntityNames.HUMIDITYOUTDOOR,
     new Sensor(EntityNames.HUMIDITYOUTDOOR, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
+  );
+  entities.set(
+    EntityNames.LIGHTNINGDAY,
+    // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
+    new Sensor("lightningCount", deviceId, undefined, undefined, "weather-lightning"),
+  );
+  entities.set(
+    EntityNames.LIGHTNINGTIME,
+    // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
+    new Sensor("lightningTime", deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
+  );
+  entities.set(
+    EntityNames.LIGHTNINGDISTANCE,
+    // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
+    new Sensor("lightningDistance", deviceId, SensorUnit.kilometers, undefined, "weather-lightning"),
   );
   entities.set(
     EntityNames.PM25,
