@@ -1,5 +1,9 @@
 # Version
 
+## 4.2.0
+
+Add support for Ambient Weather lightning sensor.
+
 ## 4.1.1
 
 * Update dependencies
