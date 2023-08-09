@@ -46,11 +46,10 @@ function convertRelayValue(value: string): string {
  * @param value The UTC date as a string
  * @returns A Date object with the UTC date
  */
-function convertUtcValue(value: string): Date {
+function convertUtcValue(value: string | number): Date {
   // This is absolute nonsense. If you just make a new Date with the incoming string it gets assigned the local machine's timezone.
   // There is no way to make a new Date object directly and tell it "this time is in UTC". So you have to do all this crazy
   // date creation stuff, found at https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation.
-
   let incomingDate = new Date(value);
 
   // Issue #109: Some AmbientWeather stations send "now" as the event date, which is totally wrong.
@@ -77,18 +76,22 @@ function convertUtcValue(value: string): Date {
  * @param value The data to set
  */
 function setDataPayload(key: string, value: EntityDataPayload) {
-  // Don't set the payload if nothing was provided for the value. This ensures
-  // entities that aren't supported by a device don't ever get published to MQTT.
-  if (value === undefined) {
-    return;
-  }
+  try {
+    // Don't set the payload if nothing was provided for the value. This ensures
+    // entities that aren't supported by a device don't ever get published to MQTT.
+    if (value === undefined) {
+      return;
+    }
 
-  // Don't set the payload if it's not really a number
-  if (typeof value === "number" && isNaN(value)) {
-    return;
-  }
+    // Don't set the payload if it's not really a number
+    if (typeof value === "number" && isNaN(value)) {
+      return;
+    }
 
-  entityManager.entities.get(key).value = value;
+    entityManager.entities.get(key).value = value;
+  } catch {
+    log.error("Weather handler", `Error setting data payload for ${key} to ${value}`);
+  }
 }
 
 // Sample Ambient Weather call:
@@ -123,6 +126,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.BATTERYCO2OK, convertBatteryValue(req.query.batt_co2 as string));
   setDataPayload(EntityNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
+  setDataPayload(EntityNames.BATTERYLIGHTNING, convertBatteryValue(req.query.batt_lightning as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
   setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
@@ -137,6 +141,12 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.HUMIDITY9, +req.query.humidity9);
   setDataPayload(EntityNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
   setDataPayload(EntityNames.HUMIDITYOUTDOOR, +req.query.humidity);
+  setDataPayload(
+    EntityNames.LIGHTNINGTIME,
+    +req.query.lightning_time ? convertUtcValue(+req.query.lightning_time * 1000).toISOString() : undefined,
+  );
+  setDataPayload(EntityNames.LIGHTNINGDAY, +req.query.lightning_day);
+  setDataPayload(EntityNames.LIGHTNINGDISTANCE, +req.query.lightning_distance);
   setDataPayload(EntityNames.PM25, +req.query.pm25);
   setDataPayload(EntityNames.PM25_24HOUR, +req.query.pm25_24h);
   setDataPayload(EntityNames.PM25INDOOR, +req.query.pm25_in);
