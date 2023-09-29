@@ -1,5 +1,9 @@
 # Version
 
+## 4.3.0
+
+* Add support for AQIN indoor sensor (Fixes issue [[#116](https://github.com/neilenns/ambientweather2mqtt/issues/116)])
+
 ## 4.2.0
 
 * Add support for Ambient Weather lightning sensor (Fixes issue [#114](https://github.com/neilenns/ambientweather2mqtt/issues/114))
