@@ -23,8 +23,7 @@ Here's how to do common development tasks with this project when you've forgotte
 2. Say yes if there's a firewall prompt for local network access
 3. Point the Ambient Weather station to the local IP address on the port listed in the debug log
 
-Note that IoT/NoT virtual network rules may prevent direct connections to the machine running the code. Firewall
-rules on the router may need to be adjusted accordingly.
+Note that IoT/NoT virtual network rules may prevent direct connections to the machine running the code. Firewall rules on the router may need to be adjusted accordingly.
 
 ## How to force the auto-discover messages to send
 
@@ -39,3 +38,7 @@ Go to http://address:port/data?<urlencoded data>. Here is a full example:
 And here's an example with lightning:
 
 `/data/?stationtype=AMBWeatherPro_V5.1.1&PASSKEY=48:55:19:XX:XX:XX&dateutc=2023-08-09+03:06:27&tempf=63.0&humidity=91&windspeedmph=0.00&windgustmph=1.57&maxdailygust=16.11&winddir=202&winddir_avg10m=193&uv=0&solarradiation=0.00&hourlyrainin=0.000&eventrainin=0.433&dailyrainin=0.433&weeklyrainin=1.087&monthlyrainin=2.555&yearlyrainin=13.933&battout=1&battrain=1&tempinf=70.9&humidityin=73&baromrelin=23.211&baromabsin=23.211&battin=1&soilhum1=0&soilhum2=0&battsm1=1&battsm2=1&lightning_day=9&lightning_time=1691549949&lightning_distance=34&batt_lightning=0`
+
+And here's an example with AQIN data:
+
+`/data/?tempf=76.3&date=2023-09-28T16%3A15%3A00.000Z&aqi_pm25_24h_aqin=5&batt_25=1&tz=America%2FChicago&pm25_in_aqin=0.9&co2_in_24h_aqin=988&feelsLikein=74.9&aqi_pm25=38&lastRain=2023-09-23T21%3A22%3A00.000Z&pm10_in_24h_aqin=1.9&dewPointin=50.3&monthlyrainin=3.043&dailyrainin=0&aqi_pm25_aqin=4&pm25_in_24h_aqin=1.2&solarradiation=68.02&pm25_24h=3&humidityin=41&aqi_pm25_24h=13&humidity=69&pm_in_humidity_aqin=46&pm10_in_aqin=1.2&maxdailygust=6.93&pm_in_temp_aqin=74.1&uv=0&windspeedmph=0&yearlyrainin=7.752&winddir=184&hourlyrainin=0&eventrainin=0&baromabsin=28.969&battin=1&dewPoint=65.36&tempinf=75.7&battout=1&feelsLike=76.87&dateutc=1695917700000&windgustmph=1.12&macAddress=C8%3AC9%3AA3%3A55%3A93%3A17&pm25=9&co2_in_aqin=964&baromrelin=28.969&batt_co2=1&winddir_avg10m=195&weeklyrainin=0`

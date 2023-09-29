@@ -106,6 +106,17 @@ enum EntityNames {
   WINDSPEED = "windSpeed",
   WINDSPEED_AVG10M = "windSpeedTenMinuteAverage",
   WINDSPEED_AVG2M = "windSpeedTwoMinuteAverage",
+  // AQIN sensors
+  AQI_PM25_AQIN = "aqi_pm25_aqin",
+  AQI_PM25_24H_AQIN = "aqi_pm25_24h_aqin",
+  CO2_IN_AQIN = "co2_in_aqin",
+  CO2_IN_24H_AQIN = "co2_in_24h_aqin",
+  PM10_IN_AQIN = "pm10_in_aqin",
+  PM10_IN_24H_AQIN = "pm10_in_24h_aqin",
+  PM25_IN_24HR_AQIN = "pm25_in_24h_aqin",
+  PM25_IN_AQIN = "pm25_in_aqin",
+  PM_IN_HUMIDITY_AQIN = "pm_in_humidity_aqin",
+  PM_IN_TEMP_AQIN = "pm_in_temp_aqin",
 }
 
 export default EntityNames;
