@@ -1,5 +1,9 @@
 # Version
 
+## 4.3.0
+
+* Add support for AQIN indoor sensor
+
 ## 4.2.0
 
 Add support for Ambient Weather lightning sensor.
