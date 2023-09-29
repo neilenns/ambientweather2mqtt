@@ -147,5 +147,13 @@ The following sensors are supported. Note that weather stations will only report
 | windSpeed                     | Instantaneous wind speed                                            | Yes                                                 | Yes                 | mph     |
 | windSpeedTenMinuteAverage     | Wind speed ten minute average                                       | Yes                                                 | No                  | mph     |
 | windSpeedTwoMinuteAverage     | Wind speed two minute average                                       | Yes                                                 | No                  | mph     |
-
-Ambient Weather
+| aqi_pm25_aqin                 | PM2.5 air quality                                                   | Yes                                                 | No                  | µg/m^3  |
+| aqi_pm25_24h_aqin             | PM2.5 air quality 24 hour average                                   | Yes                                                 | No                  | µg/m^3  |
+| pm25_in_aqin                  | PM2.5 indoor air quality                                            | Yes                                                 | No                  | µg/m^3  |
+| pm25_in_24h_aqin              | PM2.5 indoor air quality 24 hour average                            | Yes                                                 | No                  | µg/m^3  |
+| pm10_in_aqin                  | PM1.0 indoor air quality                                            | Yes                                                 | No                  | µg/m^3  |
+| pm10_in_24h_aqin              | PM1.0 indoor air quality 24 hour average                            | Yes                                                 | No                  | µg/m^3  |
+| pm_in_humidity_aqin           | Indoor humidity                                                     | Yes                                                 | Yes                 | percent |
+| pm_in_temp_aqin               | Indoor temperature                                                  | Yes                                                 | No                  | °F      |
+| co2_in_aqin                   | Indoor CO2 meter reading                                            | Yes                                                 | No                  | ppm     |
+| co2_in_24h_aqin               | Indoor CO2 meter reading 24 hour average                            | Yes                                                 | No                  | ppm     |

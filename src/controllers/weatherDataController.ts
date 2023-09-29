@@ -208,6 +208,18 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.WINDMAXDAILYGUST, +req.query.maxdailygust);
   setDataPayload(EntityNames.WINDSPEED, +req.query.windspeedmph);
 
+  // AQIN sensors
+  setDataPayload(EntityNames.AQI_PM25_24H_AQIN, +req.query.aqi_pm25_24h_aqin);
+  setDataPayload(EntityNames.AQI_PM25_AQIN, +req.query.aqi_pm25_aqin);
+  setDataPayload(EntityNames.PM25_IN_AQIN, +req.query.pm25_in_aqin);
+  setDataPayload(EntityNames.PM25_IN_24HR_AQIN, +req.query.pm25_in_24hr_aqin);
+  setDataPayload(EntityNames.CO2_IN_24H_AQIN, +req.query.co2_in_24h_aqin);
+  setDataPayload(EntityNames.CO2_IN_AQIN, +req.query.co2_in_aqin);
+  setDataPayload(EntityNames.PM10_IN_AQIN, +req.query.pm10_in_aqin);
+  setDataPayload(EntityNames.PM10_IN_24H_AQIN, +req.query.pm10_in_24h_aqin);
+  setDataPayload(EntityNames.PM_IN_HUMIDITY_AQIN, +req.query.pm_in_humidity_aqin);
+  setDataPayload(EntityNames.PM_IN_TEMP_AQIN, +req.query.pm_in_temp_aqin);
+
   // Issue 109: Some ambientweather stations appear to send "now" for the time instead of an actual time.
   // Make this more general case and just use current time if the one provided can't be converted to a time.
 

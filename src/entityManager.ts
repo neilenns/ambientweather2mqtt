@@ -378,6 +378,48 @@ export function initialize(): void {
   );
   entities.set(EntityNames.UV, new Sensor(EntityNames.UV, deviceId, undefined, undefined, "weather-sunny"));
 
+  // AQIN sensors
+  entities.set(
+    EntityNames.AQI_PM25_AQIN,
+    new Sensor(EntityNames.AQI_PM25_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.AQI_PM25_24H_AQIN,
+    new Sensor(EntityNames.AQI_PM25_24H_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.PM25_IN_AQIN,
+    new Sensor(EntityNames.PM25_IN_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.PM25_IN_24HR_AQIN,
+    new Sensor(EntityNames.PM25_IN_24HR_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.PM10_IN_AQIN,
+    new Sensor(EntityNames.PM10_IN_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.PM10_IN_24H_AQIN,
+    new Sensor(EntityNames.PM10_IN_24H_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.CO2_IN_AQIN,
+    new Sensor(EntityNames.CO2_IN_AQIN, deviceId, SensorUnit.particulate, DeviceClass.CO2),
+  );
+  entities.set(
+    EntityNames.CO2_IN_24H_AQIN,
+    new Sensor(EntityNames.CO2_IN_24H_AQIN, deviceId, SensorUnit.particulate, DeviceClass.CO2),
+  );
+  entities.set(
+    EntityNames.PM_IN_TEMP_AQIN,
+    new Sensor(EntityNames.PM_IN_TEMP_AQIN, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.PM_IN_HUMIDITY_AQIN,
+    new Sensor(EntityNames.PM_IN_HUMIDITY_AQIN, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
+  );
+
   initialized = true;
 }
 
