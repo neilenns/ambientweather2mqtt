@@ -44,7 +44,7 @@ export default class Entity {
         model: "Ambient Weather Station",
       },
       device_class: deviceClass,
-      state_class: StateClass.MEASUREMENT,
+      state_class: deviceClass == "timestamp" ? undefined : StateClass.MEASUREMENT,
       icon: icon ? `mdi:${icon}` : undefined,
       name: name,
       unique_id: `${this.deviceId ?? "AW"}_${name}`,
