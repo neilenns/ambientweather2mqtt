@@ -1,5 +1,9 @@
 # Version
 
+## 4.3.1
+
+* Resolve a warning in HomeAssistant logs (Fixes issue [#119](https://github.com/neilenns/ambientweather2mqtt/issues/119))
+
 ## 4.3.0
 
 * Add support for AQIN indoor sensor
