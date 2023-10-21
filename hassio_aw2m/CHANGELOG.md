@@ -1,5 +1,9 @@
 # Version
 
+## 4.3.2
+
+* Change units for all CO2 sensors to `ppm`. (Fixes issue [#122](https://github.com/neilenns/ambientweather2mqtt/issues/122))
+
 ## 4.3.1
 
 * Resolve a warning in HomeAssistant logs (Fixes issue [#119](https://github.com/neilenns/ambientweather2mqtt/issues/119))
