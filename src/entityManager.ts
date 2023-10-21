@@ -85,7 +85,7 @@ export function initialize(): void {
     // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
     new Sensor("batteryLightning", deviceId, SensorUnit.percent, DeviceClass.BATTERY),
   );
-  entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.particulate, DeviceClass.CO2));
+  entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2));
   entities.set(EntityNames.DEWPOINT, new Sensor(EntityNames.DEWPOINT, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE));
   entities.set(
     EntityNames.EVENTDATE,
@@ -405,11 +405,11 @@ export function initialize(): void {
   );
   entities.set(
     EntityNames.CO2_IN_AQIN,
-    new Sensor(EntityNames.CO2_IN_AQIN, deviceId, SensorUnit.particulate, DeviceClass.CO2),
+    new Sensor(EntityNames.CO2_IN_AQIN, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2),
   );
   entities.set(
     EntityNames.CO2_IN_24H_AQIN,
-    new Sensor(EntityNames.CO2_IN_24H_AQIN, deviceId, SensorUnit.particulate, DeviceClass.CO2),
+    new Sensor(EntityNames.CO2_IN_24H_AQIN, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2),
   );
   entities.set(
     EntityNames.PM_IN_TEMP_AQIN,
