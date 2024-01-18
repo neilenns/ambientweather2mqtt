@@ -477,6 +477,46 @@ export function initialize(): void {
     EntityNames.LASTRAIN,
     new Sensor(EntityNames.LASTRAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
   );
+  entities.set(
+    EntityNames.DEWPOINT1,
+    new Sensor(EntityNames.DEWPOINT1, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT2,
+    new Sensor(EntityNames.DEWPOINT2, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT3,
+    new Sensor(EntityNames.DEWPOINT3, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT4,
+    new Sensor(EntityNames.DEWPOINT4, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT5,
+    new Sensor(EntityNames.DEWPOINT5, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT6,
+    new Sensor(EntityNames.DEWPOINT6, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT7,
+    new Sensor(EntityNames.DEWPOINT7, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT8,
+    new Sensor(EntityNames.DEWPOINT8, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT9,
+    new Sensor(EntityNames.DEWPOINT9, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT10,
+    new Sensor(EntityNames.DEWPOINT10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
 
   initialized = true;
 }

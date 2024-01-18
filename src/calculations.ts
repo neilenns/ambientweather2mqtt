@@ -5,6 +5,14 @@ import { isNumber } from "./utilities";
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+function celsiusToFahrenheit(celsius: number): number {
+  return (celsius * 9) / 5 + 32;
+}
+
+function fahrenheitToCelsius(fahrenheit: number): number {
+  return ((fahrenheit - 32) * 5) / 9;
+}
+
 /**
  * Converts solar radiation to solar radiation in lux
  * @param radiation The solar radiation
@@ -38,7 +46,6 @@ export function calculateLastRain(rainAmountLastHour: number): Date {
   }
 }
 
-// Returns the wind chill value for the given temperature and wind speed.
 /**
  * Calculates the wind chill value for the given temperature and wind speed. If the
  * wind chill calculation isn't appropriate (temperature >= 50 or wind speed < 3)
@@ -64,7 +71,6 @@ export function calculateWindChill(temperature: number, windSpeed: number): numb
   return windChill;
 }
 
-// Returns the heat index value for the given temperature and relative humidity.
 /**
  * Calcluates the heat index value for the given tempearture and humidity. If
  * the heat index calculation isn't appropriate (temperature < 69) returns undefined.
@@ -106,9 +112,8 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
   }
 }
 
-// Returns the current temperature, wind chill (temp < 50F), or heat index (temp > 68F)
 /**
- * Returns the wind chill, heat index, or actual current temperature as appropriate given
+ * Calculates the wind chill, heat index, or actual current temperature as appropriate given
  * the temperature, wind speed, and humidity.
  * @param temperature The current temperature in F
  * @param windSpeed The current wind speed
@@ -127,4 +132,25 @@ export function calculateFeelsLike(temperature: number, windSpeed: number, humid
   } else {
     return temperature;
   }
+}
+
+/**
+ * Calculates the dewpoint temperature for the given temperature and humidity.
+ * @param temperature The current temperature in F
+ * @param humidity The current relative humidity
+ */
+export function calculateDewPoint(temperature: number, humidity: number): number {
+  if (!isNumber(temperature) || !isNumber(humidity)) {
+    return undefined;
+  }
+
+  // Calculation from https://ag.arizona.edu/azmet/dewpoint.html.
+  // The math expects the temperature to be in C, which is not how it comes from the weather station
+  const tempInC = fahrenheitToCelsius(temperature);
+
+  const B = (Math.log(humidity / 100) + (17.27 * tempInC) / (237.3 + tempInC)) / 17.27;
+  const dewpointInC = (237.3 * B) / (1 - B);
+
+  // Convert back to F so the units match all the other temperature units sent
+  return celsiusToFahrenheit(dewpointInC);
 }

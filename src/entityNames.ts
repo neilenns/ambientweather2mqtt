@@ -131,6 +131,16 @@ enum EntityNames {
   FEELSLIKE8 = "feelsLike8",
   FEELSLIKE9 = "feelsLike9",
   FEELSLIKE10 = "feelsLike10",
+  DEWPOINT1 = "dewpoint1",
+  DEWPOINT2 = "dewpoint2",
+  DEWPOINT3 = "dewpoint3",
+  DEWPOINT4 = "dewpoint4",
+  DEWPOINT5 = "dewpoint5",
+  DEWPOINT6 = "dewpoint6",
+  DEWPOINT7 = "dewpoint7",
+  DEWPOINT8 = "dewpoint8",
+  DEWPOINT9 = "dewpoint9",
+  DEWPOINT10 = "dewpoint10",
 }
 
 export default EntityNames;
