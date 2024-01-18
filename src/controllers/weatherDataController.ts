@@ -3,11 +3,12 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import * as mqttManager from "../mqttManager";
-import * as entityManager from "../entityManager";
-import * as log from "../log";
-import EntityNames from "../entityNames";
+import { calculateSolarRadiationLux } from "../calculations";
 import EntityDataPayload from "../entityDataPayload";
+import * as entityManager from "../entityManager";
+import EntityNames from "../entityNames";
+import * as log from "../log";
+import * as mqttManager from "../mqttManager";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
@@ -225,6 +226,9 @@ export function processWeatherData(req: express.Request, res: express.Response):
 
   //
   setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()).toISOString());
+
+  // Calculated sensors
+  setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
 
   entityManager.publishAll();
   mqttManager.publishOnline();

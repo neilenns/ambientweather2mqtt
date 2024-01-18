@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IPublishPacket } from "mqtt-packet";
+import BinarySensor from "./binarySensor";
 import DeviceClass from "./deviceClass";
 import Entity from "./entity";
 import EntityNames from "./entityNames";
 import * as log from "./log";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
-import BinarySensor from "./binarySensor";
 
 export const entities = new Map<string, Entity>();
 
@@ -418,6 +418,21 @@ export function initialize(): void {
   entities.set(
     EntityNames.PM_IN_HUMIDITY_AQIN,
     new Sensor(EntityNames.PM_IN_HUMIDITY_AQIN, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
+  );
+
+  // Calculated sensors
+  entities.set(
+    EntityNames.SOLARRADIATION_LUX,
+    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
+  );
+  // Calculated sensors
+  entities.set(
+    EntityNames.FEELS_LIKE,
+    new Sensor(EntityNames.FEELS_LIKE, deviceId, SensorUnit.illuminance, DeviceClass.ILLUMINANCE),
+  );
+  entities.set(
+    EntityNames.LAST_RAIN,
+    new Sensor(EntityNames.LAST_RAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
   );
 
   initialized = true;

@@ -117,6 +117,10 @@ enum EntityNames {
   PM25_IN_AQIN = "pm25_in_aqin",
   PM_IN_HUMIDITY_AQIN = "pm_in_humidity_aqin",
   PM_IN_TEMP_AQIN = "pm_in_temp_aqin",
+  // Calculated sensors
+  SOLARRADIATION_LUX = "solar_radiation_lux",
+  LAST_RAIN = "last_rain",
+  FEELS_LIKE = "feels_like",
 }
 
 export default EntityNames;
