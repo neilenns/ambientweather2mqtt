@@ -12,6 +12,7 @@ The following Ambient Weather station models are confirmed to work: WS-2902C.
 - [Troubleshooting](#troubleshooting)
 - [Advanced settings](#advanced-settings)
 - [Supported sensors](#supported-sensors)
+- [Calculated sensors](#calculated-sensors)
 
 ## Installation and configuration
 
@@ -157,3 +158,14 @@ The following sensors are supported. Note that weather stations will only report
 | pm_in_temp_aqin               | Indoor temperature                                                  | Yes                                                 | No                  | °F      |
 | co2_in_aqin                   | Indoor CO2 meter reading                                            | Yes                                                 | No                  | ppm     |
 | co2_in_24h_aqin               | Indoor CO2 meter reading 24 hour average                            | Yes                                                 | No                  | ppm     |
+
+## Calculated sensors
+
+The following sensors are calculated using values from the weather station. Note that these will only be sent if the underlying values used for the calculation are available.
+
+| Name              | Description                                                    | Ambient Weather | Weather Underground | Unit      |
+| ----------------- | -------------------------------------------------------------- | --------------- | ------------------- | --------- |
+| solarRadiationLux | Solar radiation (in lux)                                       | Yes             | Yes                 | lx        |
+| feelsLike         | Windchill, heat index, or temperature                          | Yes             | Yes                 | F         |
+| feelsLike1..10    | Windchill, heat index, or temperature for sensors 1 through 10 | Yes             | Yes                 | F         |
+| lastRain          | Last time hourlyRain was > 0                                   | Yes             | Yes                 | timestamp |

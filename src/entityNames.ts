@@ -117,10 +117,20 @@ enum EntityNames {
   PM25_IN_AQIN = "pm25_in_aqin",
   PM_IN_HUMIDITY_AQIN = "pm_in_humidity_aqin",
   PM_IN_TEMP_AQIN = "pm_in_temp_aqin",
-  // Calculated sensors
+  // Calculated sensors. See https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
   SOLARRADIATION_LUX = "solar_radiation_lux",
-  LAST_RAIN = "last_rain",
-  FEELS_LIKE = "feels_like",
+  LASTRAIN = "lastRain",
+  FEELSLIKE = "feelsLike",
+  FEELSLIKE1 = "feelsLike1",
+  FEELSLIKE2 = "feelsLike2",
+  FEELSLIKE3 = "feelsLike3",
+  FEELSLIKE4 = "feelsLike4",
+  FEELSLIKE5 = "feelsLike5",
+  FEELSLIKE6 = "feelsLike6",
+  FEELSLIKE7 = "feelsLike7",
+  FEELSLIKE8 = "feelsLike8",
+  FEELSLIKE9 = "feelsLike9",
+  FEELSLIKE10 = "feelsLike10",
 }
 
 export default EntityNames;

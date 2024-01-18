@@ -423,16 +423,59 @@ export function initialize(): void {
   // Calculated sensors
   entities.set(
     EntityNames.SOLARRADIATION_LUX,
-    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
-  );
-  // Calculated sensors
-  entities.set(
-    EntityNames.FEELS_LIKE,
-    new Sensor(EntityNames.FEELS_LIKE, deviceId, SensorUnit.illuminance, DeviceClass.ILLUMINANCE),
+    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.illuminance, DeviceClass.ILLUMINANCE),
   );
   entities.set(
-    EntityNames.LAST_RAIN,
-    new Sensor(EntityNames.LAST_RAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
+    EntityNames.FEELSLIKE,
+    new Sensor(EntityNames.FEELSLIKE, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE1,
+    new Sensor(EntityNames.FEELSLIKE1, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE2,
+    new Sensor(EntityNames.FEELSLIKE2, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE3,
+    new Sensor(EntityNames.FEELSLIKE3, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE4,
+    new Sensor(EntityNames.FEELSLIKE4, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE5,
+    new Sensor(EntityNames.FEELSLIKE5, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE6,
+    new Sensor(EntityNames.FEELSLIKE6, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE7,
+    new Sensor(EntityNames.FEELSLIKE7, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE8,
+    new Sensor(EntityNames.FEELSLIKE8, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE9,
+    new Sensor(EntityNames.FEELSLIKE9, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE10,
+    new Sensor(EntityNames.FEELSLIKE10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE10,
+    new Sensor(EntityNames.FEELSLIKE10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.LASTRAIN,
+    new Sensor(EntityNames.LASTRAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
   );
 
   initialized = true;

@@ -59,7 +59,9 @@ export function calculateWindChill(temperature: number, windSpeed: number): numb
   }
 
   // Formula from https://www.wpc.ncep.noaa.gov/html/windchill.shtml
-  return 35.74 + 0.6215 * temperature - 35.75 * windSpeed ** 0.16 + 0.4275 * temperature * windSpeed ** 0.16;
+  const windChill = 35.74 + 0.6215 * temperature - 35.75 * windSpeed ** 0.16 + 0.4275 * temperature * windSpeed ** 0.16;
+
+  return windChill;
 }
 
 // Returns the heat index value for the given temperature and relative humidity.

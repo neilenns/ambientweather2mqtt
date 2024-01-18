@@ -225,10 +225,50 @@ export function processWeatherData(req: express.Request, res: express.Response):
 
   // Calculated sensors
   setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
-  setDataPayload(EntityNames.LAST_RAIN, calculateLastRain(+req.query.hourlyrainin));
+  setDataPayload(EntityNames.LASTRAIN, calculateLastRain(+req.query.hourlyrainin));
   setDataPayload(
-    EntityNames.FEELS_LIKE,
+    EntityNames.FEELSLIKE,
     calculateFeelsLike(+req.query.tempf, +req.query.windspeedmph, +req.query.humidity),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE1,
+    calculateFeelsLike(+req.query.temp1f, +req.query.windspeedmph, +req.query.humidity1),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE2,
+    calculateFeelsLike(+req.query.temp2f, +req.query.windspeedmph, +req.query.humidity2),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE3,
+    calculateFeelsLike(+req.query.temp3f, +req.query.windspeedmph, +req.query.humidity3),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE4,
+    calculateFeelsLike(+req.query.temp4f, +req.query.windspeedmph, +req.query.humidity4),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE5,
+    calculateFeelsLike(+req.query.temp5f, +req.query.windspeedmph, +req.query.humidity5),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE6,
+    calculateFeelsLike(+req.query.temp6f, +req.query.windspeedmph, +req.query.humidity6),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE7,
+    calculateFeelsLike(+req.query.temp7f, +req.query.windspeedmph, +req.query.humidity7),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE8,
+    calculateFeelsLike(+req.query.temp8f, +req.query.windspeedmph, +req.query.humidity8),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE9,
+    calculateFeelsLike(+req.query.temp9f, +req.query.windspeedmph, +req.query.humidity9),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE10,
+    calculateFeelsLike(+req.query.temp10f, +req.query.windspeedmph, +req.query.humidity10),
   );
 
   entityManager.publishAll();
