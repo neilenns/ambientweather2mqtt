@@ -1,5 +1,10 @@
 # Version
 
+## 4.4.0
+
+* Add new calculated sensors: `dewpoint`, `dewpoint1..10`,`feelsLike`, `feelsLike1..10`, `lastRain`, and `solar_radiation_lux`. (Fixes issue [#125](https://github.com/neilenns/ambientweather2mqtt/issues/125))
+* Add `diagnostic` entity category to all battery sensors (Fixes issue [#129](https://github.com/neilenns/ambientweather2mqtt/issues/129))
+
 ## 4.3.2
 
 * Change units for all CO2 sensors to `ppm`. (Fixes issue [#122](https://github.com/neilenns/ambientweather2mqtt/issues/122))
