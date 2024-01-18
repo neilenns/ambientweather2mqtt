@@ -3,11 +3,11 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import DeviceClass from "./deviceClass";
-import Entity from "./entity";
-import EntityCategory from "./entityCategory";
-import SensorUnit from "./sensorUnit";
-import TopicRoot from "./topicRoot";
+import DeviceClass from "./deviceClass.js";
+import Entity from "./entity.js";
+import EntityCategory from "./entityCategory.js";
+import SensorUnit from "./sensorUnit.js";
+import TopicRoot from "./topicRoot.js";
 
 /**
  * Represents a Home Assistant sensor entity

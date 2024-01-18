@@ -1,11 +1,14 @@
 {
     "compilerOptions": {
+      "forceConsistentCasingInFileNames": true,
       "noImplicitAny": true,
-      "target": "es5",
-      "esModuleInterop": true,
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
       "outDir": "./dist",
       "sourceMap": true,
-      "resolveJsonModule": true
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      
     },
     "include": ["src"],
     "exclude": ["node_modules"]

@@ -3,15 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import DeviceClass from "./deviceClass";
-import EntityDiscoveryPayload from "./entityDiscoveryPayload";
-import SensorUnit from "./sensorUnit";
-import StateClass from "./stateClass";
-import * as log from "./log";
-import * as mqttManager from "./mqttManager";
 import { IPublishPacket } from "mqtt-packet";
-import EntityDataPayload from "./entityDataPayload";
-import EntityCategory from "./entityCategory";
+import DeviceClass from "./deviceClass.js";
+import EntityDataPayload from "./entityDataPayload.js";
+import EntityDiscoveryPayload from "./entityDiscoveryPayload.js";
+import * as log from "./log.js";
+import * as mqttManager from "./mqttManager.js";
+import SensorUnit from "./sensorUnit.js";
+import StateClass from "./stateClass.js";
+import EntityCategory from "./entityCategory.js";
 
 /**
  * A weather station sensor.

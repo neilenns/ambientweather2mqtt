@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import "dotenv/config";
 
-import * as log from "./log";
-import * as mqttManager from "./mqttManager";
-import * as entityManager from "./entityManager";
-import * as webServer from "./webServer";
+import * as log from "./log.js";
+import * as mqttManager from "./mqttManager.js";
+import * as entityManager from "./entityManager.js";
+import * as webServer from "./webServer.js";
 
 /**
  * Starts up the system.
