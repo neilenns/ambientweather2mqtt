@@ -167,7 +167,7 @@ The following sensors are calculated using values from the weather station. Note
 | ----------------- | -------------------------------------------------------------- | --------------- | ------------------- | --------- |
 | dewpoint          | Outdoor dewpoint temperature                                   | Yes             | No                  | °F        |
 | dewpoint1..10     | Outdoor dewpoint temperature for sensors 1 through 10          | Yes             | Yes                 | °F        |
-| feelsLike         | Windchill, heat index, or temperature                          | Yes             | Yes                 | F         |
-| feelsLike1..10    | Windchill, heat index, or temperature for sensors 1 through 10 | Yes             | Yes                 | F         |
+| feelsLike         | Windchill, heat index, or temperature                          | Yes             | Yes                 | °F        |
+| feelsLike1..10    | Windchill, heat index, or temperature for sensors 1 through 10 | Yes             | Yes                 | °F        |
 | lastRain          | Last time hourlyRain was > 0                                   | Yes             | Yes                 | timestamp |
 | solarRadiationLux | Solar radiation (in lux)                                       | Yes             | Yes                 | lx        |
