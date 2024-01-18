@@ -125,7 +125,9 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(EntityNames.BATTERYLIGHTNING, convertBatteryValue(req.query.batt_lightning as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
-  setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  // Only available in Weather Underground updates. For Ambient Weather stations
+  // this is a calculated sensor, handled farther down in this function.
+  setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf);
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
   setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);
   setDataPayload(EntityNames.HUMIDITY2, +req.query.humidity2);
