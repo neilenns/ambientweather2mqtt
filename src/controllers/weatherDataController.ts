@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import { calculateSolarRadiationLux } from "../calculations";
+import { calculateLastRain, calculateSolarRadiationLux } from "../calculations";
 import EntityDataPayload from "../entityDataPayload";
 import * as entityManager from "../entityManager";
 import EntityNames from "../entityNames";
@@ -229,6 +229,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
 
   // Calculated sensors
   setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
+  setDataPayload(EntityNames.LAST_RAIN, calculateLastRain(+req.query.hourlyrainin));
 
   entityManager.publishAll();
   mqttManager.publishOnline();
