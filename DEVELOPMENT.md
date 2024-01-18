@@ -11,7 +11,7 @@ Here's how to do common development tasks with this project when you've forgotte
 5. Edit `hassio_aw2m\CHANGELOG.md` to have the changes
 6. Push the `hassio_aw2m` changes to main
 
-## How to force Home Assistant to check for udpated version
+## How to force Home Assistant to check for updated version
 
 1. Go to `Settings` > `Add-ons` > `Add-on Store`
 2. Select `...` in the top right
