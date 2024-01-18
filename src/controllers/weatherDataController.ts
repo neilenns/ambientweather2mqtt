@@ -273,8 +273,6 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   if (!isNumber(+req.query.dewptf)) {
     setDataPayload(EntityNames.DEWPOINT, calculateDewPoint(+req.query.tempf, +req.query.humidity));
   }
-  // Some weather stations provide dewpoint already so only calculate and send it if there was
-  // no value received.
   setDataPayload(EntityNames.DEWPOINT1, calculateDewPoint(+req.query.temp1f, +req.query.humidity1));
   setDataPayload(EntityNames.DEWPOINT2, calculateDewPoint(+req.query.temp2f, +req.query.humidity2));
   setDataPayload(EntityNames.DEWPOINT3, calculateDewPoint(+req.query.temp3f, +req.query.humidity3));
