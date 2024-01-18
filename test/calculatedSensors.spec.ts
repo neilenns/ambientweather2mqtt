@@ -1,8 +1,32 @@
 import { expect } from "chai";
 import { describe, it } from "mocha";
-import { calculateDewPoint, calculateFeelsLike, calculateSolarRadiationLux } from "../src/calculations";
+import {
+  calculateDewPoint,
+  calculateFeelsLike,
+  calculateLastRain,
+  calculateSolarRadiationLux,
+} from "../src/calculations";
+import { setDataPayload } from "../src/controllers/weatherDataController";
+import * as entityManager from "../src/entityManager";
+import EntityNames from "../src/entityNames";
 
 describe("Calculated sensors", () => {
+  it("should handle last rain", async function () {
+    entityManager.initialize();
+
+    // Set the rain amount to something greater than zero, then store the value for later use.
+    setDataPayload(EntityNames.LASTRAIN, calculateLastRain(10));
+    const lastRainDate = entityManager.entities.get(EntityNames.LASTRAIN)?.value;
+
+    // Set the rain amount to zero, it should still come back as the previous last rain date.
+    setDataPayload(EntityNames.LASTRAIN, calculateLastRain(0));
+    expect(entityManager.entities.get(EntityNames.LASTRAIN)?.value).to.equal(lastRainDate);
+
+    // Set the rain amount to not zero, it should come back as something different than the last rain date.
+    setDataPayload(EntityNames.LASTRAIN, calculateLastRain(1));
+    expect(entityManager.entities.get(EntityNames.LASTRAIN)?.value).to.not.equal(lastRainDate);
+  });
+
   // All dewpoint calculations are tested to one decimal place
   it("should calculate dewpoint", async function () {
     // Expected values calculated by using https://www.calculator.net/dew-point-calculator.html

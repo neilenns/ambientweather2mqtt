@@ -77,11 +77,11 @@ function convertUtcValue(value: string | number): Date {
  * @param key The sensor to set the data on
  * @param value The data to set
  */
-function setDataPayload(key: string, value: EntityDataPayload) {
+export function setDataPayload(key: string, value: EntityDataPayload | undefined) {
   try {
     // Don't set the payload if nothing was provided for the value. This ensures
     // entities that aren't supported by a device don't ever get published to MQTT.
-    if (!isNumber(value)) {
+    if (value === undefined || !isNumber(value)) {
       return;
     }
 
