@@ -3,12 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import { calculateLastRain, calculateSolarRadiationLux } from "../calculations";
+import { calculateFeelsLike, calculateLastRain, calculateSolarRadiationLux } from "../calculations";
 import EntityDataPayload from "../entityDataPayload";
 import * as entityManager from "../entityManager";
 import EntityNames from "../entityNames";
 import * as log from "../log";
 import * as mqttManager from "../mqttManager";
+import { isNumber } from "../utilities";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
@@ -80,12 +81,7 @@ function setDataPayload(key: string, value: EntityDataPayload) {
   try {
     // Don't set the payload if nothing was provided for the value. This ensures
     // entities that aren't supported by a device don't ever get published to MQTT.
-    if (value === undefined) {
-      return;
-    }
-
-    // Don't set the payload if it's not really a number
-    if (typeof value === "number" && isNaN(value)) {
+    if (!isNumber(value)) {
       return;
     }
 
@@ -230,6 +226,10 @@ export function processWeatherData(req: express.Request, res: express.Response):
   // Calculated sensors
   setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
   setDataPayload(EntityNames.LAST_RAIN, calculateLastRain(+req.query.hourlyrainin));
+  setDataPayload(
+    EntityNames.FEELS_LIKE,
+    calculateFeelsLike(+req.query.tempf, +req.query.windspeedmph, +req.query.humidity),
+  );
 
   entityManager.publishAll();
   mqttManager.publishOnline();
