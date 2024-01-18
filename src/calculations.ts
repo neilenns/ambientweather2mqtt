@@ -5,6 +5,23 @@ import { isNumber } from "./utilities.js";
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+/**
+ * Rounds a number to a specified number of digits of precision.
+ * @param n The number to round
+ * @param digits The digits of precision after the decimal
+ * @returns The rounded number
+ */
+function roundTo(n: number, digits: number): number {
+  // Code from https://stackoverflow.com/a/32605063
+  if (digits === undefined) {
+    digits = 0;
+  }
+
+  var multiplicator = Math.pow(10, digits);
+  n = parseFloat((n * multiplicator).toFixed(11));
+  return Math.round(n) / multiplicator;
+}
+
 function celsiusToFahrenheit(celsius: number): number {
   return (celsius * 9) / 5 + 32;
 }
@@ -24,7 +41,7 @@ export function calculateSolarRadiationLux(radiation: number): number | undefine
   }
 
   // Conversion factor from https://github.com/home-assistant/core/blob/dev/homeassistant/components/ambient_station/__init__.py
-  return radiation / 0.0079;
+  return roundTo(radiation / 0.0079, 2);
 }
 
 // Returns the current date if rainAmount is greater than 0. Otherwise
@@ -69,7 +86,7 @@ export function calculateWindChill(temperature: number, windSpeed: number): numb
   // Formula from https://www.wpc.ncep.noaa.gov/html/windchill.shtml
   const windChill = 35.74 + 0.6215 * temperature - 35.75 * windSpeed ** 0.16 + 0.4275 * temperature * windSpeed ** 0.16;
 
-  return windChill;
+  return roundTo(windChill, 2);
 }
 
 /**
@@ -91,7 +108,7 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
   let heatIndex = 0.5 * (temperature + 61.0 + (temperature - 68.0) * 1.2 + relativeHumidity * 0.094);
 
   if ((heatIndex + temperature) / 2 < 80) {
-    return heatIndex;
+    return roundTo(heatIndex, 2);
   }
 
   // At this point the complicated Rothfusz regression is more appropriate so use that
@@ -112,7 +129,7 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
     heatIndex = heatIndex + ((relativeHumidity - 85) / 10) * ((87 - temperature) / 5);
   }
 
-  return heatIndex;
+  return roundTo(heatIndex, 2);
 }
 
 /**
@@ -155,5 +172,5 @@ export function calculateDewPoint(temperature: number, humidity: number): number
   const dewpointInC = (237.3 * B) / (1 - B);
 
   // Convert back to F so the units match all the other temperature units sent
-  return celsiusToFahrenheit(dewpointInC);
+  return roundTo(celsiusToFahrenheit(dewpointInC), 2);
 }
