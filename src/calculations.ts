@@ -18,7 +18,7 @@ function fahrenheitToCelsius(fahrenheit: number): number {
  * @param radiation The solar radiation
  * @returns The solar radiation in lux
  */
-export function calculateSolarRadiationLux(radiation: number): number {
+export function calculateSolarRadiationLux(radiation: number): number | undefined {
   if (!isNumber(radiation)) {
     return undefined;
   }
@@ -33,7 +33,7 @@ export function calculateSolarRadiationLux(radiation: number): number {
  * @param rainAmount The amount of rain in the last hour
  * @returns The current time if the rain amount last hour was more than 0. Otherwise returns undefined.
  */
-export function calculateLastRain(rainAmountLastHour: number): Date {
+export function calculateLastRain(rainAmountLastHour: number): Date | undefined {
   if (!isNumber(rainAmountLastHour)) {
     return undefined;
   }
@@ -54,7 +54,7 @@ export function calculateLastRain(rainAmountLastHour: number): Date {
  * @param windSpeed The current wind speed
  * @returns The wind chill in F, if appropriate, or undefined
  */
-export function calculateWindChill(temperature: number, windSpeed: number): number {
+export function calculateWindChill(temperature: number, windSpeed: number): number | undefined {
   // Wind chill is only valid for temperatures lower than 50F
   if (temperature >= 50) {
     return undefined;
@@ -78,7 +78,7 @@ export function calculateWindChill(temperature: number, windSpeed: number): numb
  * @param relativeHumidity The current relative humidity
  * @returns The heat index in F, if appropriate, or undefined
  */
-export function calculateHeatIndex(temperature: number, relativeHumidity: number): number {
+export function calculateHeatIndex(temperature: number, relativeHumidity: number): number | undefined {
   // Heat index only valid for temperatures above 68F
   if (temperature <= 68) {
     return undefined;
@@ -120,7 +120,7 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
  * @param humidity The current humidity
  * @returns The wind chill, heat index, or actual current temperature
  */
-export function calculateFeelsLike(temperature: number, windSpeed: number, humidity: number): number {
+export function calculateFeelsLike(temperature: number, windSpeed: number, humidity: number): number | undefined {
   if (!isNumber(temperature) || !isNumber(windSpeed) || !isNumber(humidity)) {
     return undefined;
   }
@@ -139,7 +139,7 @@ export function calculateFeelsLike(temperature: number, windSpeed: number, humid
  * @param temperature The current temperature in F
  * @param humidity The current relative humidity
  */
-export function calculateDewPoint(temperature: number, humidity: number): number {
+export function calculateDewPoint(temperature: number, humidity: number): number | undefined {
   if (!isNumber(temperature) || !isNumber(humidity)) {
     return undefined;
   }
