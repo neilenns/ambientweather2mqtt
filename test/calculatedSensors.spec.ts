@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { describe, it } from "mocha";
-import { calculateDewPoint, calculateFeelsLike } from "../src/calculations";
+import { calculateDewPoint, calculateFeelsLike, calculateSolarRadiationLux } from "../src/calculations";
 
 describe("Calculated sensors", () => {
   // All dewpoint calculations are tested to one decimal place
@@ -33,5 +33,9 @@ describe("Calculated sensors", () => {
     expect(calculateFeelsLike(50, 3, 50)).to.closeTo(50, 1);
     expect(calculateFeelsLike(68, 3, 90)).to.closeTo(68, 1);
     expect(calculateFeelsLike(55, 3, 90)).to.closeTo(55, 1);
+  });
+
+  it("should calculate solar radiation (lux)", async function () {
+    expect(calculateSolarRadiationLux(93.58)).to.closeTo(11846, 1);
   });
 });

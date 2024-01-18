@@ -23,6 +23,7 @@ export function calculateSolarRadiationLux(radiation: number): number | undefine
     return undefined;
   }
 
+  // Conversion factor from https://github.com/home-assistant/core/blob/dev/homeassistant/components/ambient_station/__init__.py
   return radiation / 0.0079;
 }
 
