@@ -3,11 +3,13 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import * as mqttManager from "../mqttManager";
-import * as entityManager from "../entityManager";
-import * as log from "../log";
-import EntityNames from "../entityNames";
+import { calculateDewPoint, calculateFeelsLike, calculateLastRain, calculateSolarRadiationLux } from "../calculations";
 import EntityDataPayload from "../entityDataPayload";
+import * as entityManager from "../entityManager";
+import EntityNames from "../entityNames";
+import * as log from "../log";
+import * as mqttManager from "../mqttManager";
+import { isNumber } from "../utilities";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
@@ -75,16 +77,11 @@ function convertUtcValue(value: string | number): Date {
  * @param key The sensor to set the data on
  * @param value The data to set
  */
-function setDataPayload(key: string, value: EntityDataPayload) {
+export function setDataPayload(key: string, value: EntityDataPayload | undefined) {
   try {
     // Don't set the payload if nothing was provided for the value. This ensures
     // entities that aren't supported by a device don't ever get published to MQTT.
-    if (value === undefined) {
-      return;
-    }
-
-    // Don't set the payload if it's not really a number
-    if (typeof value === "number" && isNaN(value)) {
+    if (value === undefined || !isNumber(value)) {
       return;
     }
 
@@ -102,7 +99,7 @@ function setDataPayload(key: string, value: EntityDataPayload) {
 // Documentation for the APIs:
 // Ambient Weather: https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 // Weather Underground: https://support.weather.com/s/article/PWS-Upload-Protocol?language=en_US
-export function processWeatherData(req: express.Request, res: express.Response): void {
+export async function processWeatherData(req: express.Request, res: express.Response): Promise<void> {
   if (!req.query) {
     log.warn("Weather handler", "No data received, skipping processing the request.");
     return;
@@ -128,7 +125,9 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
   setDataPayload(EntityNames.BATTERYLIGHTNING, convertBatteryValue(req.query.batt_lightning as string));
   setDataPayload(EntityNames.CO2, +req.query.co2);
-  setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf); // Only available in Weather Underground updates
+  // Only available in Weather Underground updates. For Ambient Weather stations
+  // this is a calculated sensor, handled farther down in this function.
+  setDataPayload(EntityNames.DEWPOINT, +req.query.dewptf);
   setDataPayload(EntityNames.HUMIDITY1, +req.query.humidity1);
   setDataPayload(EntityNames.HUMIDITY10, +req.query.humidity10);
   setDataPayload(EntityNames.HUMIDITY2, +req.query.humidity2);
@@ -222,11 +221,72 @@ export function processWeatherData(req: express.Request, res: express.Response):
 
   // Issue 109: Some ambientweather stations appear to send "now" for the time instead of an actual time.
   // Make this more general case and just use current time if the one provided can't be converted to a time.
-
-  //
   setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()).toISOString());
 
-  entityManager.publishAll();
+  // Calculated sensors
+  setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
+  setDataPayload(EntityNames.LASTRAIN, calculateLastRain(+req.query.hourlyrainin));
+  setDataPayload(
+    EntityNames.FEELSLIKE,
+    calculateFeelsLike(+req.query.tempf, +req.query.windspeedmph, +req.query.humidity),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE1,
+    calculateFeelsLike(+req.query.temp1f, +req.query.windspeedmph, +req.query.humidity1),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE2,
+    calculateFeelsLike(+req.query.temp2f, +req.query.windspeedmph, +req.query.humidity2),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE3,
+    calculateFeelsLike(+req.query.temp3f, +req.query.windspeedmph, +req.query.humidity3),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE4,
+    calculateFeelsLike(+req.query.temp4f, +req.query.windspeedmph, +req.query.humidity4),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE5,
+    calculateFeelsLike(+req.query.temp5f, +req.query.windspeedmph, +req.query.humidity5),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE6,
+    calculateFeelsLike(+req.query.temp6f, +req.query.windspeedmph, +req.query.humidity6),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE7,
+    calculateFeelsLike(+req.query.temp7f, +req.query.windspeedmph, +req.query.humidity7),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE8,
+    calculateFeelsLike(+req.query.temp8f, +req.query.windspeedmph, +req.query.humidity8),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE9,
+    calculateFeelsLike(+req.query.temp9f, +req.query.windspeedmph, +req.query.humidity9),
+  );
+  setDataPayload(
+    EntityNames.FEELSLIKE10,
+    calculateFeelsLike(+req.query.temp10f, +req.query.windspeedmph, +req.query.humidity10),
+  );
+  // Some weather stations provide dewpoint already so only calculate and send it if there was
+  // no value received.
+  if (!isNumber(+req.query.dewptf)) {
+    setDataPayload(EntityNames.DEWPOINT, calculateDewPoint(+req.query.tempf, +req.query.humidity));
+  }
+  setDataPayload(EntityNames.DEWPOINT1, calculateDewPoint(+req.query.temp1f, +req.query.humidity1));
+  setDataPayload(EntityNames.DEWPOINT2, calculateDewPoint(+req.query.temp2f, +req.query.humidity2));
+  setDataPayload(EntityNames.DEWPOINT3, calculateDewPoint(+req.query.temp3f, +req.query.humidity3));
+  setDataPayload(EntityNames.DEWPOINT4, calculateDewPoint(+req.query.temp4f, +req.query.humidity4));
+  setDataPayload(EntityNames.DEWPOINT5, calculateDewPoint(+req.query.temp5f, +req.query.humidity5));
+  setDataPayload(EntityNames.DEWPOINT6, calculateDewPoint(+req.query.temp6f, +req.query.humidity6));
+  setDataPayload(EntityNames.DEWPOINT7, calculateDewPoint(+req.query.temp7f, +req.query.humidity7));
+  setDataPayload(EntityNames.DEWPOINT8, calculateDewPoint(+req.query.temp8f, +req.query.humidity8));
+  setDataPayload(EntityNames.DEWPOINT9, calculateDewPoint(+req.query.temp9f, +req.query.humidity9));
+  setDataPayload(EntityNames.DEWPOINT10, calculateDewPoint(+req.query.temp10f, +req.query.humidity10));
+
+  await entityManager.publishAll();
   mqttManager.publishOnline();
 
   res.status(200).send("Ok");

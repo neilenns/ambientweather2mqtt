@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IPublishPacket } from "mqtt-packet";
+import BinarySensor from "./binarySensor";
 import DeviceClass from "./deviceClass";
 import Entity from "./entity";
 import EntityNames from "./entityNames";
 import * as log from "./log";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
-import BinarySensor from "./binarySensor";
 
 export const entities = new Map<string, Entity>();
 
@@ -418,6 +418,104 @@ export function initialize(): void {
   entities.set(
     EntityNames.PM_IN_HUMIDITY_AQIN,
     new Sensor(EntityNames.PM_IN_HUMIDITY_AQIN, deviceId, SensorUnit.percent, DeviceClass.HUMIDITY),
+  );
+
+  // Calculated sensors
+  entities.set(
+    EntityNames.SOLARRADIATION_LUX,
+    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.illuminance, DeviceClass.ILLUMINANCE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE,
+    new Sensor(EntityNames.FEELSLIKE, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE1,
+    new Sensor(EntityNames.FEELSLIKE1, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE2,
+    new Sensor(EntityNames.FEELSLIKE2, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE3,
+    new Sensor(EntityNames.FEELSLIKE3, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE4,
+    new Sensor(EntityNames.FEELSLIKE4, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE5,
+    new Sensor(EntityNames.FEELSLIKE5, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE6,
+    new Sensor(EntityNames.FEELSLIKE6, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE7,
+    new Sensor(EntityNames.FEELSLIKE7, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE8,
+    new Sensor(EntityNames.FEELSLIKE8, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE9,
+    new Sensor(EntityNames.FEELSLIKE9, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE10,
+    new Sensor(EntityNames.FEELSLIKE10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.FEELSLIKE10,
+    new Sensor(EntityNames.FEELSLIKE10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.LASTRAIN,
+    new Sensor(EntityNames.LASTRAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
+  );
+  entities.set(
+    EntityNames.DEWPOINT1,
+    new Sensor(EntityNames.DEWPOINT1, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT2,
+    new Sensor(EntityNames.DEWPOINT2, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT3,
+    new Sensor(EntityNames.DEWPOINT3, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT4,
+    new Sensor(EntityNames.DEWPOINT4, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT5,
+    new Sensor(EntityNames.DEWPOINT5, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT6,
+    new Sensor(EntityNames.DEWPOINT6, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT7,
+    new Sensor(EntityNames.DEWPOINT7, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT8,
+    new Sensor(EntityNames.DEWPOINT8, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT9,
+    new Sensor(EntityNames.DEWPOINT9, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
+  );
+  entities.set(
+    EntityNames.DEWPOINT10,
+    new Sensor(EntityNames.DEWPOINT10, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE),
   );
 
   initialized = true;

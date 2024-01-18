@@ -65,5 +65,11 @@
     "windgustmph",
     "windspeedmph"
   ],
-  "markdown.extension.toc.levels": "2..6"
-}
+  "markdown.extension.toc.levels": "2..6",
+  "mochaExplorer.logpanel": true,
+  "mochaExplorer.configFile": ".mocharc.jsonc",
+  "mochaExplorer.nodeArgv": [
+    "--loader=ts-node/esm",
+    "--no-warnings=ExperimentalWarning",
+    "--experimental-specifier-resolution=node"
+  ]}

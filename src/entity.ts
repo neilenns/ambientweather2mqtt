@@ -3,14 +3,14 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
+import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass";
+import EntityDataPayload from "./entityDataPayload";
 import EntityDiscoveryPayload from "./entityDiscoveryPayload";
-import SensorUnit from "./sensorUnit";
-import StateClass from "./stateClass";
 import * as log from "./log";
 import * as mqttManager from "./mqttManager";
-import { IPublishPacket } from "mqtt-packet";
-import EntityDataPayload from "./entityDataPayload";
+import SensorUnit from "./sensorUnit";
+import StateClass from "./stateClass";
 
 /**
  * A weather station sensor.
