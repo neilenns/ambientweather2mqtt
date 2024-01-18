@@ -20,4 +20,5 @@ export default class EntityDiscoveryPayload {
   unique_id: string;
   unit_of_measurement?: string;
   value_template: string;
+  entity_category: string;
 }

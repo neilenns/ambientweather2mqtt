@@ -11,6 +11,7 @@ import * as log from "./log.js";
 import * as mqttManager from "./mqttManager.js";
 import SensorUnit from "./sensorUnit.js";
 import StateClass from "./stateClass.js";
+import EntityCategory from "./entityCategory.js";
 
 /**
  * A weather station sensor.
@@ -32,8 +33,16 @@ export default class Entity {
    * @param unit The unit of measurement for the sensor. Optional.
    * @param deviceClass The device class for the sensor. Optional.
    * @param icon The mdi icon for the sensor. Optional.
+   * @param entityCategory The Home Assistant entity category for the sensor. Optional.
    */
-  constructor(name: string, deviceId: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
+  constructor(
+    name: string,
+    deviceId: string,
+    unit?: SensorUnit,
+    deviceClass?: DeviceClass,
+    icon?: string,
+    entityCategory?: EntityCategory,
+  ) {
     this.deviceId = deviceId;
 
     this.discoveryPayload = {
@@ -49,6 +58,7 @@ export default class Entity {
       name: name,
       unique_id: `${this.deviceId ?? "AW"}_${name}`,
       unit_of_measurement: unit,
+      entity_category: entityCategory,
     } as EntityDiscoveryPayload;
   }
 

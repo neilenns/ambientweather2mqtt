@@ -5,6 +5,7 @@
 
 import DeviceClass from "./deviceClass.js";
 import Entity from "./entity.js";
+import EntityCategory from "./entityCategory.js";
 import SensorUnit from "./sensorUnit.js";
 import TopicRoot from "./topicRoot.js";
 
@@ -19,9 +20,17 @@ export default class Sensor extends Entity {
    * @param unit The unit of measurement for the sensor. Optional.
    * @param deviceClass The device class for the sensor. Optional.
    * @param icon The mdi icon for the sensor. Optional.
+   * @param entityCategory The Home Assistant entity category for the sensor. Optional.
    */
-  constructor(name: string, deviceId: string, unit?: SensorUnit, deviceClass?: DeviceClass, icon?: string) {
-    super(name, deviceId, unit, deviceClass, icon);
+  constructor(
+    name: string,
+    deviceId: string,
+    unit?: SensorUnit,
+    deviceClass?: DeviceClass,
+    icon?: string,
+    entityCategory?: EntityCategory,
+  ) {
+    super(name, deviceId, unit, deviceClass, icon, entityCategory);
 
     this.discoveryTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/config`;
     this.stateTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/state`;
