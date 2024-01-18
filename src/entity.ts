@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IPublishPacket } from "mqtt-packet";
-import DeviceClass from "./deviceClass";
-import EntityDataPayload from "./entityDataPayload";
-import EntityDiscoveryPayload from "./entityDiscoveryPayload";
-import * as log from "./log";
-import * as mqttManager from "./mqttManager";
-import SensorUnit from "./sensorUnit";
-import StateClass from "./stateClass";
+import DeviceClass from "./deviceClass.js";
+import EntityDataPayload from "./entityDataPayload.js";
+import EntityDiscoveryPayload from "./entityDiscoveryPayload.js";
+import * as log from "./log.js";
+import * as mqttManager from "./mqttManager.js";
+import SensorUnit from "./sensorUnit.js";
+import StateClass from "./stateClass.js";
 
 /**
  * A weather station sensor.

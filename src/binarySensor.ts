@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import Entity from "./entity";
-import TopicRoot from "./topicRoot";
+import Entity from "./entity.js";
+import TopicRoot from "./topicRoot.js";
 
 /**
  * Represents a Home Assistant binary sensor entity

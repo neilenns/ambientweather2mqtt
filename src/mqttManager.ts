@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as log from "./log";
+import * as log from "./log.js";
 import MQTT from "async-mqtt";
-import TopicRoot from "./topicRoot";
+import TopicRoot from "./topicRoot.js";
 
 let connected = false;
 let availabilityTopic: string;
