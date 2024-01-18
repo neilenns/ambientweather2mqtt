@@ -89,7 +89,7 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
   // heat index is < 80F then it can be used.
   let heatIndex = 0.5 * (temperature + 61.0 + (temperature - 68.0) * 1.2 + relativeHumidity * 0.094);
 
-  if (heatIndex + temperature / 2 < 80) {
+  if ((heatIndex + temperature) / 2 < 80) {
     return heatIndex;
   }
 
@@ -110,6 +110,8 @@ export function calculateHeatIndex(temperature: number, relativeHumidity: number
   } else if (relativeHumidity > 85 && temperature >= 80 && temperature <= 87) {
     heatIndex = heatIndex + ((relativeHumidity - 85) / 10) * ((87 - temperature) / 5);
   }
+
+  return heatIndex;
 }
 
 /**
