@@ -36,6 +36,7 @@ describe("Calculated sensors", () => {
   });
 
   it("should calculate solar radiation (lux)", async function () {
+    // Expected value calculated manually by applying the math from the Home Assistant source code
     expect(calculateSolarRadiationLux(93.58)).to.closeTo(11846, 1);
   });
 });
