@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as log from "../log";
-import * as entityManager from "../entityManager";
+import * as log from "../log.js";
+import * as entityManager from "../entityManager.js";
 import express from "express";
 
 /**

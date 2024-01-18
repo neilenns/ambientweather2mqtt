@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { IPublishPacket } from "mqtt-packet";
-import BinarySensor from "./binarySensor";
-import DeviceClass from "./deviceClass";
-import Entity from "./entity";
-import EntityNames from "./entityNames";
-import * as log from "./log";
-import Sensor from "./sensor";
-import SensorUnit from "./sensorUnit";
+import BinarySensor from "./binarySensor.js";
+import DeviceClass from "./deviceClass.js";
+import Entity from "./entity.js";
+import EntityNames from "./entityNames.js";
+import * as log from "./log.js";
+import Sensor from "./sensor.js";
+import SensorUnit from "./sensorUnit.js";
 
 export const entities = new Map<string, Entity>();
 

@@ -5,10 +5,10 @@ import {
   calculateFeelsLike,
   calculateLastRain,
   calculateSolarRadiationLux,
-} from "../src/calculations";
-import { setDataPayload } from "../src/controllers/weatherDataController";
-import * as entityManager from "../src/entityManager";
-import EntityNames from "../src/entityNames";
+} from "../src/calculations.js";
+import { setDataPayload } from "../src/controllers/weatherDataController.js";
+import * as entityManager from "../src/entityManager.js";
+import EntityNames from "../src/entityNames.js";
 
 describe("Calculated sensors", () => {
   it("should handle last rain", async function () {

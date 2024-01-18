@@ -3,13 +3,18 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import express from "express";
-import { calculateDewPoint, calculateFeelsLike, calculateLastRain, calculateSolarRadiationLux } from "../calculations";
-import EntityDataPayload from "../entityDataPayload";
-import * as entityManager from "../entityManager";
-import EntityNames from "../entityNames";
-import * as log from "../log";
-import * as mqttManager from "../mqttManager";
-import { isNumber } from "../utilities";
+import {
+  calculateDewPoint,
+  calculateFeelsLike,
+  calculateLastRain,
+  calculateSolarRadiationLux,
+} from "../calculations.js";
+import EntityDataPayload from "../entityDataPayload.js";
+import * as entityManager from "../entityManager.js";
+import EntityNames from "../entityNames.js";
+import * as log from "../log.js";
+import * as mqttManager from "../mqttManager.js";
+import { isNumber } from "../utilities.js";
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.

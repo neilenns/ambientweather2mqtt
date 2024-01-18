@@ -1,4 +1,4 @@
-import { isNumber } from "./utilities";
+import { isNumber } from "./utilities.js";
 
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Neil Enns. All rights reserved.

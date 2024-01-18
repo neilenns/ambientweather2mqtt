@@ -2,12 +2,13 @@
     "compilerOptions": {
       "forceConsistentCasingInFileNames": true,
       "noImplicitAny": true,
-      "target": "es5",
-      "esModuleInterop": true,
-      "module": "ESNext",
-      "moduleResolution": "node",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
       "outDir": "./dist",
-      "sourceMap": true
+      "sourceMap": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      
     },
     "include": ["src"],
     "exclude": ["node_modules"]
