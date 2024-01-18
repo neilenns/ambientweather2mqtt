@@ -126,9 +126,9 @@ export function calculateFeelsLike(temperature: number, windSpeed: number, humid
   }
 
   if (temperature < 50) {
-    return calculateWindChill(temperature, windSpeed);
+    return calculateWindChill(temperature, windSpeed) || temperature;
   } else if (temperature > 68) {
-    return calculateHeatIndex(temperature, humidity);
+    return calculateHeatIndex(temperature, humidity) || temperature;
   } else {
     return temperature;
   }

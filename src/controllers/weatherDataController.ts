@@ -99,7 +99,7 @@ function setDataPayload(key: string, value: EntityDataPayload) {
 // Documentation for the APIs:
 // Ambient Weather: https://github.com/ambient-weather/api-docs/wiki/Device-Data-Specs
 // Weather Underground: https://support.weather.com/s/article/PWS-Upload-Protocol?language=en_US
-export function processWeatherData(req: express.Request, res: express.Response): void {
+export async function processWeatherData(req: express.Request, res: express.Response): Promise<void> {
   if (!req.query) {
     log.warn("Weather handler", "No data received, skipping processing the request.");
     return;
@@ -286,7 +286,7 @@ export function processWeatherData(req: express.Request, res: express.Response):
   setDataPayload(EntityNames.DEWPOINT9, calculateDewPoint(+req.query.temp9f, +req.query.humidity9));
   setDataPayload(EntityNames.DEWPOINT10, calculateDewPoint(+req.query.temp10f, +req.query.humidity10));
 
-  entityManager.publishAll();
+  await entityManager.publishAll();
   mqttManager.publishOnline();
 
   res.status(200).send("Ok");

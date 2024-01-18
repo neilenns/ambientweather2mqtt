@@ -2,13 +2,13 @@
  *  Copyright (c) Neil Enns. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import * as weatherDataController from "./controllers/weatherDataController";
 import * as mqttDiscoveryController from "./controllers/mqttDiscoveryController";
+import * as weatherDataController from "./controllers/weatherDataController";
 
 import express from "express";
-import * as log from "./log";
 import { Server } from "http";
 import { createHttpTerminator, HttpTerminator } from "http-terminator";
+import * as log from "./log";
 
 const app = express();
 let server: Server;
