@@ -11,6 +11,7 @@ import * as log from "./log";
 import Sensor from "./sensor";
 import SensorUnit from "./sensorUnit";
 import BinarySensor from "./binarySensor";
+import EntityCategory from "./entityCategory";
 
 export const entities = new Map<string, Entity>();
 
@@ -30,60 +31,158 @@ export function initialize(): void {
   );
   entities.set(
     EntityNames.BATTERY1,
-    new Sensor(EntityNames.BATTERY1, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY1,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY10,
-    new Sensor(EntityNames.BATTERY10, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY10,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY2,
-    new Sensor(EntityNames.BATTERY2, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY2,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY3,
-    new Sensor(EntityNames.BATTERY3, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY3,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY4,
-    new Sensor(EntityNames.BATTERY4, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY4,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY5,
-    new Sensor(EntityNames.BATTERY5, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY5,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY6,
-    new Sensor(EntityNames.BATTERY6, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY6,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY7,
-    new Sensor(EntityNames.BATTERY7, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY7,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY8,
-    new Sensor(EntityNames.BATTERY8, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY8,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERY9,
-    new Sensor(EntityNames.BATTERY9, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERY9,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERYCO2OK,
-    new Sensor(EntityNames.BATTERYCO2OK, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERYCO2OK,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERYOK,
-    new Sensor(EntityNames.BATTERYOK, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERYOK,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERYPM25OK,
-    new Sensor(EntityNames.BATTERYPM25OK, deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      EntityNames.BATTERYPM25OK,
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(
     EntityNames.BATTERYLIGHTNING,
     // The ambient weather name is snake case which breaks the pattern for the rest of the entities.
-    new Sensor("batteryLightning", deviceId, SensorUnit.percent, DeviceClass.BATTERY),
+    new Sensor(
+      "batteryLightning",
+      deviceId,
+      SensorUnit.percent,
+      DeviceClass.BATTERY,
+      undefined,
+      EntityCategory.DIAGNOSTIC,
+    ),
   );
   entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2));
   entities.set(EntityNames.DEWPOINT, new Sensor(EntityNames.DEWPOINT, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE));
