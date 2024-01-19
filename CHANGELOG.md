@@ -1,5 +1,9 @@
 # Version
 
+## 4.4.1
+
+* Address an issue with `OBSERVERIP2_V2.2.6` weather stations sending garbage at the end of the data feed. (Fixes issue [#136](https://github.com/neilenns/ambientweather2mqtt/issues/136))
+
 ## 4.4.0
 
 * Add new calculated sensors: `dewpoint`, `dewpoint1..10`,`feelsLike`, `feelsLike1..10`, `lastRain`, and `solar_radiation_lux`. (Fixes issue [#125](https://github.com/neilenns/ambientweather2mqtt/issues/125))
