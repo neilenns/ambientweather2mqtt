@@ -113,6 +113,13 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   log.verbose("Weather handler", req.url);
   log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
 
+  // Issue #136: OBSERVERIP2 weather stations incorrectly include a bunch of junk at the end of the query
+  // string, affecting the value for batt_25. If the station is that type fix up the stupid junk
+  // so the battery value is correct.
+  if (req.query.stationtype === "OBSERVERIP2_V2.2.6") {
+    req.query.batt_25 = (req.query.batt_25 as string)?.split(" ")[0] ?? undefined;
+  }
+
   setDataPayload(EntityNames.BAROMETRICPRESSUREABSOLUTE, +(req.query.baromabsin ?? req.query.absbaromin));
   setDataPayload(EntityNames.BAROMETRICPRESSURERELATIVE, +(req.query.baromrelin ?? req.query.baromin));
   setDataPayload(EntityNames.BATTERY1, convertBatteryValue(req.query.batt1 as string));
