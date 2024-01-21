@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as log from "./log.js";
 import MQTT from "async-mqtt";
+import * as log from "./log.js";
 import TopicRoot from "./topicRoot.js";
 
 let connected = false;
@@ -41,7 +41,7 @@ export async function initialize(id: string): Promise<void> {
  * @param data The  data to send
  * @returns A promise
  */
-export async function publish(topic: string, data: string, retain?: boolean): Promise<MQTT.IPublishPacket> {
+export async function publish(topic: string, data: string, retain?: boolean): Promise<void> {
   if (!connected) {
     log.info("MQTT", "Attempted to send data but not connected to MQTT server.");
     return;
@@ -54,7 +54,7 @@ export async function publish(topic: string, data: string, retain?: boolean): Pr
  * Publishes an "online" status to the registered MQTT availability topic
  * @returns A promise
  */
-export async function publishOnline(): Promise<MQTT.IPublishPacket> {
+export async function publishOnline(): Promise<void> {
   if (!connected) {
     log.info("MQTT", "Attempted to send online status but not connected to MQTT server.");
     return;
@@ -67,7 +67,7 @@ export async function publishOnline(): Promise<MQTT.IPublishPacket> {
  * Publishes an "offline" status to the registered MQTT availability topic
  * @returns A promise
  */
-export async function publishOffline(): Promise<MQTT.IPublishPacket> {
+export async function publishOffline(): Promise<void> {
   if (!connected) {
     log.info("MQTT", "Attempted to send offline status but not connected to MQTT server.");
     return;
