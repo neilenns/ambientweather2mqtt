@@ -3,7 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import MQTT from "async-mqtt";
+import * as MQTT from "async-mqtt";
 import * as log from "./log.js";
 import TopicRoot from "./topicRoot.js";
 
