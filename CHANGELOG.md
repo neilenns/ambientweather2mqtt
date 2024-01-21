@@ -1,5 +1,9 @@
 # Version
 
+## 4.4.2
+
+* Send lastRain timestamp in the correct format for HomeAssistant. (Fixes [#138](https://github.com/neilenns/ambientweather2mqtt/issues/138))
+
 ## 4.4.1
 
 * Address an issue with `OBSERVERIP2_V2.2.6` weather stations sending garbage at the end of the data feed. (Fixes issue [#136](https://github.com/neilenns/ambientweather2mqtt/issues/136))
