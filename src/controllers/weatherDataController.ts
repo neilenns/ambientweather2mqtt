@@ -237,7 +237,7 @@ export async function processWeatherData(req: express.Request, res: express.Resp
 
   // Calculated sensors
   setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
-  setDataPayload(EntityNames.LASTRAIN, calculateLastRain(+req.query.hourlyrainin));
+  setDataPayload(EntityNames.LASTRAIN, calculateLastRain(+req.query.hourlyrainin)?.toISOString());
   setDataPayload(
     EntityNames.FEELSLIKE,
     calculateFeelsLike(+req.query.tempf, +req.query.windspeedmph, +req.query.humidity),
