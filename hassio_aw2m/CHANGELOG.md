@@ -3,6 +3,7 @@
 ## 4.4.2
 
 * Send lastRain timestamp in the correct format for HomeAssistant. (Fixes [#138](https://github.com/neilenns/ambientweather2mqtt/issues/138))
+* Update dependencies
 
 ## 4.4.1
 
