@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import "dotenv/config";
 
+import * as entityManager from "./entityManager.js";
+import env from "./env.js";
 import * as log from "./log.js";
 import * as mqttManager from "./mqttManager.js";
-import * as entityManager from "./entityManager.js";
 import * as webServer from "./webServer.js";
 
 /**
@@ -15,44 +16,13 @@ import * as webServer from "./webServer.js";
 async function startup(): Promise<void> {
   log.info("Main", "Starting up");
 
-  if (!verifyEnvironmentVariables()) {
-    throw new Error(
-      "Required environment variables are missing, startup halted. Add the missing environment variables then run again.",
-    );
-  }
-
-  await mqttManager.initialize(process.env.STATION_MAC_ADDRESS);
+  await mqttManager.initialize(env().STATION_MAC_ADDRESS);
   await mqttManager.publishOnline();
 
   entityManager.initialize();
   await entityManager.upgrade();
 
   webServer.start();
-}
-
-function verifyEnvironmentVariables(): boolean {
-  if (process.env.MQTT_SERVER === undefined || process.env.MQTT_SERVER === "") {
-    log.error(
-      "Main",
-      "The MQTT_SERVER environment variable isn't set. It must be set to the URL for the MQTT server, e.g. http://192.168.1.1/.",
-    );
-    return false;
-  }
-
-  if (process.env.STATION_MAC_ADDRESS === undefined || process.env.STATION_MAC_ADDRESS === "") {
-    log.error(
-      "Main",
-      "The STATION_MAC_ADDRESS environment variable isn't set. It must be set to MAC address for the Ambient Weather station. The station's MAC address can be found using the awnet app.",
-    );
-    return false;
-  }
-
-  if (process.env.PORT === undefined || process.env.PORT === "") {
-    log.error("Main", "The PORT environment variable isn't set. It must be set to the port this service runs on.");
-    return false;
-  }
-
-  return true;
 }
 
 /**
@@ -100,7 +70,7 @@ function wait() {
 process.on("uncaughtException", (err: NodeJS.ErrnoException) => {
   // EADDRINUSE
   if (err.errno === -4091) {
-    log.error("Web server", `Another service is already running on port ${process.env.PORT}`);
+    log.error("Web server", `Another service is already running on port ${env().PORT}`);
   } else {
     log.error("Main", err.message);
   }
