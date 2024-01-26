@@ -5,13 +5,15 @@
 
 import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass.js";
+import EntityCategory from "./entityCategory.js";
 import EntityDataPayload from "./entityDataPayload.js";
 import EntityDiscoveryPayload from "./entityDiscoveryPayload.js";
-import * as log from "./log.js";
+import mainLogger from "./log.js";
 import * as mqttManager from "./mqttManager.js";
 import SensorUnit from "./sensorUnit.js";
 import StateClass from "./stateClass.js";
-import EntityCategory from "./entityCategory.js";
+
+const logger = mainLogger.child({ service: "entity" });
 
 /**
  * A weather station sensor.
@@ -68,14 +70,13 @@ export default class Entity {
   public publishDiscovery(): Promise<IPublishPacket> {
     // Skip publishing if the value is undefined.
     if (this.value === undefined) {
-      log.verbose(
-        "Sensor",
+      logger.debug(
         `Skipping discovery publish for ${this.discoveryPayload.name} since no sensor value has been received yet.`,
       );
       return;
     }
 
-    log.verbose("Sensor", `Publishing discovery for ${this.discoveryPayload.name}.`);
+    logger.debug(`Publishing discovery for ${this.discoveryPayload.name}.`, { payload: this.discoveryPayload });
 
     this.isDiscovered = true;
     return mqttManager.publish(this.discoveryTopic, JSON.stringify(this.discoveryPayload), true);

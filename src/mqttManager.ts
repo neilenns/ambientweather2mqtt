@@ -5,8 +5,10 @@
 
 import MQTT from "async-mqtt";
 import env from "./env.js";
-import * as log from "./log.js";
+import mainLogger from "./log.js";
 import TopicRoot from "./topicRoot.js";
+
+const logger = mainLogger.child({ service: "mqtt" });
 
 let connected = false;
 let availabilityTopic: string;
@@ -30,10 +32,10 @@ export async function initialize(id: string): Promise<void> {
     },
     rejectUnauthorized: env().MQTT_REJECT_UNAUTHORIZED,
   }).catch((e) => {
-    throw new Error(`[MQTT] Unable to connect: ${e.message}`);
+    throw new Error(`Unable to connect: ${e.message}`);
   });
 
-  log.info("MQTT", `Connected to MQTT server ${env().MQTT_SERVER}`);
+  logger.info(`Connected to MQTT server ${env().MQTT_SERVER}`, { server: env().MQTT_SERVER });
   connected = true;
 }
 
@@ -44,10 +46,11 @@ export async function initialize(id: string): Promise<void> {
  */
 export async function publish(topic: string, data: string, retain?: boolean): Promise<MQTT.IPublishPacket> {
   if (!connected) {
-    log.info("MQTT", "Attempted to send data but not connected to MQTT server.");
+    logger.error("Attempted to send data but not connected to MQTT server.");
     return;
   }
 
+  logger.debug(`Publishing ${data} to ${topic}`, { data, topic });
   return client.publish(topic, data, { retain });
 }
 
@@ -55,24 +58,29 @@ export async function publish(topic: string, data: string, retain?: boolean): Pr
  * Publishes an "online" status to the registered MQTT availability topic
  * @returns A promise
  */
-export async function publishOnline(): Promise<MQTT.IPublishPacket> {
-  if (!connected) {
-    log.info("MQTT", "Attempted to send online status but not connected to MQTT server.");
-    return;
-  }
-
-  return client.publish(availabilityTopic, "online", { retain: true });
+export async function publishOnline() {
+  await publishAvailability("online");
 }
 
 /**
  * Publishes an "offline" status to the registered MQTT availability topic
  * @returns A promise
  */
-export async function publishOffline(): Promise<MQTT.IPublishPacket> {
+export async function publishOffline() {
+  await publishAvailability("offline");
+}
+
+/**
+ * Publishes the specified state to the availability topic.
+ * @param state The state, either "online" or "offline"
+ * @returns A promise
+ */
+async function publishAvailability(state: string) {
   if (!connected) {
-    log.info("MQTT", "Attempted to send offline status but not connected to MQTT server.");
+    logger.error(`Attempted to send ${state} status but not connected to MQTT server.`);
     return;
   }
 
-  return client.publish(availabilityTopic, "offline", { retain: true });
+  logger.debug(`Publishing ${state} to ${availabilityTopic}`, { data: state, topic: availabilityTopic });
+  await client.publish(availabilityTopic, state, { retain: true });
 }

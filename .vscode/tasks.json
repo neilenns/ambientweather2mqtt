@@ -19,6 +19,20 @@
       "problemMatcher": ["$eslint-stylish"],
       "label": "npm:lint",
       "detail": "npm run lint:eslint && npm run markdownlint"
+    },
+    {
+      "label": "Start Home Assistant",
+      "type": "shell",
+      "command": "supervisor_run",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
     }
   ]
 }

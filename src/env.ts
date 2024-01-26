@@ -30,6 +30,7 @@ const envSchema = z.object({
   STATION_MAC_ADDRESS: z.string(),
   TZ: z.string().default("America/Los_Angeles"),
   TOPIC_ROOT: z.string().optional(),
+  NODE_ENV: z.string().default("production"),
 });
 
 let parsedEnv: z.infer<typeof envSchema>;

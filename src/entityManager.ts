@@ -10,9 +10,11 @@ import Entity from "./entity.js";
 import EntityCategory from "./entityCategory.js";
 import EntityNames from "./entityNames.js";
 import env from "./env.js";
-import * as log from "./log.js";
+import mainLogger from "./log.js";
 import Sensor from "./sensor.js";
 import SensorUnit from "./sensorUnit.js";
+
+const logger = mainLogger.child({ service: "entityManager" });
 
 export const entities = new Map<string, Entity>();
 
@@ -626,7 +628,7 @@ export function initialize(): void {
  */
 export async function upgrade(): Promise<void> {
   if (!initialized) {
-    log.error("Entity Manager", "Attempted to call upgrade() but initialize() wasn't called first.");
+    logger.error("Attempted to call upgrade() but initialize() wasn't called first.");
   }
 
   // eslint-disable-next-line deprecation/deprecation

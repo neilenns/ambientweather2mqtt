@@ -1,60 +1,54 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Neil Enns. All rights reserved.
- *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+// A lot of this was inspired by https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-winston-and-morgan-to-log-node-js-applications/
+import winston from "winston";
+import env from "./env.js";
 
-// whole point of having this file: to wrap console.log calls.
-// Everywhere else console.log() is a build breaking error to prevent
-// accidental use of it.
-/* eslint-disable no-console */
-import chalk from "chalk";
-import moment from "moment";
-
-/**
- * Formats a message for output to the logs.
- * @param source The source of the message
- * @param message The message
- */
-function formatMessage(source: string, message: string) {
-  return `${moment().format()} [${source}] ${message}`;
+// This way of extending the logger to support a .trace() function
+// comes from https://github.com/winstonjs/winston/issues/1523#issuecomment-436365549
+export interface CustomLevelsLogger extends winston.Logger {
+  trace: winston.LeveledLogMethod;
 }
 
-/**
- * Logs an informational message to the console.
- * @param source The source of the message
- * @param message The message
- */
-export function info(source: string, message: string): void {
-  console.log(formatMessage(source, message));
-}
+const levels = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  debug: 4,
+  trace: 5,
+};
 
-/**
- * Logs a warning message to the console.
- * @param source The source of the message
- * @param message The message
- */
-export function warn(source: string, message: string): void {
-  console.log(chalk.yellow(formatMessage(source, message)));
-}
-
-/**
- * Logs an error message to the console.
- * @param source The source of the message
- * @param message The message
- */
-export function error(source: string, message: string): void {
-  console.log(chalk.red(formatMessage(source, message)));
-}
-
-/**
- * Logs a message if verbose is set to true in the environment variables
- * @param source The source of the message
- * @param message The message
- */
-export function verbose(source: string, message: string): void {
-  if (process.env.VERBOSE !== "true") {
-    return;
+const level = () => {
+  if (env().LOG_LEVEL) {
+    return env().LOG_LEVEL;
   }
 
-  info(source, message);
-}
+  return env().NODE_ENV === "development" ? "debug" : "warn";
+};
+
+const colors = {
+  error: "red",
+  warn: "yellow",
+  info: "green",
+  http: "magenta",
+  debug: "white",
+  trace: "grey",
+};
+
+winston.addColors(colors);
+
+const consoleFormat = winston.format.combine(
+  winston.format.timestamp(),
+  winston.format.printf((info) => {
+    const message = `[${info.service}] ${info.message}`;
+    // This method of applying colour comes from https://stackoverflow.com/a/63104828
+    return `${info.timestamp} ${winston.format.colorize().colorize(info.level, message)}`;
+  }),
+);
+
+const Logger = winston.createLogger({
+  level: level(),
+  levels,
+  transports: [new winston.transports.Console({ format: consoleFormat })],
+}) as CustomLevelsLogger;
+
+export default Logger;
