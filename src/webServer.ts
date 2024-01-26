@@ -8,6 +8,7 @@ import * as weatherDataController from "./controllers/weatherDataController.js";
 import express from "express";
 import { Server } from "http";
 import { createHttpTerminator, HttpTerminator } from "http-terminator";
+import env from "./env.js";
 import * as log from "./log.js";
 
 const app = express();
@@ -29,9 +30,7 @@ export function start(): void {
   app.get("/discover/:entityName", mqttDiscoveryController.discover);
 
   try {
-    server = app.listen(process.env.PORT, () =>
-      log.info("Web server", `Listening at http://localhost:${process.env.PORT}`),
-    );
+    server = app.listen(env().PORT, () => log.info("Web server", `Listening at http://localhost:${env().PORT}`));
     httpTerminator = createHttpTerminator({
       server,
     });

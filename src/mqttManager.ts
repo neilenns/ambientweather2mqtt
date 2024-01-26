@@ -3,8 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import * as log from "./log.js";
 import MQTT from "async-mqtt";
+import env from "./env.js";
+import * as log from "./log.js";
 import TopicRoot from "./topicRoot.js";
 
 let connected = false;
@@ -17,9 +18,9 @@ let client: MQTT.AsyncClient;
 export async function initialize(id: string): Promise<void> {
   availabilityTopic = `${TopicRoot}/${id.replace(/:/g, "")}`;
 
-  client = await MQTT.connectAsync(process.env.MQTT_SERVER, {
-    username: process.env.MQTT_USERNAME,
-    password: process.env.MQTT_PASSWORD,
+  client = await MQTT.connectAsync(env().MQTT_SERVER, {
+    username: env().MQTT_USERNAME,
+    password: env().MQTT_PASSWORD,
     clientId: "ambientWeather2mqtt",
     will: {
       topic: availabilityTopic,
@@ -27,12 +28,12 @@ export async function initialize(id: string): Promise<void> {
       qos: 2,
       retain: true,
     },
-    rejectUnauthorized: JSON.parse(process.env.MQTT_REJECT_UNAUTHORIZED) ?? true, // hack to convert "true" or "false" to actual boolean
+    rejectUnauthorized: env().MQTT_REJECT_UNAUTHORIZED,
   }).catch((e) => {
     throw new Error(`[MQTT] Unable to connect: ${e.message}`);
   });
 
-  log.info("MQTT", `Connected to MQTT server ${process.env.MQTT_SERVER}`);
+  log.info("MQTT", `Connected to MQTT server ${env().MQTT_SERVER}`);
   connected = true;
 }
 

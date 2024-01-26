@@ -7,11 +7,12 @@ import { IPublishPacket } from "mqtt-packet";
 import BinarySensor from "./binarySensor.js";
 import DeviceClass from "./deviceClass.js";
 import Entity from "./entity.js";
+import EntityCategory from "./entityCategory.js";
 import EntityNames from "./entityNames.js";
+import env from "./env.js";
 import * as log from "./log.js";
 import Sensor from "./sensor.js";
 import SensorUnit from "./sensorUnit.js";
-import EntityCategory from "./entityCategory.js";
 
 export const entities = new Map<string, Entity>();
 
@@ -19,7 +20,7 @@ let deviceId: string;
 let initialized = false;
 
 export function initialize(): void {
-  deviceId = process.env.STATION_MAC_ADDRESS?.replace(/:/g, "");
+  deviceId = env().STATION_MAC_ADDRESS?.replace(/:/g, "");
 
   entities.set(
     EntityNames.BAROMETRICPRESSUREABSOLUTE,
