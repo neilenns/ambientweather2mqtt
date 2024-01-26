@@ -525,7 +525,7 @@ export function initialize(): void {
   // Calculated sensors
   entities.set(
     EntityNames.SOLARRADIATION_LUX,
-    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.illuminance, DeviceClass.ILLUMINANCE),
+    new Sensor(EntityNames.SOLARRADIATION_LUX, deviceId, SensorUnit.percent, DeviceClass.ILLUMINANCE),
   );
   entities.set(
     EntityNames.FEELSLIKE,
