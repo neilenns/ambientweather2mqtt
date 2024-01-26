@@ -14,7 +14,7 @@ options:
   MQTT_REJECT_UNAUTHORIZED: false
   STATION_MAC_ADDRESS: "00:00:00:00:00:00"
   TZ: "America/Los_Angeles"
-  VERBOSE: false
+  LOG_LEVEL: "info"
 schema:
   MQTT_SERVER: "url"
   MQTT_USERNAME: "str"
@@ -22,7 +22,7 @@ schema:
   MQTT_REJECT_UNAUTHORIZED: "bool"
   STATION_MAC_ADDRESS: "str"
   TZ: "str"
-  VERBOSE: "bool"
+  LOG_LEVEL: list(error|warn|info|http|debug)
 services:
   - "mqtt:need"
 arch:

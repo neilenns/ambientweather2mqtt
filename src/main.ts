@@ -6,15 +6,17 @@ import "dotenv/config";
 
 import * as entityManager from "./entityManager.js";
 import env from "./env.js";
-import * as log from "./log.js";
+import mainLogger from "./log.js";
 import * as mqttManager from "./mqttManager.js";
 import * as webServer from "./webServer.js";
+
+const logger = mainLogger.child({ service: "main" });
 
 /**
  * Starts up the system.
  */
 async function startup(): Promise<void> {
-  log.info("Main", "Starting up");
+  logger.info("Starting up");
 
   await mqttManager.initialize(env().STATION_MAC_ADDRESS);
   await mqttManager.publishOnline();
@@ -29,7 +31,7 @@ async function startup(): Promise<void> {
  * Called when a system shutdown message is received to ensure proper cleanup of open sockets.
  */
 async function handleDeath(): Promise<void> {
-  log.info("Main", "Shutting down.");
+  logger.info("Shutting down");
   await mqttManager.publishOffline();
   await webServer.stop();
   process.exit(0);
@@ -53,7 +55,7 @@ async function main(): Promise<void> {
 
   // If startup throws any exceptions just bail.
   await startup().catch((e) => {
-    log.error("Main", e);
+    logger.error(e);
     process.exit(1);
   });
 
@@ -70,9 +72,9 @@ function wait() {
 process.on("uncaughtException", (err: NodeJS.ErrnoException) => {
   // EADDRINUSE
   if (err.errno === -4091) {
-    log.error("Web server", `Another service is already running on port ${env().PORT}`);
+    logger.error(`Another service is already running on port ${env().PORT}`);
   } else {
-    log.error("Main", err.message);
+    logger.error(err.message);
   }
   process.exit(1);
 });

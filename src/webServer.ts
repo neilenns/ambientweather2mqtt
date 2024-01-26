@@ -8,8 +8,18 @@ import * as weatherDataController from "./controllers/weatherDataController.js";
 import express from "express";
 import { Server } from "http";
 import { createHttpTerminator, HttpTerminator } from "http-terminator";
+import morgan from "morgan";
 import env from "./env.js";
-import * as log from "./log.js";
+import mainLogger from "./log.js";
+
+const logger = mainLogger.child({ service: "express" });
+
+const morganMiddleware = morgan(env().NODE_ENV === "production" ? "common" : "dev", {
+  stream: {
+    // Configure Morgan to use our custom logger with the http severity
+    write: (message) => logger.http(message.trim()),
+  },
+});
 
 const app = express();
 let server: Server;
@@ -19,6 +29,8 @@ let httpTerminator: HttpTerminator;
  * Start up the Express web server.
  */
 export function start(): void {
+  app.use(morganMiddleware);
+
   // Ambient Weather protocol endpoint
   app.get("/data", weatherDataController.processWeatherData);
 
@@ -30,7 +42,7 @@ export function start(): void {
   app.get("/discover/:entityName", mqttDiscoveryController.discover);
 
   try {
-    server = app.listen(env().PORT, () => log.info("Web server", `Listening at http://localhost:${env().PORT}`));
+    server = app.listen(env().PORT, () => logger.info(`Listening at http://localhost:${env().PORT}`));
     httpTerminator = createHttpTerminator({
       server,
     });
@@ -44,7 +56,7 @@ export function start(): void {
  */
 export async function stop(): Promise<void> {
   if (server) {
-    log.info("Web server", "Stopping.");
+    logger.info("Stopping");
     await httpTerminator.terminate();
   }
 }

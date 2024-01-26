@@ -12,9 +12,11 @@ import {
 import EntityDataPayload from "../entityDataPayload.js";
 import * as entityManager from "../entityManager.js";
 import EntityNames from "../entityNames.js";
-import * as log from "../log.js";
+import mainLogger from "../log.js";
 import * as mqttManager from "../mqttManager.js";
 import { isNumber } from "../utilities.js";
+
+const logger = mainLogger.child({ service: "weatherData" });
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
@@ -91,8 +93,9 @@ export function setDataPayload(key: string, value: EntityDataPayload | undefined
     }
 
     entityManager.entities.get(key).value = value;
-  } catch {
-    log.error("Weather handler", `Error setting data payload for ${key} to ${value}`);
+  } catch (error) {
+    const err = error as Error;
+    logger.error(`Error setting data payload for ${key} to ${value}: ${err.message}`);
   }
 }
 
@@ -106,17 +109,17 @@ export function setDataPayload(key: string, value: EntityDataPayload | undefined
 // Weather Underground: https://support.weather.com/s/article/PWS-Upload-Protocol?language=en_US
 export async function processWeatherData(req: express.Request, res: express.Response): Promise<void> {
   if (!req.query) {
-    log.warn("Weather handler", "No data received, skipping processing the request.");
+    logger.warn("No data received, skipping processing the request.");
     return;
   }
 
-  log.verbose("Weather handler", req.url);
-  log.verbose("Weather handler", JSON.stringify(req.query, null, 2));
+  logger.debug(JSON.stringify(req.query, null, 2), { data: req.query });
 
   // Issue #136: OBSERVERIP2 weather stations incorrectly include a bunch of junk at the end of the query
   // string, affecting the value for batt_25. If the station is that type fix up the stupid junk
   // so the battery value is correct.
   if (req.query.stationtype === "OBSERVERIP2_V2.2.6") {
+    logger.debug(`Received data from an OBSERVERIP2_V2.2.6 station, fixing the batt_25 value`);
     req.query.batt_25 = (req.query.batt_25 as string)?.split(" ")[0] ?? undefined;
   }
 
