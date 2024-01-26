@@ -8,7 +8,7 @@
   ],
   "type": "module",
   "scripts": {
-    "test": "mocha",
+    "test": "cross-env DOTENV_CONFIG_PATH=./test/test.env mocha",
     "build": "tsc",
     "lint": "npm run lint:eslint && npm run lint:markdown",
     "lint:eslint": "eslint -c .eslintrc.json --ext .ts src/",
@@ -42,6 +42,7 @@
     "@types/ws": "^7.4.5",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "chai": "^5.0.0",
+    "cross-env": "^7.0.3",
     "env-test": "^1.0.0",
     "eslint": "^7.29.0",
     "eslint-plugin-deprecation": "^1.2.1",
