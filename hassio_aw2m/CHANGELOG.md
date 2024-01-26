@@ -1,5 +1,10 @@
 # Version
 
+## 4.5.0
+
+* Add more logging options to help identify reported issues. (Fixes [#145](https://github.com/neilenns/ambientweather2mqtt/issues/145))
+* Add more robust environment variable validation. (Fixes [#143](https://github.com/neilenns/ambientweather2mqtt/issues/143))
+
 ## 4.4.2
 
 * Send lastRain timestamp in the correct format for HomeAssistant. (Fixes [#138](https://github.com/neilenns/ambientweather2mqtt/issues/138))
