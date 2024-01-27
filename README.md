@@ -98,6 +98,8 @@ If you plan to use this as a Docker deployment but are not using HomeAssistant y
 in all the MQTT messages. By default the messages are under `homeassistant` to ensure things like auto-discovery work. To change
 that you can set the `TOPIC_ROOT` environment variable.
 
+To control the log level set the `LOG_LEVEL` environment variable to one of `error`, `warn`, `info`, `http`, or `debug`. `info` is the default.
+
 ## Supported sensors
 
 The following sensors are supported. Note that weather stations will only report the subset of these they support.
