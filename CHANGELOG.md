@@ -1,5 +1,9 @@
 # Version
 
+## 4.5.1
+
+* Remove bashio calls from HomeAssistant add-on. (Fixes [[#147](https://github.com/neilenns/ambientweather2mqtt/issues/147)])
+
 ## 4.5.0
 
 * Add more logging options to help identify reported issues. (Fixes [#145](https://github.com/neilenns/ambientweather2mqtt/issues/145))
