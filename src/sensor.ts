@@ -29,8 +29,9 @@ export default class Sensor extends Entity {
     deviceClass?: DeviceClass,
     icon?: string,
     entityCategory?: EntityCategory,
+    retain = false,
   ) {
-    super(name, deviceId, unit, deviceClass, icon, entityCategory);
+    super(name, deviceId, unit, deviceClass, icon, entityCategory, retain);
 
     this.discoveryTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/config`;
     this.stateTopic = `${TopicRoot}/sensor/${deviceId}/${this.discoveryPayload.name}/state`;
