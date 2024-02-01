@@ -1,8 +1,12 @@
 # Version
 
+## 4.6.0
+
+* Add retain flag for `lastRain` sensor and new environment variable for enabling retain of all sensor values. (Fixes [#152](https://github.com/neilenns/ambientweather2mqtt/issues/152))
+
 ## 4.5.1
 
-* Remove bashio calls from HomeAssistant add-on. (Fixes [[#147](https://github.com/neilenns/ambientweather2mqtt/issues/147)])
+* Remove bashio calls from HomeAssistant add-on. (Fixes [#147](https://github.com/neilenns/ambientweather2mqtt/issues/147))
 
 ## 4.5.0
 

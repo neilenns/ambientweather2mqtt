@@ -15,6 +15,7 @@ options:
   STATION_MAC_ADDRESS: "00:00:00:00:00:00"
   TZ: "America/Los_Angeles"
   LOG_LEVEL: "info"
+  RETAIN_SENSOR_VALUES: false
 schema:
   MQTT_SERVER: "url"
   MQTT_USERNAME: "str"
@@ -23,6 +24,7 @@ schema:
   STATION_MAC_ADDRESS: "str"
   TZ: "str"
   LOG_LEVEL: list(error|warn|info|http|debug)
+  RETAIN_SENSOR_VALUES: "bool"
 services:
   - "mqtt:need"
 arch:

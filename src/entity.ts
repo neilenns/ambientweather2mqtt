@@ -8,6 +8,7 @@ import DeviceClass from "./deviceClass.js";
 import EntityCategory from "./entityCategory.js";
 import EntityDataPayload from "./entityDataPayload.js";
 import EntityDiscoveryPayload from "./entityDiscoveryPayload.js";
+import env from "./env.js";
 import mainLogger from "./log.js";
 import * as mqttManager from "./mqttManager.js";
 import SensorUnit from "./sensorUnit.js";
@@ -25,6 +26,7 @@ export default class Entity {
   public availabilityTopic: string;
   public value: EntityDataPayload;
   public discoveryPayload: EntityDiscoveryPayload;
+  public retain: boolean;
 
   private deviceId: string;
 
@@ -36,6 +38,7 @@ export default class Entity {
    * @param deviceClass The device class for the sensor. Optional.
    * @param icon The mdi icon for the sensor. Optional.
    * @param entityCategory The Home Assistant entity category for the sensor. Optional.
+   * @param retain True if the MQTT data topic should be sent with the retain flag set to true. Optional, default false.
    */
   constructor(
     name: string,
@@ -44,8 +47,10 @@ export default class Entity {
     deviceClass?: DeviceClass,
     icon?: string,
     entityCategory?: EntityCategory,
+    retain = false,
   ) {
     this.deviceId = deviceId;
+    this.retain = retain;
 
     this.discoveryPayload = {
       device: {
@@ -103,7 +108,7 @@ export default class Entity {
       return mqttManager.publish(this.stateTopic, this.value.toUTCString());
     }
 
-    return mqttManager.publish(this.stateTopic, this.value.toString());
+    return mqttManager.publish(this.stateTopic, this.value.toString(), this.retain || env().RETAIN_SENSOR_VALUES);
   }
 
   /**

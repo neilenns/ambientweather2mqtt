@@ -31,6 +31,7 @@ const envSchema = z.object({
   TZ: z.string().default("America/Los_Angeles"),
   TOPIC_ROOT: z.string().optional(),
   NODE_ENV: z.string().default("production"),
+  RETAIN_SENSOR_VALUES: z.string().transform<boolean>(booleanTransformer).default("false"),
 });
 
 let parsedEnv: z.infer<typeof envSchema>;

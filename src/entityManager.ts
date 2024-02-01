@@ -577,7 +577,7 @@ export function initialize(): void {
   );
   entities.set(
     EntityNames.LASTRAIN,
-    new Sensor(EntityNames.LASTRAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline"),
+    new Sensor(EntityNames.LASTRAIN, deviceId, undefined, DeviceClass.TIMESTAMP, "clock-outline", undefined, true),
   );
   entities.set(
     EntityNames.DEWPOINT1,
