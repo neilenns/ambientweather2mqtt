@@ -51,7 +51,7 @@ export async function publish(topic: string, data: string, retain?: boolean): Pr
   }
 
   logger.debug(`Publishing ${data} to ${topic} with retain: ${retain}`, { data, topic, retain });
-  return client.publish(topic, data, { retain: retain });
+  return client.publish(topic, data, { retain });
 }
 
 /**
