@@ -13,6 +13,7 @@ options:
   MQTT_PASSWORD: "password"
   MQTT_REJECT_UNAUTHORIZED: false
   STATION_MAC_ADDRESS: "00:00:00:00:00:00"
+  PUBLISH_NAME: "ambientWeather2mqtt"
   TZ: "America/Los_Angeles"
   LOG_LEVEL: "info"
   RETAIN_SENSOR_VALUES: false
@@ -22,6 +23,7 @@ schema:
   MQTT_PASSWORD: "password"
   MQTT_REJECT_UNAUTHORIZED: "bool"
   STATION_MAC_ADDRESS: "str"
+  PUBLISH_NAME: "str"
   TZ: "str"
   LOG_LEVEL: list(error|warn|info|http|debug)
   RETAIN_SENSOR_VALUES: "bool"

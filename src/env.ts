@@ -28,6 +28,7 @@ const envSchema = z.object({
   MQTT_PASSWORD: z.string().optional(),
   MQTT_REJECT_UNAUTHORIZED: z.string().transform<boolean>(booleanTransformer).default("false"),
   STATION_MAC_ADDRESS: z.string(),
+  PUBLISH_NAME: z.string().default("ambientWeather2mqtt"),
   TZ: z.string().default("America/Los_Angeles"),
   TOPIC_ROOT: z.string().optional(),
   NODE_ENV: z.string().default("production"),
