@@ -7,7 +7,7 @@ export default class EntityDiscoveryPayload {
   device: {
     identifiers: string[];
     manufacturer: "Ambient Weather";
-    name: "ambientweather2mqtt";
+    name: string;
     model: string;
     sw_version: string;
   };
