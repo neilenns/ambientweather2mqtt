@@ -482,6 +482,14 @@ export function initialize(): void {
 
   // AQIN sensors
   entities.set(
+    EntityNames.AQI_PM25_IN,
+    new Sensor(EntityNames.AQI_PM25_IN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
+    EntityNames.AQI_PM25_IN_24H,
+    new Sensor(EntityNames.AQI_PM25_IN_24H, deviceId, SensorUnit.particulate, undefined, "air-filter"),
+  );
+  entities.set(
     EntityNames.AQI_PM25_AQIN,
     new Sensor(EntityNames.AQI_PM25_AQIN, deviceId, SensorUnit.particulate, undefined, "air-filter"),
   );
