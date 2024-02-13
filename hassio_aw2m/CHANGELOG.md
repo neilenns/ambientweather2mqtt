@@ -1,5 +1,10 @@
 # Version
 
+## 4.7.0
+
+* Add `aqi_pm25_in` and `aqi_pm25_in_24h` sensors. (Fixes [#158](https://github.com/neilenns/ambientweather2mqtt/issues/158))
+* Add `PUBLISH_NAME` environment variable to set the name the topics are published with. (Fixes [#157](https://github.com/neilenns/ambientweather2mqtt/issues/157))
+
 ## 4.6.0
 
 * Add retain flag for `lastRain` sensor and new environment variable for enabling retain of all sensor values. (Fixes [#152](https://github.com/neilenns/ambientweather2mqtt/issues/152))
