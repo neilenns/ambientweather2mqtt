@@ -107,6 +107,8 @@ enum EntityNames {
   WINDSPEED_AVG10M = "windSpeedTenMinuteAverage",
   WINDSPEED_AVG2M = "windSpeedTwoMinuteAverage",
   // AQIN sensors
+  AQI_PM25_IN = "aqi_pm25_in",
+  AQI_PM25_IN_24H = "aqi_pm25_in_24h",
   AQI_PM25_AQIN = "aqi_pm25_aqin",
   AQI_PM25_24H_AQIN = "aqi_pm25_24h_aqin",
   CO2_IN_AQIN = "co2_in_aqin",

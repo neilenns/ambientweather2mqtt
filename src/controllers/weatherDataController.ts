@@ -223,6 +223,8 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.WINDSPEED, +req.query.windspeedmph);
 
   // AQIN sensors
+  setDataPayload(EntityNames.AQI_PM25_IN, +req.query.aqi_pm25_in);
+  setDataPayload(EntityNames.AQI_PM25_IN_24H, +req.query.aqi_pm25_in_24h);
   setDataPayload(EntityNames.AQI_PM25_24H_AQIN, +req.query.aqi_pm25_24h_aqin);
   setDataPayload(EntityNames.AQI_PM25_AQIN, +req.query.aqi_pm25_aqin);
   setDataPayload(EntityNames.PM25_IN_AQIN, +req.query.pm25_in_aqin);
