@@ -188,6 +188,14 @@ export function initialize(): void {
     ),
   );
   entities.set(EntityNames.CO2, new Sensor(EntityNames.CO2, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2));
+  entities.set(
+    EntityNames.CO2_IN,
+    new Sensor(EntityNames.CO2_IN, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2),
+  );
+  entities.set(
+    EntityNames.CO2_IN_24H,
+    new Sensor(EntityNames.CO2_IN_24H, deviceId, SensorUnit.partsPerMillion, DeviceClass.CO2),
+  );
   entities.set(EntityNames.DEWPOINT, new Sensor(EntityNames.DEWPOINT, deviceId, SensorUnit.F, DeviceClass.TEMPERATURE));
   entities.set(
     EntityNames.EVENTDATE,
