@@ -1,5 +1,10 @@
 # Version
 
+## 4.8.0
+
+* Add `co2_in` and `co2_in_24h` sensors (Fixes [#160](https://github.com/neilenns/ambientweather2mqtt/issues/160))
+* Update dependencies
+
 ## 4.7.0
 
 * Add `aqi_pm25_in` and `aqi_pm25_in_24h` sensors. (Fixes [#158](https://github.com/neilenns/ambientweather2mqtt/issues/158))
