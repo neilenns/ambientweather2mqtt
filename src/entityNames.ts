@@ -21,6 +21,8 @@ enum EntityNames {
   BATTERYPM25OK = "batteryPM25Ok",
   BATTERYLIGHTNING = "batt_lightning",
   CO2 = "co2",
+  CO2_IN = "co2_in",
+  CO2_IN_24H = "co2_in_24h",
   /**
    * @deprecated Replaced with eventDate
    */

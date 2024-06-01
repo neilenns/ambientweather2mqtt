@@ -114,6 +114,8 @@ The following sensors are supported. Note that weather stations will only report
 | batteryPM25Ok                 | State of the PM25 device battery, `0` for not ok, `100` for ok      | Yes                                                 | No                  | percent |
 | batteryLightning              | State of the lightning device battery, `0` for not ok, `100` for ok | Yes                                                 | No                  | percent |
 | co2                           | CO2 meter reading                                                   | Yes                                                 | No                  | ppm     |
+| co2_in                        | Indoor CO2 meter reading                                            | Yes                                                 | No                  | ppm     |
+| co2_in_24h                    | Indoor CO2 meter 24 hour average                                    | Yes                                                 | No                  | ppm     |
 | dewpoint                      | Outdoor dewpoint temperature                                        | No                                                  | Yes                 | °F      |
 | eventDate                     | Date of the latest measurements                                     | Yes                                                 | Yes                 | date    |
 | humidity1..10                 | Humidity sensors 1 through 10                                       | Yes                                                 | No                  | percent |
