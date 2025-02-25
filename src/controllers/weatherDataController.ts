@@ -174,6 +174,7 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.RAINMONTHLY, +req.query.monthlyrainin);
   setDataPayload(EntityNames.RAINTOTAL, +req.query.totalrainin);
   setDataPayload(EntityNames.RAINWEEKLY, +req.query.weeklyrainin);
+  setDataPayload(EntityNames.RAINYEARLY, +req.query.yearlyrainin);
   setDataPayload(EntityNames.RELAY1, convertRelayValue(req.query.relay1 as string));
   setDataPayload(EntityNames.RELAY10, convertRelayValue(req.query.relay10 as string));
   setDataPayload(EntityNames.RELAY2, convertRelayValue(req.query.relay2 as string));

@@ -135,6 +135,7 @@ The following sensors are supported. Note that weather stations will only report
 | rainMonthly                   | Monthly rain                                                        | Yes                                                 | Yes                 | inches  |
 | rainTotal                     | Total rain since last factory reset                                 | Yes                                                 | No                  | inches  |
 | rainWeekly                    | Weekly rain                                                         | Yes                                                 | Yes                 | inches  |
+| rainYearly                    | Yearly rain                                                         | Yes                                                 | Yes                 | inches  |
 | relay1..10                    | Relays 1 through 10                                                 | Yes                                                 | No                  | n/a     |
 | soilHumidity1..10             | Soil humidity sensors 1 through 10                                  | Yes                                                 | No                  | percent |
 | soilTemperature1..10          | Soil temperature sensors 1 through 10                               | Yes                                                 | No                  | °F      |
