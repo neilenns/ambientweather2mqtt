@@ -55,6 +55,7 @@ enum EntityNames {
   RAINMONTHLY = "rainMonthly",
   RAINTOTAL = "rainTotal",
   RAINWEEKLY = "rainWeekly",
+  RAINYEARLY = "yearlyrainin",
   RELAY1 = "relay1",
   RELAY10 = "relay10",
   RELAY2 = "relay2",
