@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "schedule:weekly", "schedule:automergeWeekly"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "groupName": "definitelyTyped",
+      "matchDepTypes": ["devDependencies"],
+      "automerge": true,
+      "matchPackageNames": ["@types/{/,}**"]
+    },
+    {
+      "groupName": "linting",
+      "groupSlug": "eslint-plugin",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "matchPackageNames": ["eslint-plugin{/,}**"]
+    },
+    {
+      "groupName": "all minor and patch dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ]
+}
