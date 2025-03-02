@@ -9,4 +9,4 @@ USER node
 COPY --chown=node:node . .
 RUN npm ci --no-optional
 
-ENTRYPOINT [ "node", "--no-deprecation", "dist/main.js" ]#
+ENTRYPOINT [ "node", "--no-deprecation", "dist/main.js" ]
