@@ -1,5 +1,10 @@
 # Version
 
+## 4.9.1
+
+- Fix launching issue with Docker image for non-Hassio installs. (Fixes [#179](https://github.com/neilenns/ambientweather2mqtt/issues/179))
+- Update dependencies
+
 ## 4.9.0
 
 - Add `yearlyrainin` sensor (Fixes [#169](https://github.com/neilenns/ambientweather2mqtt/issues/169))
