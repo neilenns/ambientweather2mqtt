@@ -1,5 +1,10 @@
 # Version
 
+## 4.10.0
+
+- Ensure log message timestamps are formatted using the timezone and locale.(Fixes [#181](https://github.com/neilenns/ambientweather2mqtt/issues/181))
+- Add new LOCALE environment variable for specifying the locale used to format log message timestamps.
+
 ## 4.9.1
 
 - Fix launching issue with Docker image for non-Hassio installs. (Fixes [#179](https://github.com/neilenns/ambientweather2mqtt/issues/179))
