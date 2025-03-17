@@ -2,6 +2,10 @@
 # See comments on issue 64 for more details.
 # https://github.com/neilenns/ambientweather2mqtt/issues/64
 FROM node:14-alpine3.12
+
+# To get timezones to work
+RUN apk add --no-cache tzdata
+
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app

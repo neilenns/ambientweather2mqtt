@@ -34,10 +34,16 @@ const colors = {
   trace: "grey",
 };
 
+const customTimestamp = winston.format((info) => {
+  const timestamp = new Date().toLocaleString(env().LOCALE, { timeZone: env().TZ });
+  info.timestamp = timestamp;
+  return info;
+});
+
 winston.addColors(colors);
 
 const consoleFormat = winston.format.combine(
-  winston.format.timestamp(),
+  customTimestamp(),
   winston.format.printf((info) => {
     const message = `[${info.service}] ${info.message}`;
     // This method of applying colour comes from https://stackoverflow.com/a/63104828

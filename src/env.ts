@@ -20,19 +20,20 @@ function booleanTransformer(v: string, ctx: z.RefinementCtx) {
 }
 
 const envSchema = z.object({
-  VERSION: z.string().default("dev"),
+  LOCALE: z.string().default("en-US"),
   LOG_LEVEL: z.enum(["error", "warn", "info", "http", "debug", "trace"]).default("info"),
-  PORT: z.coerce.number().default(8132),
-  MQTT_SERVER: z.string(),
-  MQTT_USERNAME: z.string().optional(),
   MQTT_PASSWORD: z.string().optional(),
   MQTT_REJECT_UNAUTHORIZED: z.string().transform<boolean>(booleanTransformer).default("false"),
-  STATION_MAC_ADDRESS: z.string(),
-  PUBLISH_NAME: z.string().default("ambientWeather2mqtt"),
-  TZ: z.string().default("America/Los_Angeles"),
-  TOPIC_ROOT: z.string().optional(),
+  MQTT_SERVER: z.string(),
+  MQTT_USERNAME: z.string().optional(),
   NODE_ENV: z.string().default("production"),
+  PORT: z.coerce.number().default(8132),
+  PUBLISH_NAME: z.string().default("ambientWeather2mqtt"),
   RETAIN_SENSOR_VALUES: z.string().transform<boolean>(booleanTransformer).default("false"),
+  STATION_MAC_ADDRESS: z.string(),
+  TOPIC_ROOT: z.string().optional(),
+  TZ: z.string().default("America/Los_Angeles"),
+  VERSION: z.string().default("dev"),
 });
 
 let parsedEnv: z.infer<typeof envSchema>;
