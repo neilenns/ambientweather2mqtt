@@ -44,7 +44,7 @@ export async function initialize(id: string): Promise<void> {
  * @param data The  data to send
  * @returns A promise
  */
-export async function publish(topic: string, data: string, retain?: boolean): Promise<MQTT.IPublishPacket> {
+export async function publish(topic: string, data: string, retain?: boolean): Promise<void> {
   if (!connected) {
     logger.error("Attempted to send data but not connected to MQTT server.");
     return;
