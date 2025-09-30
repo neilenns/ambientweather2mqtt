@@ -9,13 +9,13 @@ This document provides essential information for AI coding agents working on thi
 ## Tech Stack
 
 - **Language**: TypeScript (compiled to JavaScript)
-- **Runtime**: Node.js 14+ (Alpine Linux 3.12 for Docker compatibility)
+- **Runtime**: Node.js 22+ (Alpine Linux for Docker)
 - **Package Manager**: npm
 - **Web Framework**: Express.js
 - **MQTT Client**: async-mqtt
 - **Testing**: Mocha + Chai
 - **Build System**: TypeScript Compiler (tsc)
-- **Code Quality**: ESLint + Prettier + Markdownlint
+- **Code Quality**: ESLint (flat config) + Prettier + Markdownlint
 - **Deployment**: Docker, Home Assistant Add-on
 
 ## Project Structure
@@ -50,9 +50,11 @@ ambientweather2mqtt/
 │   ├── .env                      # Sample environment variables
 │   └── docker-compose.yml        # Sample Docker Compose setup
 ├── docs/                         # Documentation assets
-├── Dockerfile                    # Main Docker image
+├── Dockerfile                    # Main Docker image (Node 22 Alpine)
 ├── package.json                  # npm dependencies and scripts
 ├── tsconfig.json                 # TypeScript configuration
+├── eslint.config.mjs             # ESLint flat configuration
+├── .nvmrc                        # Node version specification (22)
 ├── .prettierrc                   # Prettier configuration
 ├── .markdownlint.json            # Markdownlint configuration
 ├── .mocharc.jsonc                # Mocha test configuration
@@ -113,12 +115,12 @@ Tests are located in the `test/` directory and use Mocha + Chai. Test environmen
 
 ```bash
 npm run lint              # Run all linters
-npm run lint:eslint       # Run ESLint on TypeScript files
+npm run lint:eslint       # Run ESLint on all files
 npm run lint:markdown     # Run Markdownlint on Markdown files
 npm run format            # Format code with Prettier
 ```
 
-**Note**: The project currently has a configuration issue - `package.json` references `.eslintrc.json` which doesn't exist. ESLint will fail until this is resolved. The project uses ESLint 9.x which may require a flat config (`eslint.config.js`) instead.
+The project uses ESLint 9.x with flat config (`eslint.config.mjs`). The configuration includes TypeScript type-checked rules and ignores the `dist/` and config files.
 
 ### Running Locally
 
@@ -222,15 +224,11 @@ Use the `/data` endpoint with URL-encoded query parameters. Examples in `DEVELOP
 
 ## Known Issues and Quirks
 
-1. **ESLint Configuration Missing**: The project references `.eslintrc.json` which doesn't exist. This may need to be created or the project may need migration to ESLint 9 flat config.
+1. **Node Deprecation Warnings**: The project uses `--experimental-loader` for ts-node which shows warnings but works correctly.
 
-2. **Alpine Linux Version**: Docker image uses Alpine 3.12 specifically due to Raspberry Pi compatibility issues (see issue #64).
+2. **Network Configuration**: IoT/NoT virtual networks and router firewalls may require configuration for local weather station connections.
 
-3. **Node Deprecation Warnings**: The project uses `--experimental-loader` for ts-node which shows warnings but works correctly.
-
-4. **Network Configuration**: IoT/NoT virtual networks and router firewalls may require configuration for local weather station connections.
-
-5. **Weather Station App**: iOS awnet app is recommended; Android app may have compatibility issues.
+3. **Weather Station App**: iOS awnet app is recommended; Android app may have compatibility issues.
 
 ## Dependencies to Be Aware Of
 
