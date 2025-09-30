@@ -1,5 +1,10 @@
 # Version
 
+## 5.0.0
+
+- Update to Node 22
+- Update to a wide range of dependencies, new version of TypeScript, Chai, etc.
+
 ## 4.10.0
 
 - Ensure log message timestamps are formatted using the timezone and locale.(Fixes [#181](https://github.com/neilenns/ambientweather2mqtt/issues/181))
