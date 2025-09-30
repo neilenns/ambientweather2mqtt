@@ -41,7 +41,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.0.0",
     "@types/ws": "^8.0.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
     "chai": "^5.0.0",
     "cross-env": "^7.0.3",
     "env-test": "^1.0.0",
