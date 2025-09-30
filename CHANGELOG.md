@@ -1,5 +1,9 @@
 # Version
 
+## 5.0.1
+
+- Fix paths in Docker image
+
 ## 5.0.0
 
 - Update to Node 22
