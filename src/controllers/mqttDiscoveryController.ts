@@ -25,7 +25,7 @@ export async function discover(req: express.Request, res: express.Response): Pro
     }
 
     logger.debug(`Triggering MQTT discover event for ${req.params.entityName}`);
-    entity.publishDiscovery();
+    await entity.publishDiscovery();
   } else {
     logger.debug("Triggering MQTT discover events for all known entities.");
     await entityManager.discoverAll();

@@ -42,7 +42,7 @@ try {
   parsedEnv = envSchema.parse(process.env);
 } catch (error) {
   const err = error as ZodError;
-  err.errors.map((e) => console.error(`Error processing environment variable ${e.path}: ${e.message}`));
+  err.errors.map((e) => console.error(`Error processing environment variable ${e.path.join(".")}: ${e.message}`));
   process.exit(1);
 }
 

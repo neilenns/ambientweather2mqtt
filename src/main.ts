@@ -38,13 +38,20 @@ async function handleDeath(): Promise<void> {
 }
 
 /**
+ * Wrapper function to handle async death function in sync event handlers.
+ */
+function handleDeathSync(): void {
+  void handleDeath();
+}
+
+/**
  * Registers for the various system shutdown messages to ensure proper cleanup.
  */
 function registerForDeath(): void {
-  process.on("SIGINT", handleDeath);
-  process.on("SIGTERM", handleDeath);
-  process.on("SIGQUIT", handleDeath);
-  process.on("SIGBREAK", handleDeath);
+  process.on("SIGINT", handleDeathSync);
+  process.on("SIGTERM", handleDeathSync);
+  process.on("SIGQUIT", handleDeathSync);
+  process.on("SIGBREAK", handleDeathSync);
 }
 
 /**
@@ -79,4 +86,4 @@ process.on("uncaughtException", (err: NodeJS.ErrnoException) => {
   process.exit(1);
 });
 
-main();
+void main();

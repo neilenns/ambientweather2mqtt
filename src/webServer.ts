@@ -47,7 +47,8 @@ export function start(): void {
       server,
     });
   } catch (e) {
-    throw new Error(`Unable to start web server: ${e.error}`);
+    const error = e as Error;
+    throw new Error(`Unable to start web server: ${error.message}`);
   }
 }
 

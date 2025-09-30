@@ -95,7 +95,7 @@ export function setDataPayload(key: string, value: EntityDataPayload | undefined
     entityManager.entities.get(key).value = value;
   } catch (error) {
     const err = error as Error;
-    logger.error(`Error setting data payload for ${key} to ${value}: ${err.message}`);
+    logger.error(`Error setting data payload for ${key} to ${String(value)}: ${err.message}`);
   }
 }
 
@@ -241,7 +241,9 @@ export async function processWeatherData(req: express.Request, res: express.Resp
 
   // Issue 109: Some ambientweather stations appear to send "now" for the time instead of an actual time.
   // Make this more general case and just use current time if the one provided can't be converted to a time.
-  setDataPayload(EntityNames.EVENTDATE, convertUtcValue(req.query.dateutc?.toString()).toISOString());
+  const dateutc = Array.isArray(req.query.dateutc) ? req.query.dateutc[0] : req.query.dateutc;
+  const dateutcStr = typeof dateutc === "string" ? dateutc : "";
+  setDataPayload(EntityNames.EVENTDATE, convertUtcValue(dateutcStr).toISOString());
 
   // Calculated sensors
   setDataPayload(EntityNames.SOLARRADIATION_LUX, calculateSolarRadiationLux(+req.query.solarradiation));
@@ -307,7 +309,7 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.DEWPOINT10, calculateDewPoint(+req.query.temp10f, +req.query.humidity10));
 
   await entityManager.publishAll();
-  mqttManager.publishOnline();
+  await mqttManager.publishOnline();
 
   res.status(200).send("Ok");
 }
