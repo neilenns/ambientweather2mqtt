@@ -32,7 +32,8 @@ export async function initialize(id: string): Promise<void> {
     },
     rejectUnauthorized: env().MQTT_REJECT_UNAUTHORIZED,
   }).catch((e) => {
-    throw new Error(`Unable to connect: ${e.message}`);
+    const error = e as Error;
+    throw new Error(`Unable to connect: ${error.message}`);
   });
 
   logger.info(`Connected to MQTT server ${env().MQTT_SERVER}`, { server: env().MQTT_SERVER });

@@ -651,7 +651,6 @@ export async function upgrade(): Promise<void> {
     logger.error("Attempted to call upgrade() but initialize() wasn't called first.");
   }
 
-  // eslint-disable-next-line deprecation/deprecation
   await new Sensor(EntityNames.DATE, deviceId).publishRemove();
 }
 

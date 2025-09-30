@@ -11,15 +11,16 @@ on:
 
 jobs:
   build:
+    name: "Build"
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js from .nvmrc
         uses: actions/setup-node@v5
         with:
-          node-version: 14.x
+          node-version-file: ".nvmrc"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 
@@ -29,16 +30,20 @@ jobs:
       - name: Build
         run: npm run build --if-present
 
+      - name: Lint
+        run: npm run lint
+
   test:
+    name: "Test"
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js from .nvmrc
         uses: actions/setup-node@v5
         with:
-          node-version: 14.x
+          node-version-file: ".nvmrc"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
 
