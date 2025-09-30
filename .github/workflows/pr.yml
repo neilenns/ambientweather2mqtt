@@ -29,6 +29,9 @@ jobs:
       - name: Build
         run: npm run build --if-present
 
+      - name: Lint
+        run: npm run lint
+
   test:
     runs-on: ubuntu-latest
 
