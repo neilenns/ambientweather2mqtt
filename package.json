@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/danecreekphotography/ambientweather2mqtt#readme",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
