@@ -27,11 +27,11 @@ Note that IoT/NoT virtual network rules may prevent direct connections to the ma
 
 ## How to force the auto-discover messages to send
 
-Go to http://address:port/discover
+Go to <http://address:port/discover>
 
 ## How to send a real data blob
 
-Go to http://localhost:8132/data?<urlencoded data>. Here is a full example:
+Go to <http://localhost:8132/data?_urlencodedData_>. Here is a full example:
 
 `/data/?stationtype=AMBWeatherV4.2.9&PASSKEY=40:F5:20:3A:40:FF&dateutc=2021-07-01+20:34:06&tempinf=73.0&humidityin=56&baromrelin=29.900&baromabsin=29.513&tempf=68.2&battout=1&humidity=66&winddir=358&windspeedmph=0.0&windgustmph=0.0&maxdailygust=3.4&hourlyrainin=0.000&eventrainin=0.000&dailyrainin=0.000&weeklyrainin=0.000&monthlyrainin=0.000&totalrainin=0.000&solarradiation=93.58&uv=0&batt_co2=1`
 
