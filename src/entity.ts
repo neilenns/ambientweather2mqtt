@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass.js";
 import EntityCategory from "./entityCategory.js";
 import EntityDataPayload from "./entityDataPayload.js";
@@ -73,7 +72,7 @@ export default class Entity {
   /**
    * Publishes the sensor discovery event to MQTT if a valid value is stored for the sensor.
    */
-  public publishDiscovery(): Promise<IPublishPacket> {
+  public publishDiscovery(): Promise<void> {
     // Skip publishing if the value is undefined.
     if (this.value === undefined) {
       logger.debug(
@@ -92,7 +91,7 @@ export default class Entity {
    * Publishes the sensor data event to MQTT.
    * @returns A promise
    */
-  public async publishData(): Promise<IPublishPacket> {
+  public async publishData(): Promise<void> {
     // Don't publish if there is no data to send.
     if (this.value === undefined) {
       return;
@@ -117,7 +116,7 @@ export default class Entity {
    * removed from the MQTT server. This is used as part of the upgrade code
    * when a breaking change happens.
    */
-  public publishRemove(): Promise<IPublishPacket> {
+  public publishRemove(): Promise<void> {
     return mqttManager.publish(this.discoveryTopic, null);
   }
 }

@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IPublishPacket } from "mqtt-packet";
 import BinarySensor from "./binarySensor.js";
 import DeviceClass from "./deviceClass.js";
 import Entity from "./entity.js";
@@ -658,8 +657,8 @@ export async function upgrade(): Promise<void> {
  * Publishes MQTT discover messages for all registered sensors that have data.
  * @returns Promises
  */
-export function discoverAll(): Promise<IPublishPacket[]> {
-  const promises = new Array<Promise<IPublishPacket>>();
+export function discoverAll(): Promise<void[]> {
+  const promises = new Array<Promise<void>>();
 
   entities.forEach((value) => {
     promises.push(value.publishDiscovery());
@@ -672,8 +671,8 @@ export function discoverAll(): Promise<IPublishPacket[]> {
  * Publishes data for all sensors that have received a value.
  * @returns Promises
  */
-export function publishAll(): Promise<IPublishPacket[]> {
-  const promises = new Array<Promise<IPublishPacket>>();
+export function publishAll(): Promise<void[]> {
+  const promises = new Array<Promise<void>>();
 
   entities.forEach((value) => {
     promises.push(value.publishData());
