@@ -3,7 +3,6 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { IPublishPacket } from "mqtt-packet";
 import DeviceClass from "./deviceClass.js";
 import EntityCategory from "./entityCategory.js";
 import EntityDataPayload from "./entityDataPayload.js";

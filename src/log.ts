@@ -45,9 +45,9 @@ winston.addColors(colors);
 const consoleFormat = winston.format.combine(
   customTimestamp(),
   winston.format.printf((info) => {
-    const message = `[${info.service}] ${info.message}`;
-    // This method of applying colour comes from https://stackoverflow.com/a/63104828
-    return `${info.timestamp} ${winston.format.colorize().colorize(info.level, message)}`;
+    const message = `[${info.service as string}] ${info.message as string}`;
+    // This method of applying color comes from https://stackoverflow.com/a/63104828
+    return `${info.timestamp as string} ${winston.format.colorize().colorize(info.level, message)}`;
   }),
 );
 
