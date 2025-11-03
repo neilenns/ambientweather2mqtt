@@ -43,7 +43,7 @@
     "@types/express": "^5.0.0",
     "@types/mocha": "^10.0.6",
     "@types/morgan": "^1.9.9",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@types/ws": "^8.0.0",
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "chai": "^6.0.0",
