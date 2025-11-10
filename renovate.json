@@ -28,6 +28,12 @@
       "matchPackageNames": ["dotenv"],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "automerge": true
+    },
+    {
+      "groupName": "github actions",
+      "groupSlug": "github-actions",
+      "matchDatasources": ["github-actions"],
+      "automerge": true
     }
   ]
 }
