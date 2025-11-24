@@ -61,7 +61,7 @@
     "dotenv": "^17.0.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-notice": "^0.9.10",
-    "express": "^4.21.2",
+    "express": "^5.0.0",
     "http-terminator": "^3.0.0",
     "markdownlint": "^0.39.0",
     "markdownlint-cli": "^0.46.0",
