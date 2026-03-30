@@ -52,7 +52,7 @@
     "eslint": "^10.0.0",
     "mocha": "^11.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.0",
+    "typescript": "^6.0.0",
     "typescript-eslint": "^8.45.0"
   },
   "dependencies": {
