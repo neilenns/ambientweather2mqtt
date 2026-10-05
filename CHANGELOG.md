@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Fix `lightningTime` sensor being shifted by the local UTC offset when `TZ` is not UTC.
+- Fix `lightningTime` sensor being shifted by the local UTC offset when `TZ` is not UTC. (Fixes [#295](https://github.com/neilenns/ambientweather2mqtt/issues/295))
 
 ## 5.0.1
 
