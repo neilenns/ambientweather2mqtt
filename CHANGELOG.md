@@ -1,5 +1,9 @@
 # Version
 
+## Unreleased
+
+- Fix `lightningTime` sensor being shifted by the local UTC offset when `TZ` is not UTC.
+
 ## 5.0.1
 
 - Fix paths in Docker image
