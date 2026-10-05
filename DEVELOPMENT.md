@@ -13,9 +13,9 @@ Here's how to do common development tasks with this project when you've forgotte
 
 ## How to force Home Assistant to check for updated version
 
-1. Go to `Settings` > `Add-ons` > `Add-on Store`
-2. Select `...` in the top right
-3. Select `Check for Updates`
+1. Go to `Settings` > `Apps`
+2. Select the refresh icon in the top right
+3. Open the Ambientweather2mqtt app and click the update button
 
 ## How to debug
 
