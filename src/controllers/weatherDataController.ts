@@ -157,10 +157,11 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.HUMIDITY9, +req.query.humidity9);
   setDataPayload(EntityNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
   setDataPayload(EntityNames.HUMIDITYOUTDOOR, +req.query.humidity);
+  // lightning_time is Unix epoch seconds, already an absolute instant, so it must not go through convertUtcValue().
+  const lightningTime = new Date(+req.query.lightning_time * 1000);
   setDataPayload(
     EntityNames.LIGHTNINGTIME,
-    // lightning_time is Unix epoch seconds, already an absolute instant, so it must not go through convertUtcValue().
-    +req.query.lightning_time ? new Date(+req.query.lightning_time * 1000).toISOString() : undefined,
+    +req.query.lightning_time && Number.isFinite(lightningTime.getTime()) ? lightningTime.toISOString() : undefined,
   );
   setDataPayload(EntityNames.LIGHTNINGDAY, +req.query.lightning_day);
   setDataPayload(EntityNames.LIGHTNINGDISTANCE, +req.query.lightning_distance);

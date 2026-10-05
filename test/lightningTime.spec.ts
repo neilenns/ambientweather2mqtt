@@ -33,4 +33,25 @@ describe("Lightning time", () => {
     expect(value).to.equal(new Date(epochSeconds * 1000).toISOString());
     expect(value).to.equal("2026-10-05T12:01:00.000Z");
   });
+
+  it("should skip invalid lightning_time values without throwing", async function () {
+    let statusCode: number | undefined;
+    const res = {
+      status: (code: number) => {
+        statusCode = code;
+        return { send: () => undefined };
+      },
+    } as unknown as express.Response;
+
+    for (const lightningTime of ["1e20", "Infinity", "abc", "0", ""]) {
+      entityManager.initialize();
+      statusCode = undefined;
+
+      const req = { query: { lightning_time: lightningTime } } as unknown as express.Request;
+      await processWeatherData(req, res);
+
+      expect(entityManager.entities.get(EntityNames.LIGHTNINGTIME)?.value, lightningTime).to.be.undefined;
+      expect(statusCode, lightningTime).to.equal(200);
+    }
+  });
 });
