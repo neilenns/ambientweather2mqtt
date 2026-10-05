@@ -55,7 +55,7 @@ function convertRelayValue(value: string): string {
  * @param value The UTC date as a string
  * @returns A Date object with the UTC date
  */
-function convertUtcValue(value: string | number): Date {
+function convertUtcValue(value: string): Date {
   // This is absolute nonsense. If you just make a new Date with the incoming string it gets assigned the local machine's timezone.
   // There is no way to make a new Date object directly and tell it "this time is in UTC". So you have to do all this crazy
   // date creation stuff, found at https://stackoverflow.com/questions/439630/create-a-date-with-a-set-timezone-without-using-a-string-representation.
@@ -157,9 +157,11 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.HUMIDITY9, +req.query.humidity9);
   setDataPayload(EntityNames.HUMIDITYINDOOR, +(req.query.humidityin ?? req.query.indoorhumidity));
   setDataPayload(EntityNames.HUMIDITYOUTDOOR, +req.query.humidity);
+  // lightning_time is Unix epoch seconds, already an absolute instant, so it must not go through convertUtcValue().
+  const lightningTime = new Date(+req.query.lightning_time * 1000);
   setDataPayload(
     EntityNames.LIGHTNINGTIME,
-    +req.query.lightning_time ? convertUtcValue(+req.query.lightning_time * 1000).toISOString() : undefined,
+    +req.query.lightning_time && Number.isFinite(lightningTime.getTime()) ? lightningTime.toISOString() : undefined,
   );
   setDataPayload(EntityNames.LIGHTNINGDAY, +req.query.lightning_day);
   setDataPayload(EntityNames.LIGHTNINGDISTANCE, +req.query.lightning_distance);
