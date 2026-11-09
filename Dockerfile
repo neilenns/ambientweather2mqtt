@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:26-alpine
 
 # To get timezones to work
 RUN apk add --no-cache tzdata
