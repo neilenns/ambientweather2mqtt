@@ -1,6 +1,6 @@
 ## Unreleased
 
-- Fix `batteryLightning` reporting 0% when the lightning sensor battery is OK. Ambient's `batt_lightning` field uses 0=OK, 1=Low, the reverse of the other battery fields.
+- Fix `batteryLightning` reporting 0% when the lightning sensor battery is OK. Ambient's `batt_lightning` field uses 0=OK, 1=Low, the reverse of the other battery fields. (Fixes #314)
 
 # Version
 
