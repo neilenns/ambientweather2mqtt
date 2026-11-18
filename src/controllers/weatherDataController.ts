@@ -31,6 +31,7 @@ function convertBatteryValue(value: string, oneMeansLow = false): number {
     return undefined;
   }
   const ok = oneMeansLow ? !+value : !!+value;
+
   return ok ? 100 : 0;
 }
 
