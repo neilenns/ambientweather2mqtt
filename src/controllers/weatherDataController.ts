@@ -20,7 +20,8 @@ const logger = mainLogger.child({ service: "weatherData" });
 
 /**
  * Converts an Ambient Weather "ok" or "not ok" battery value into a 100 or 0 percent value for Home Assistant.
- * @param The raw battery value, either 0 or 1.
+ * @param value The raw battery value, either 0 or 1.
+ * @param oneMeansLow True for fields where 1 means low and 0 means OK, such as batt_lightning.
  * @returns The converted battery value, either 0 or 100.
  */
 function convertBatteryValue(value: string, oneMeansLow = false): number {
