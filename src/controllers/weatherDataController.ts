@@ -23,7 +23,7 @@ const logger = mainLogger.child({ service: "weatherData" });
  * @param The raw battery value, either 0 or 1.
  * @returns The converted battery value, either 0 or 100.
  */
-function convertBatteryValue(value: string): number {
+function convertBatteryValue(value: string, oneMeansLow = false): number {
   // This data isn't provided in the Weather Underground API format and many of the Ambient Weather battery sensors
   // don't report data unless there are external devices attached so there's an initial check for undefined to ensure
   // no value gets set for these entities when there is no data provided.
@@ -138,7 +138,7 @@ export async function processWeatherData(req: express.Request, res: express.Resp
   setDataPayload(EntityNames.BATTERYCO2OK, convertBatteryValue(req.query.batt_co2 as string));
   setDataPayload(EntityNames.BATTERYOK, convertBatteryValue(req.query.battout as string));
   setDataPayload(EntityNames.BATTERYPM25OK, convertBatteryValue(req.query.batt_25 as string));
-  setDataPayload(EntityNames.BATTERYLIGHTNING, convertBatteryValue(req.query.batt_lightning as string));
+  setDataPayload(EntityNames.BATTERYLIGHTNING, convertBatteryValue(req.query.batt_lightning as string, true));
   setDataPayload(EntityNames.CO2, +req.query.co2);
   setDataPayload(EntityNames.CO2_IN, +req.query.co2_in);
   setDataPayload(EntityNames.CO2_IN_24H, +req.query.co2_in_24h);
